@@ -7,7 +7,7 @@ YbCoin - a hybrid scrypt PoW + PoS based cryptocurrency, forked from yacoin
 * 1 minute PoW block targets.
 * Maximum PoW reward is 10 coins
 
-the offical website is localted at:
+the offical website is located at:
 http://www.ybcoin.org/
 
 Development process
