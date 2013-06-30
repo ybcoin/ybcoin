@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = ybcoin-qt
-VERSION = 0.7.2
+VERSION = 0.4.2
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE SCRYPT_CHACHA SCRYPT_KECCAK512
 CONFIG += no_include_pwd
@@ -12,16 +12,16 @@ CONFIG += thread
 # use: BOOST_THREAD_LIB_SUFFIX=_win32-...
 # or when linking against a specific BerkelyDB version: BDB_LIB_SUFFIX=-4.8
 
-BOOST_INCLUDE_PATH = E:/libraries/boost_1_53_0
-BOOST_LIB_PATH = E:/libraries/boost_1_53_0/stage/lib
-BDB_INCLUDE_PATH = E:/libraries/db-5.3.21/stage/include
-BDB_LIB_PATH = E:/libraries/db-5.3.21/stage/lib
-OPENSSL_INCLUDE_PATH = E:/libraries/openssl-1.0.0d/include
-OPENSSL_LIB_PATH = E:/libraries/openssl-1.0.0d
-MINIUPNPC_INCLUDE_PATH = E:/libraries/miniupnpc-1.5
-MINIUPNPC_LIB_PATH = E:/libraries/miniupnpc-1.5/miniupnpc
-BDB_LIB_SUFFIX = -5.3
-BOOST_LIB_SUFFIX = -mgw44-mt-1_53
+# BOOST_INCLUDE_PATH = E:/libraries/boost_1_53_0
+# BOOST_LIB_PATH = E:/libraries/boost_1_53_0/stage/lib
+# BDB_INCLUDE_PATH = E:/libraries/db-5.3.21/stage/include
+# BDB_LIB_PATH = E:/libraries/db-5.3.21/stage/lib
+# OPENSSL_INCLUDE_PATH = E:/libraries/openssl-1.0.0d/include
+# OPENSSL_LIB_PATH = E:/libraries/openssl-1.0.0d
+# MINIUPNPC_INCLUDE_PATH = E:/libraries/miniupnpc-1.5
+# MINIUPNPC_LIB_PATH = E:/libraries/miniupnpc-1.5/miniupnpc
+# BDB_LIB_SUFFIX = -5.3
+# BOOST_LIB_SUFFIX = -mgw44-mt-1_53
 
 # Dependency library locations can be customized with:
 #    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
