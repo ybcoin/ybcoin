@@ -1,14 +1,14 @@
+YbCoin official development tree
 
-NovaCoin official development tree
+YbCoin - a hybrid scrypt PoW + PoS based cryptocurrency.
 
-NovaCoin - a hybrid scrypt PoW + PoS based cryptocurrency.
+* Uses the scrypt + chacha20/8 (N,1,1) hashing algorithm.
+* N increases over time to increase memory requirements.
+* 1 minute PoW block targets.
+* Maximum PoW reward is 10 coins
 
-* 10 minutes stake spacing
-* 30 minutes PoW spacing
-* The PoW subsidy halves every x64 multiply of PoW difficulty
-* The PoS interest halves every x64 multiply of PoS difficulty
-* Maximum PoW reward is 100 coins
-* ~ 2 billion total coins
+the offical website is localted at:
+http://www.ybcoin.org/
 
 Development process
 ===========================
