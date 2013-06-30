@@ -311,7 +311,7 @@ track of who is paying you.</source>
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+269"/>
+        <location filename="../bitcoingui.cpp" line="+270"/>
         <source>Sign &amp;message...</source>
         <translation>对消息签名...</translation>
     </message>
@@ -321,7 +321,7 @@ track of who is paying you.</source>
         <translation>网络同步中...</translation>
     </message>
     <message>
-        <location line="-309"/>
+        <location line="-310"/>
         <source>&amp;Overview</source>
         <translation>&amp;概况</translation>
     </message>
@@ -426,7 +426,7 @@ track of who is paying you.</source>
         <translation>&amp;加密钱包...</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>&amp;Backup Wallet...</source>
         <translation>&amp;备份钱包...</translation>
     </message>
@@ -473,7 +473,7 @@ track of who is paying you.</source>
         <translation>导出当前数据到文件</translation>
     </message>
     <message>
-        <location line="-10"/>
+        <location line="-11"/>
         <source>Encrypt or decrypt wallet</source>
         <translation>加密或解密钱包</translation>
     </message>
@@ -483,7 +483,7 @@ track of who is paying you.</source>
         <translation>关于 YbCoin</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+15"/>
         <source>Backup wallet to another location</source>
         <translation>备份钱包到其它文件夹</translation>
     </message>
@@ -508,7 +508,7 @@ track of who is paying you.</source>
         <translation>&amp;验证消息...</translation>
     </message>
     <message>
-        <location line="-197"/>
+        <location line="-198"/>
         <source>Wallet</source>
         <translation>钱包</translation>
     </message>
@@ -518,7 +518,7 @@ track of who is paying you.</source>
         <translation>&amp;显示 / 隐藏</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+40"/>
         <source>&amp;File</source>
         <translation>&amp;文件</translation>
     </message>
@@ -836,7 +836,7 @@ Address: %4
     </message>
     <message>
         <location line="+13"/>
-        <location filename="../miningpage.cpp" line="+384"/>
+        <location filename="../miningpage.cpp" line="+386"/>
         <source>Start Mining</source>
         <translation>开始挖矿</translation>
     </message>
@@ -876,7 +876,67 @@ Address: %4
         <translation>9332</translation>
     </message>
     <message>
-        <location filename="../miningpage.cpp" line="+0"/>
+        <location filename="../miningpage.cpp" line="-210"/>
+        <source>Share accepted</source>
+        <translation>共享被接受</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Share rejected</source>
+        <translation>共享被拒绝</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>LONGPOLL detected a new block</source>
+        <translation>LONGPOLL 发现一个新的区块</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Miner didn&apos;t start properly. Try checking your settings.</source>
+        <translation>挖矿进程启动异常，正在尝试检查你的设置。</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Couldn&apos;t connect. Please check your username and password.</source>
+        <translation>连接矿池失败，请检查你的用户名和密码。</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Couldn&apos;t connect. Please check pool server and port.</source>
+        <translation>连接矿池失败，请检查矿池地址和端口号。</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Couldn&apos;t communicate with server. Retrying in 30 seconds.</source>
+        <translation>与矿池服务器交互失败，30秒后重试。</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <source>Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as YbCoin-Qt.</source>
+        <translation>挖矿进程启动失败。</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Solo mining stopped.</source>
+        <translation>单独挖矿已停止</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Miner exited.</source>
+        <translation>挖矿进程已退出</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Solo mining started.</source>
+        <translation>单独挖矿已启动</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Miner started. You might not see any output for a few minutes.</source>
+        <translation>挖矿进程已启动，可能需要一些时间才能有产出</translation>
+    </message>
+    <message>
+        <location line="+148"/>
         <source>Stop Mining</source>
         <translation>停止挖矿</translation>
     </message>
@@ -941,7 +1001,7 @@ Address: %4
     <message>
         <location line="+7"/>
         <source>Connect to the YbCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation >通过 SOCKS proxy 连接网络(例如：通过 Tor 连接网络).</translation>
+        <translation>通过 SOCKS proxy 连接网络(例如：通过 Tor 连接网络).</translation>
     </message>
     <message>
         <location line="+3"/>

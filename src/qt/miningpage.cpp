@@ -173,19 +173,19 @@ void MiningPage::readProcessOutput()
             }
 
             if (line.contains("(yay!!!)"))
-                reportToList("Share accepted", SHARE_SUCCESS, getTime(line));
+                reportToList(tr("Share accepted"), SHARE_SUCCESS, getTime(line));
             else if (line.contains("(booooo)"))
-                reportToList("Share rejected", SHARE_FAIL, getTime(line));
+                reportToList(tr("Share rejected"), SHARE_FAIL, getTime(line));
             else if (line.contains("LONGPOLL detected new block"))
-                reportToList("LONGPOLL detected a new block", LONGPOLL, getTime(line));
+                reportToList(tr("LONGPOLL detected a new block"), LONGPOLL, getTime(line));
             else if (line.contains("Supported options:"))
-                reportToList("Miner didn't start properly. Try checking your settings.", ERROR, NULL);
+                reportToList(tr("Miner didn't start properly. Try checking your settings."), ERROR, NULL);
             else if (line.contains("The requested URL returned error: 403"))
-                reportToList("Couldn't connect. Please check your username and password.", ERROR, NULL);
+                reportToList(tr("Couldn't connect. Please check your username and password."), ERROR, NULL);
             else if (line.contains("HTTP request failed"))
-                reportToList("Couldn't connect. Please check pool server and port.", ERROR, NULL);
+                reportToList(tr("Couldn't connect. Please check pool server and port."), ERROR, NULL);
             else if (line.contains("JSON-RPC call failed"))
-                reportToList("Couldn't communicate with server. Retrying in 30 seconds.", ERROR, NULL);
+                reportToList(tr("Couldn't communicate with server. Retrying in 30 seconds."), ERROR, NULL);
             else if (line.contains("thread ") && line.contains("khash/s"))
             {
                 QString threadIDstr = line.at(line.indexOf("thread ")+7);
@@ -212,16 +212,16 @@ void MiningPage::minerError(QProcess::ProcessError error)
 {
     if (error == QProcess::FailedToStart)
     {
-        reportToList("Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as YbCoin-Qt.", ERROR, NULL);
+        reportToList(tr("Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as YbCoin-Qt."), ERROR, NULL);
     }
 }
 
 void MiningPage::minerFinished()
 {
     if (getMiningType() == ClientModel::SoloMining)
-        reportToList("Solo mining stopped.", ERROR, NULL);
+        reportToList(tr("Solo mining stopped."), ERROR, NULL);
     else
-        reportToList("Miner exited.", ERROR, NULL);
+        reportToList(tr("Miner exited."), ERROR, NULL);
     ui->list->addItem("");
     minerActive = false;
     resetMiningButton();
@@ -232,10 +232,10 @@ void MiningPage::minerStarted()
 {
     if (!minerActive)
         if (getMiningType() == ClientModel::SoloMining)
-            reportToList("Solo mining started.", ERROR, NULL);
+            reportToList(tr("Solo mining started."), ERROR, NULL);
 
         else
-            reportToList("Miner started. You might not see any output for a few minutes.", STARTED, NULL);
+            reportToList(tr("Miner started. You might not see any output for a few minutes."), STARTED, NULL);
     minerActive = true;
     resetMiningButton();
 
