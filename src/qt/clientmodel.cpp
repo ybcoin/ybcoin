@@ -139,7 +139,7 @@ int ClientModel::getHashrate() const
     return (boost::int64_t)dHashesPerSec;
 }
 
-// Seecoin: copied from bitcoinrpc.cpp.
+// YbCoin: copied from bitcoinrpc.cpp.
 double ClientModel::GetDifficulty() const
 {
     // Floating point number that is a multiple of the minimum difficulty,
