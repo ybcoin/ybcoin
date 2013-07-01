@@ -134,8 +134,8 @@ void ClientModel::setMiningPassword(QString password)
 
 int ClientModel::getHashrate() const
 {
-    if (GetTimeMillis() - nHPSTimerStart < 8000)
-        return (boost::int64_t)0;
+    /*if (GetTimeMillis() - nHPSTimerStart < 8000)
+        return (boost::int64_t)0;*/
     return (boost::int64_t)dHashesPerSec;
 }
 

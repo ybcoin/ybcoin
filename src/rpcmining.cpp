@@ -88,8 +88,8 @@ Value gethashespersec(const Array& params, bool fHelp)
             "gethashespersec\n"
             "Returns a recent hashes per second performance measurement averaged over 30 seconds while generating.");
 
-    if (GetTimeMillis() - nHPSTimerStart > 30000)
-        return (boost::int64_t)0;
+    /*if (GetTimeMillis() - nHPSTimerStart > 30000)
+        return (boost::int64_t)0;*/
     return (boost::int64_t)dHashesPerSec;
 }
 
