@@ -1904,8 +1904,7 @@ void StartNode(void* parg)
     // Start threads
     //
 
-
-    if (!GetBoolArg("-dnsseed", true))
+   if (!GetBoolArg("-dnsseed", true))
         printf("DNS seeding disabled\n");
     else
         if (!NewThread(ThreadDNSAddressSeed, NULL))

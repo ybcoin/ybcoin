@@ -12,17 +12,21 @@
 #include <sys/time.h>
 #include <sys/resource.h>
 #else
+#ifdef __MINGW64__
+#include <sys/types.h>
+#else
 typedef int pid_t; /* define for Windows compatibility */
+#endif
 #endif
 #include <map>
 #include <vector>
 #include <string>
 
-#include <boost/thread.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/path.hpp>
 #include <boost/date_time/gregorian/gregorian_types.hpp>
 #include <boost/date_time/posix_time/posix_time_types.hpp>
+#include <boost/thread.hpp>
 
 #include <openssl/sha.h>
 #include <openssl/ripemd.h>
