@@ -127,23 +127,18 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     QFrame *frameBlocks = new QFrame();
     frameBlocks->setContentsMargins(0,0,0,0);
     frameBlocks->setMinimumWidth(56);
-    frameBlocks->setMaximumWidth(56);
-    QHBoxLayout *frameBlocksLayout = new QHBoxLayout(frameBlocks);
+    frameBlocks->setMaximumWidth(96);
+    QHBoxLayout *frameBlocksLayout = new QHBoxLayout(frameBlocks);    
     frameBlocksLayout->setContentsMargins(3,0,3,0);
     frameBlocksLayout->setSpacing(3);
     labelEncryptionIcon = new QLabel();
 	labelMiningIcon = new QLabel();
     labelConnectionsIcon = new QLabel();
     labelBlocksIcon = new QLabel();
-    frameBlocksLayout->addStretch();
-    frameBlocksLayout->addWidget(labelEncryptionIcon);
-	frameBlocksLayout->addStretch();
-    frameBlocksLayout->addWidget(labelMiningIcon);
-    frameBlocksLayout->addStretch();
-    frameBlocksLayout->addWidget(labelConnectionsIcon);
-    frameBlocksLayout->addStretch();
-    frameBlocksLayout->addWidget(labelBlocksIcon);
-    frameBlocksLayout->addStretch();
+    frameBlocksLayout->addWidget(labelEncryptionIcon,0,Qt::AlignRight);
+    frameBlocksLayout->addWidget(labelMiningIcon,0,Qt::AlignRight);
+    frameBlocksLayout->addWidget(labelConnectionsIcon,0,Qt::AlignRight);
+    frameBlocksLayout->addWidget(labelBlocksIcon,0,Qt::AlignRight);
 
     // Progress bar and label for blocks download
     progressBarLabel = new QLabel();
@@ -394,7 +389,7 @@ void BitcoinGUI::setWalletModel(WalletModel *walletModel)
         receiveCoinsPage->setModel(walletModel->getAddressTableModel());
         sendCoinsPage->setModel(walletModel);
         signVerifyMessageDialog->setModel(walletModel);
-		miningPage->setModel(clientModel);
+        miningPage->setModel(clientModel,walletModel);
 
         setEncryptionStatus(walletModel->getEncryptionStatus());
         connect(walletModel, SIGNAL(encryptionStatusChanged(int)), this, SLOT(setEncryptionStatus(int)));
@@ -846,8 +841,14 @@ void BitcoinGUI::encryptWallet(bool status)
 {
     if(!walletModel)
         return;
-    AskPassphraseDialog dlg(status ? AskPassphraseDialog::Encrypt:
-                                     AskPassphraseDialog::Decrypt, this);
+    if(clientModel->getMiningStarted()){
+        QMessageBox::warning(this, tr("Confirm wallet encryption"),
+                 tr("Error: If want to encrypt your wallet, <b>you must stop mining first</b>!"),
+                 QMessageBox::Ok,
+                 QMessageBox::Ok);
+        return;
+    }
+    AskPassphraseDialog dlg(AskPassphraseDialog::Encrypt, this);
     dlg.setModel(walletModel);
     dlg.exec();
 

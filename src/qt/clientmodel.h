@@ -49,7 +49,7 @@ public:
     void setMiningPassword(QString password);
 
     int getHashrate() const;
-    double GetDifficulty() const;
+    double GetDifficulty() const;    
 
     QDateTime getLastBlockDate() const;
 
