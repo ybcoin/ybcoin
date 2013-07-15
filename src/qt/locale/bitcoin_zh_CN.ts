@@ -236,7 +236,7 @@ track of who is paying you.</source>
     <message>
         <location line="+1"/>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR COINS&lt;/b&gt;!</source>
-        <translation>警告：加密钱包将导致无法使用本客户端挖矿，请慎重！如果您加密了您的钱包之后忘记了口令，您也将会&lt;b&gt;失去所有的元宝币&lt;/b&gt;！
+        <translation>警告：如果您加密了您的钱包之后忘记了口令，您将会&lt;b&gt;失去所有的元宝币&lt;/b&gt;！
 确定要加密钱包吗？</translation>
     </message>
     <message>
@@ -252,7 +252,7 @@ track of who is paying you.</source>
     <message>
         <location line="+4"/>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>重要：之前备份的钱包文件将会被替换为新生成的，加密的钱包文见。出于安全考虑，只要使用新的加密过的钱包，之前未加密的钱包将不再使用。</translation>
+        <translation>重要：之前备份的钱包文件将会被替换为新生成的，加密的钱包文件。出于安全考虑，只要使用新的加密过的钱包，之前未加密的钱包将不再使用。</translation>
     </message>
     <message>
         <location line="+100"/>
@@ -662,7 +662,17 @@ Address: %4
         <translation>钱包已被&lt;b&gt;加密&lt;/b&gt;，当前为&lt;b&gt;锁定&lt;/b&gt;状态</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+13"/>
+        <source>Confirm wallet encryption</source>
+        <translation>确认加密钱包</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Error: If want to encrypt your wallet, &lt;b&gt;you must stop mining first&lt;/b&gt;!</source>
+        <translation >错误: 如果想要加密钱包, &lt;b&gt;请先停止挖矿&lt;/b&gt;!</translation>
+    </message>
+    <message>
+        <location line="+15"/>
         <source>Backup Wallet</source>
         <translation>备份钱包</translation>
     </message>
@@ -690,7 +700,7 @@ Address: %4
 <context>
     <name>ClientModel</name>
     <message>
-        <location filename="../clientmodel.cpp" line="+212"/>
+        <location filename="../clientmodel.cpp" line="+220"/>
         <source>Network Alert</source>
         <translation>网络警报</translation>
     </message>
@@ -815,17 +825,22 @@ Address: %4
         <translation>挖矿</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+237"/>
         <source>Username</source>
         <translation>用户名</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="-10"/>
         <source>Server</source>
         <translation>服务器</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="-103"/>
+        <source>pool.ybcoin.com</source>
+        <translation>pool.ybcoin.com</translation>
+    </message>
+    <message>
+        <location line="+57"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
@@ -835,33 +850,33 @@ Address: %4
         <translation>端口</translation>
     </message>
     <message>
-        <location line="+13"/>
-        <location filename="../miningpage.cpp" line="+386"/>
+        <location line="+26"/>
+        <location filename="../miningpage.cpp" line="+413"/>
         <source>Start Mining</source>
         <translation>开始挖矿</translation>
     </message>
     <message>
-        <location line="+65"/>
+        <location line="-169"/>
         <source>Scantime</source>
         <translation>扫描时间</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+116"/>
         <source>Threads</source>
         <translation>线程数</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="-129"/>
         <source>Debug Logging</source>
         <translation>调试日志输出</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+136"/>
         <source>Type</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+80"/>
         <source>Solo Mining</source>
         <translation>单独挖矿</translation>
     </message>
@@ -871,12 +886,22 @@ Address: %4
         <translation>矿池</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="-244"/>
         <source>9332</source>
         <translation>9332</translation>
     </message>
     <message>
-        <location filename="../miningpage.cpp" line="-210"/>
+        <location filename="../miningpage.cpp" line="-323"/>
+        <source>please input the sever address</source>
+        <translation>请输入矿池地址</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>use name should not be empty</source>
+        <translation>用户名不能为空</translation>
+    </message>
+    <message>
+        <location line="+100"/>
         <source>Share accepted</source>
         <translation>共享被接受</translation>
     </message>
@@ -936,7 +961,7 @@ Address: %4
         <translation>挖矿进程已启动，可能需要一些时间才能有产出</translation>
     </message>
     <message>
-        <location line="+148"/>
+        <location line="+157"/>
         <source>Stop Mining</source>
         <translation>停止挖矿</translation>
     </message>

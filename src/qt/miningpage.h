@@ -24,8 +24,9 @@
 namespace Ui {
     class MiningPage;
 }
-class ClientModel;
 
+class ClientModel;
+class WalletModel;
 class MiningPage : public QWidget
 {
     Q_OBJECT
@@ -50,8 +51,7 @@ public:
 
     int initThreads;
 
-    void setModel(ClientModel *model);
-
+    void setModel(ClientModel *clientModel,WalletModel *walletModel);
 public slots:
     void startPressed();
 
@@ -77,13 +77,15 @@ public slots:
     void enablePoolMiningControls(bool enable);
     ClientModel::MiningType getMiningType();
     void typeChanged(int index);
+    void serverChanged(int index);
     void debugToggled(bool checked);
 
 private slots:
 
 private:
     Ui::MiningPage *ui;
-    ClientModel *model;
+    ClientModel *clientModel;
+    WalletModel *walletModel;
 
     void resetMiningButton();
 };

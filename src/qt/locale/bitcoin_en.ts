@@ -329,7 +329,7 @@ track of who is paying you.</source>
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+269"/>
+        <location filename="../bitcoingui.cpp" line="+270"/>
         <source>Sign &amp;message...</source>
         <translation>Sign &amp;message...</translation>
     </message>
@@ -339,7 +339,7 @@ track of who is paying you.</source>
         <translation>Synchronizing with network...</translation>
     </message>
     <message>
-        <location line="-309"/>
+        <location line="-310"/>
         <source>&amp;Overview</source>
         <translation>&amp;Overview</translation>
     </message>
@@ -443,7 +443,7 @@ track of who is paying you.</source>
         <translation>&amp;Encrypt Wallet...</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>&amp;Backup Wallet...</source>
         <translation>&amp;Backup Wallet...</translation>
     </message>
@@ -508,7 +508,7 @@ track of who is paying you.</source>
         <translation>Export the data in the current tab to a file</translation>
     </message>
     <message>
-        <location line="-10"/>
+        <location line="-11"/>
         <source>Encrypt or decrypt wallet</source>
         <translation>Encrypt or decrypt wallet</translation>
     </message>
@@ -523,7 +523,7 @@ track of who is paying you.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+14"/>
         <source>Backup wallet to another location</source>
         <translation>Backup wallet to another location</translation>
     </message>
@@ -552,7 +552,7 @@ track of who is paying you.</source>
         <translation type="obsolete">Ybcoin</translation>
     </message>
     <message>
-        <location line="-197"/>
+        <location line="-198"/>
         <source>Wallet</source>
         <translation>Wallet</translation>
     </message>
@@ -566,7 +566,7 @@ track of who is paying you.</source>
         <translation>&amp;Show / Hide</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+40"/>
         <source>&amp;File</source>
         <translation>&amp;File</translation>
     </message>
@@ -719,7 +719,17 @@ Address: %4
         <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+13"/>
+        <source>Confirm wallet encryption</source>
+        <translation type="unfinished">Confirm wallet encryption</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Error: If want to encrypt your wallet, &lt;b&gt;you must stop mining first&lt;/b&gt;!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+15"/>
         <source>Backup Wallet</source>
         <translation>Backup Wallet</translation>
     </message>
@@ -751,7 +761,7 @@ Address: %4
 <context>
     <name>ClientModel</name>
     <message>
-        <location filename="../clientmodel.cpp" line="+212"/>
+        <location filename="../clientmodel.cpp" line="+220"/>
         <source>Network Alert</source>
         <translation>Network Alert</translation>
     </message>
@@ -884,17 +894,22 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+237"/>
         <source>Username</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="-10"/>
         <source>Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="-103"/>
+        <source>pool.ybcoin.com</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+57"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -904,33 +919,33 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
-        <location filename="../miningpage.cpp" line="+384"/>
+        <location line="+26"/>
+        <location filename="../miningpage.cpp" line="+413"/>
         <source>Start Mining</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+65"/>
+        <location line="-169"/>
         <source>Scantime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+116"/>
         <source>Threads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="-129"/>
         <source>Debug Logging</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+136"/>
         <source>Type</source>
         <translation type="unfinished">Type</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+80"/>
         <source>Solo Mining</source>
         <translation type="unfinished"></translation>
     </message>
@@ -940,12 +955,82 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="-244"/>
         <source>9332</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../miningpage.cpp" line="+0"/>
+        <location filename="../miningpage.cpp" line="-323"/>
+        <source>please input the sever address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>use name should not be empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+100"/>
+        <source>Share accepted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Share rejected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>LONGPOLL detected a new block</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Miner didn&apos;t start properly. Try checking your settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Couldn&apos;t connect. Please check your username and password.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Couldn&apos;t connect. Please check pool server and port.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Couldn&apos;t communicate with server. Retrying in 30 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <source>Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as YbCoin-Qt.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Solo mining stopped.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Miner exited.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Solo mining started.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Miner started. You might not see any output for a few minutes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+157"/>
         <source>Stop Mining</source>
         <translation type="unfinished"></translation>
     </message>
