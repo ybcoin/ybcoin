@@ -43,7 +43,7 @@ void ThreadRPCServer3(void* parg);
 
 static inline unsigned short GetDefaultRPCPort()
 {
-    return GetBoolArg("-testnet", false) ? 18344 : 8344;
+    return fTestNet ? 18344 : 8344;
 }
 
 Object JSONRPCError(int code, const string& message)
@@ -120,12 +120,9 @@ std::string HexBits(unsigned int nBits)
     return HexStr(BEGIN(uBits.cBits), END(uBits.cBits));
 }
 
-
-
 ///
 /// Note: This interface may still be subject to change.
 ///
-
 string CRPCTable::help(string strCommand) const
 {
     string strRet;

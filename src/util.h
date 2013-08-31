@@ -427,11 +427,6 @@ bool SoftSetBoolArg(const std::string& strArg, bool fValue);
 
 
 
-
-
-
-
-
 template<typename T1>
 inline uint256 Hash(const T1 pbegin, const T1 pend)
 {
@@ -534,6 +529,12 @@ inline uint160 Hash160(const std::vector<unsigned char>& vch)
     return hash2;
 }
 
+inline uint32_t ROTL32 ( uint32_t x, int8_t r )
+{
+    return (x << r) | (x >> (32 - r));
+}
+
+unsigned int MurmurHash3(unsigned int nHashSeed, const std::vector<unsigned char>& vDataToHash);
 
 /** Median filter over a stream of values.
  * Returns the median of the last N numbers

@@ -33,6 +33,7 @@
 extern "C" {
 #include "scrypt-jane/scrypt-jane.h"
 }
+#include "main.h"
 #include "scrypt_mine.h"
 #include "pbkdf2.h"
 
@@ -86,7 +87,7 @@ static void scrypt(const void* input, size_t inputlen, uint32_t *res, void *scra
     uint32_t X[32];
     V = (uint32_t *)(((uintptr_t)(scratchpad) + 63) & ~ (uintptr_t)(63));
 
-    PBKDF2_SHA256((const uint8_t*)input, inputlen, (const uint8_t*)input, sizeof(block_header), 1, (uint8_t *)X, 128);
+    PBKDF2_SHA256((const uint8_t*)input, inputlen, (const uint8_t*)input, sizeof(CBlockHeader), 1, (uint8_t *)X, 128);
 
     scrypt_core(X, V);
 
@@ -136,21 +137,21 @@ static void scrypt_3way(const void *input1, const void *input2, const void *inpu
 }
 #endif
 
-unsigned int scanhash_scrypt(block_header *pdata,
+unsigned int scanhash_scrypt(CBlockHeader *pdata,
     uint32_t max_nonce, uint32_t &hash_count,
-    void *result, block_header *res_header, unsigned char Nfactor)
+    void *result, CBlockHeader *res_header, unsigned char Nfactor)
 {
     hash_count = 0;
-    block_header data = *pdata;
+    CBlockHeader data = *pdata;
     uint32_t hash[8];
     unsigned char *hashc = (unsigned char *) &hash;
 
 #ifdef SCRYPT_3WAY
-    block_header data2 = *pdata;
+    CBlockHeader data2 = *pdata;
     uint32_t hash2[8];
     unsigned char *hashc2 = (unsigned char *) &hash2;
 
-    block_header data3 = *pdata;
+    CBlockHeader data3 = *pdata;
     uint32_t hash3[8];
     unsigned char *hashc3 = (unsigned char *) &hash3;
 
@@ -161,7 +162,7 @@ unsigned int scanhash_scrypt(block_header *pdata,
 
     while (true) {
 
-        data.nonce = n++;
+        data.nNonce = n++;
 
 #ifdef SCRYPT_3WAY
         if (throughput >= 2 && n < max_nonce) {
@@ -204,7 +205,7 @@ unsigned int scanhash_scrypt(block_header *pdata,
         if (hashc[31] == 0 && hashc[30] == 0) {
             memcpy(result, hash, 32);
 
-            return data.nonce;
+            return data.nNonce;
         }
 
         if (n >= max_nonce) {
