@@ -1197,8 +1197,8 @@ Value listsinceblock(const Array& params, bool fHelp)
     for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); it++)
     {
         CWalletTx tx = (*it).second;
-
-        if (depth == -1 || tx.GetDepthInMainChain() < depth)
+        int txDepth = tx.GetDepthInMainChain();
+        if (depth == -1 || (txDepth != 0 && txDepth < depth))
             ListTransactions(tx, "*", 0, true, transactions);
     }
 
@@ -1635,7 +1635,7 @@ Value reservebalance(const Array& params, bool fHelp)
             if (params.size() == 1)
                 throw runtime_error("must provide amount to reserve balance.\n");
             int64 nAmount = AmountFromValue(params[1]);
-            nAmount = (nAmount / CENT) * CENT;  // round to cent
+            nAmount = (nAmount / MIN_TXOUT_AMOUNT) * MIN_TXOUT_AMOUNT;  // round to cent
             if (nAmount < 0)
                 throw runtime_error("amount cannot be negative.\n");
             mapArgs["-reservebalance"] = FormatMoney(nAmount).c_str();
