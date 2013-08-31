@@ -52,6 +52,7 @@ CBigNum bnBestInvalidTrust = 0;
 uint256 hashBestChain = 0;
 CBlockIndex* pindexBest = NULL;
 int64 nTimeBestReceived = 0;
+static int64 nRewardCoinYear = 5 * CENT;  // creation amount per coin-year
 
 CMedianFilter<int> cPeerBlockCounts(5, 0); // Amount of blocks that other nodes claim to have
 
@@ -177,12 +178,6 @@ void ResendWalletTransactions()
     BOOST_FOREACH(CWallet* pwallet, setpwalletRegistered)
         pwallet->ResendWalletTransactions();
 }
-
-
-
-
-
-
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -537,7 +532,7 @@ int64 CTransaction::GetMinFee(unsigned int nBlockSize, bool fAllowFree,
         }
     }
 
-    // To limit dust spam, require MIN_TX_FEE/MIN_RELAY_TX_FEE if any output is less than 0.01
+    // To limit dust spam, require MIN_TX_FEE/MIN_RELAY_TX_FEE if any output is less than 0.0001
     if (nMinFee < nBaseFee)
     {
         BOOST_FOREACH(const CTxOut& txout, vout)
@@ -729,7 +724,7 @@ bool CTxMemPool::addUnchecked(const uint256& hash, CTransaction &tx)
 }
 
 
-bool CTxMemPool::remove(CTransaction &tx)
+bool CTxMemPool::remove(const CTransaction &tx, bool fRecursive)
 {
     // Remove transaction from memory pool
     {
@@ -737,10 +732,32 @@ bool CTxMemPool::remove(CTransaction &tx)
         uint256 hash = tx.GetHash();
         if (mapTx.count(hash))
         {
+            if (fRecursive) {
+                for (unsigned int i = 0; i < tx.vout.size(); i++) {
+                    std::map<COutPoint, CInPoint>::iterator it = mapNextTx.find(COutPoint(hash, i));
+                    if (it != mapNextTx.end())
+                        remove(*it->second.ptx, true);
+                }
+            }
             BOOST_FOREACH(const CTxIn& txin, tx.vin)
                 mapNextTx.erase(txin.prevout);
             mapTx.erase(hash);
             nTransactionsUpdated++;
+        }
+    }
+    return true;
+}
+
+bool CTxMemPool::removeConflicts(const CTransaction &tx)
+{
+    // Remove transactions which depend on inputs of tx, recursively
+    LOCK(cs);
+    BOOST_FOREACH(const CTxIn &txin, tx.vin) {
+        std::map<COutPoint, CInPoint>::iterator it = mapNextTx.find(txin.prevout);
+        if (it != mapNextTx.end()) {
+            const CTransaction &txConflict = *it->second.ptx;
+            if (txConflict != tx)
+                remove(txConflict, true);
         }
     }
     return true;
@@ -1017,8 +1034,6 @@ int64 GetProofOfWorkReward(unsigned int nBits)
 // miner's coin stake reward based on nBits and coin age spent (coin-days)
 int64 GetProofOfStakeReward(int64 nCoinAge)
 {
-    static int64 nRewardCoinYear = 5 * CENT;  // creation amount per coin-year
-
     int64 nSubsidy = nCoinAge * 33 / (365 * 33 + 8) * nRewardCoinYear;
     if (fDebug && GetBoolArg("-printcreation"))
         printf("GetProofOfStakeReward(): create=%s nCoinAge=%"PRI64d"\n", FormatMoney(nSubsidy).c_str(), nCoinAge);
@@ -1116,7 +1131,8 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
 
     // Check proof of work matches claimed amount
     if (hash > bnTarget.getuint256())
-        return error("CheckProofOfWork() : hash doesn't match nBits");
+        return error("CheckProofOfWork() : hash doesn't match nBits, hash: %s, taget: %s"
+                     ,hash.ToString().c_str(), bnTarget.getuint256().ToString().c_str());
 
     return true;
 }
@@ -1164,16 +1180,6 @@ void CBlock::UpdateTime(const CBlockIndex* pindexPrev)
 {
     nTime = max(GetBlockTime(), GetAdjustedTime());
 }
-
-
-
-
-
-
-
-
-
-
 
 bool CTransaction::DisconnectInputs(CTxDB& txdb)
 {
@@ -1487,9 +1493,6 @@ bool CTransaction::ClientConnectInputs()
 
     return true;
 }
-
-
-
 
 bool CBlock::DisconnectBlock(CTxDB& txdb, CBlockIndex* pindex)
 {
@@ -2024,9 +2027,6 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos)
     return true;
 }
 
-
-
-
 bool CBlock::CheckBlock(bool fCheckPOW, bool fCheckMerkleRoot) const
 {
     // These are checks that are independent of context
@@ -2495,10 +2495,10 @@ bool LoadBlockIndex(bool fAllowNew)
 {
     if (fTestNet)
     {
-        pchMessageStart[0] = 0xcd;
-        pchMessageStart[1] = 0xf2;
-        pchMessageStart[2] = 0xc0;
-        pchMessageStart[3] = 0xef;
+        pchMessageStart[0] = 0xd3;
+        pchMessageStart[1] = 0xe6;
+        pchMessageStart[2] = 0xe5;
+        pchMessageStart[3] = 0xe4;
 
         hashGenesisBlock = hashGenesisBlockTestNet;
         nStakeMinAge = 60 * 60 * 24; // test net min age is 1 day
@@ -2520,24 +2520,19 @@ bool LoadBlockIndex(bool fAllowNew)
     {
         if (!fAllowNew)
             return false;
-
-        // Genesis block
-
-        // MainNet:
-
-        //CBlock(hash=00000a060336cbb72fe969666d337b87198b1add2abaa59cca226820b32933a4, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=4cb33b3b6a861dcbc685d3e614a9cafb945738d6833f182855679f2fad02057b, nTime=1360105017, nBits=1e0fffff, nNonce=1575379, vtx=1, vchBlockSig=)
-        //  Coinbase(hash=4cb33b3b6a, nTime=1360105017, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-        //    CTxIn(COutPoint(0000000000, 4294967295), coinbase 04ffff001d020f274468747470733a2f2f626974636f696e74616c6b2e6f72672f696e6465782e7068703f746f7069633d3133343137392e6d736731353032313936236d736731353032313936)
+        // MainNet Genesis block:
+        //CBlock(hash=d1e7311b51a8b815024a65ec56a5d1d953be844d556c6c08d8fc2b8e1d4edc2b, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=e648665ed998ec960b6fb2e4045434bb5b44cc5b7ae1f47812b7f32884e8555e, nTime=1372386293, nBits=1e0fffff, nNonce=122359, vtx=1, vchBlockSig=)
+        //  Coinbase(hash=e648665ed9, nTime=1372386273, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+        //    CTxIn(COutPoint(0000000000, 4294967295), coinbase 04ffff001d020f274c9d4368696e61204461696c792032382f4a756e652f32303133204368696e6127732063656e7472616c20676f7665726e6d656e74207370656e7420372e34332062696c6c696f6e207975616e2028312e31392062696c6c696f6e20552e532e20646f6c6c61727329206f6e20726563657074696f6e732c2076656869636c657320616e64206f76657273656173207472697073206c61737420796561722e)
         //    CTxOut(empty)
-        //  vMerkleTree: 4cb33b3b6a
+        //  vMerkleTree: e648665ed9
 
-        // TestNet:
-
-        //CBlock(hash=0000c763e402f2436da9ed36c7286f62c3f6e5dbafce9ff289bd43d7459327eb, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=4cb33b3b6a861dcbc685d3e614a9cafb945738d6833f182855679f2fad02057b, nTime=1360105017, nBits=1f00ffff, nNonce=46534, vtx=1, vchBlockSig=)
-        //  Coinbase(hash=4cb33b3b6a, nTime=1360105017, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-        //    CTxIn(COutPoint(0000000000, 4294967295), coinbase 04ffff001d020f274468747470733a2f2f626974636f696e74616c6b2e6f72672f696e6465782e7068703f746f7069633d3133343137392e6d736731353032313936236d736731353032313936)
+        // TestNet Genesis block:
+        //CBlock(hash=a77f82811b00d47496431868dc270b92961bae7d2612f79447b568b55039d251, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=e648665ed998ec960b6fb2e4045434bb5b44cc5b7ae1f47812b7f32884e8555e, nTime=1372386303, nBits=1e0fffff, nNonce=231457, vtx=1, vchBlockSig=)
+        //  Coinbase(hash=e648665ed9, nTime=1372386273, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+        //    CTxIn(COutPoint(0000000000, 4294967295), coinbase 04ffff001d020f274c9d4368696e61204461696c792032382f4a756e652f32303133204368696e6127732063656e7472616c20676f7665726e6d656e74207370656e7420372e34332062696c6c696f6e207975616e2028312e31392062696c6c696f6e20552e532e20646f6c6c61727329206f6e20726563657074696f6e732c2076656869636c657320616e64206f76657273656173207472697073206c61737420796561722e)
         //    CTxOut(empty)
-        //  vMerkleTree: 4cb33b3b6a
+        //  vMerkleTree: e648665ed9
 
         const char* pszTimestamp = "China Daily 28/June/2013 China's central government spent 7.43 billion yuan (1.19 billion U.S. dollars) on receptions, vehicles and overseas trips last year.";
         CTransaction txNew;
@@ -2551,9 +2546,13 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = nChainStartTime + 20;
-        block.nBits    = 0x1e0fffff;//bnProofOfWorkLimit.GetCompact();
-        block.nNonce   = 122359;
+        block.nTime = nChainStartTime + 20;
+        block.nBits = 0x1e0fffff;
+        block.nNonce = 122359;
+        if(fTestNet){
+            block.nTime = nChainStartTime + 30;
+            block.nNonce = 231457;
+        }
 
         //// debug print
         printf("block.GetHash() == %s\n", block.GetHash().ToString().c_str());
@@ -2561,8 +2560,6 @@ bool LoadBlockIndex(bool fAllowNew)
         assert(block.hashMerkleRoot == uint256("0xe648665ed998ec960b6fb2e4045434bb5b44cc5b7ae1f47812b7f32884e8555e"));
         block.print();
         assert(block.GetHash() == hashGenesisBlock);
-        //assert(block.CheckBlock());
-        block.CheckBlock();
 
         // Start new block file
         unsigned int nFile;
@@ -2907,6 +2904,10 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             vRecv >> pfrom->strSubVer;
         if (!vRecv.empty())
             vRecv >> pfrom->nStartingHeight;
+        if (!vRecv.empty())
+            vRecv >> pfrom->fRelayTxes; // set to true after we get the first filter* message
+        else
+            pfrom->fRelayTxes = true;
 
         if (pfrom->fInbound && addrMe.IsRoutable())
         {
@@ -3152,7 +3153,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             if (fDebugNet || (vInv.size() == 1))
                 printf("received getdata for: %s\n", inv.ToString().c_str());
 
-            if (inv.type == MSG_BLOCK)
+            if (inv.type == MSG_BLOCK || inv.type == MSG_FILTERED_BLOCK)
             {
                 // Send block from disk
                 map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.find(inv.hash);
@@ -3160,7 +3161,26 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
                 {
                     CBlock block;
                     block.ReadFromDisk((*mi).second);
-                    pfrom->PushMessage("block", block);
+                    if(inv.type == MSG_BLOCK){
+                        pfrom->PushMessage("block", block);
+                    }else{// MSG_FILTERED_BLOCK
+                        LOCK(pfrom->cs_filter);
+                        if (pfrom->pfilter){
+                            CMerkleBlock merkleBlock(block, *pfrom->pfilter);
+                            pfrom->PushMessage("merkleblock", merkleBlock);
+                            // CMerkleBlock just contains hashes, so also push any transactions in the block the client did not see
+                            // This avoids hurting performance by pointlessly requiring a round-trip
+                            // Note that there is currently no way for a node to request any single transactions we didnt send here -
+                            // they must either disconnect and retry or request the full block.
+                            // Thus, the protocol spec specified allows for us to provide duplicate txn here,
+                            // however we MUST always provide at least what the remote peer needs
+                            typedef std::pair<unsigned int, uint256> PairType;
+                            BOOST_FOREACH(PairType& pair, merkleBlock.vMatchedTxn)
+                                if (!pfrom->setInventoryKnown.count(CInv(MSG_TX, pair.second)))
+                                    pfrom->PushMessage("tx", block.vtx[pair.first]);
+                        }
+                    }
+
 
                     // Trigger them to send a getblocks request for the next batch of inventory
                     if (inv.hash == pfrom->hashContinue)
@@ -3500,6 +3520,52 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
                 pfrom->Misbehaving(10);
             }
         }
+    }
+
+    else if (strCommand == "filterload")
+    {
+        CBloomFilter filter;
+        vRecv >> filter;
+
+        if (!filter.IsWithinSizeConstraints())
+            // There is no excuse for sending a too-large filter
+            pfrom->Misbehaving(100);
+        else
+        {
+            LOCK(pfrom->cs_filter);
+            delete pfrom->pfilter;
+            pfrom->pfilter = new CBloomFilter(filter);
+        }
+        pfrom->fRelayTxes = true;
+    }
+
+
+    else if (strCommand == "filteradd")
+    {
+        vector<unsigned char> vData;
+        vRecv >> vData;
+
+        // Nodes must NEVER send a data item > 520 bytes (the max size for a script data object,
+        // and thus, the maximum size any matched object can have) in a filteradd message
+        if (vData.size() > MAX_SCRIPT_ELEMENT_SIZE)
+        {
+            pfrom->Misbehaving(100);
+        } else {
+            LOCK(pfrom->cs_filter);
+            if (pfrom->pfilter)
+                pfrom->pfilter->insert(vData);
+            else
+                pfrom->Misbehaving(100);
+        }
+    }
+
+
+    else if (strCommand == "filterclear")
+    {
+        LOCK(pfrom->cs_filter);
+        delete pfrom->pfilter;
+        pfrom->pfilter = NULL;
+        pfrom->fRelayTxes = true;
     }
 
 
@@ -4385,7 +4451,7 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
         uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
 
         unsigned int max_nonce = 0xffff0000;
-        block_header res_header;
+        CBlockHeader res_header;
         uint256 result;
 
         loop
@@ -4394,7 +4460,7 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
             unsigned int nNonceFound;
 
             nNonceFound = scanhash_scrypt(
-                        (block_header *)&pblock->nVersion,
+                        (CBlockHeader *)&pblock->nVersion,
                         max_nonce,
                         nHashesDone,
                         UBEGIN(result),
@@ -4531,4 +4597,145 @@ void GenerateBitcoins(bool fGenerate, CWallet* pwallet)
             Sleep(10);
         }
     }
+}
+
+CMerkleBlock::CMerkleBlock(const CBlock& block, CBloomFilter& filter)
+{
+    header = block.GetBlockHeader();
+
+    vector<bool> vMatch;
+    vector<uint256> vHashes;
+
+    vMatch.reserve(block.vtx.size());
+    vHashes.reserve(block.vtx.size());
+
+    for (unsigned int i = 0; i < block.vtx.size(); i++)
+    {
+        uint256 hash = block.vtx[i].GetHash();
+        if (filter.IsRelevantAndUpdate(block.vtx[i], hash))
+        {
+            vMatch.push_back(true);
+            vMatchedTxn.push_back(make_pair(i, hash));
+        }
+        else
+            vMatch.push_back(false);
+        vHashes.push_back(hash);
+    }
+
+    txn = CPartialMerkleTree(vHashes, vMatch);
+}
+
+
+uint256 CPartialMerkleTree::CalcHash(int height, unsigned int pos, const std::vector<uint256> &vTxid) {
+    if (height == 0) {
+        // hash at height 0 is the txids themself
+        return vTxid[pos];
+    } else {
+        // calculate left hash
+        uint256 left = CalcHash(height-1, pos*2, vTxid), right;
+        // calculate right hash if not beyong the end of the array - copy left hash otherwise1
+        if (pos*2+1 < CalcTreeWidth(height-1))
+            right = CalcHash(height-1, pos*2+1, vTxid);
+        else
+            right = left;
+        // combine subhashes
+        return Hash(BEGIN(left), END(left), BEGIN(right), END(right));
+    }
+}
+
+void CPartialMerkleTree::TraverseAndBuild(int height, unsigned int pos, const std::vector<uint256> &vTxid, const std::vector<bool> &vMatch) {
+    // determine whether this node is the parent of at least one matched txid
+    bool fParentOfMatch = false;
+    for (unsigned int p = pos << height; p < (pos+1) << height && p < nTransactions; p++)
+        fParentOfMatch |= vMatch[p];
+    // store as flag bit
+    vBits.push_back(fParentOfMatch);
+    if (height==0 || !fParentOfMatch) {
+        // if at height 0, or nothing interesting below, store hash and stop
+        vHash.push_back(CalcHash(height, pos, vTxid));
+    } else {
+        // otherwise, don't store any hash, but descend into the subtrees
+        TraverseAndBuild(height-1, pos*2, vTxid, vMatch);
+        if (pos*2+1 < CalcTreeWidth(height-1))
+            TraverseAndBuild(height-1, pos*2+1, vTxid, vMatch);
+    }
+}
+
+uint256 CPartialMerkleTree::TraverseAndExtract(int height, unsigned int pos, unsigned int &nBitsUsed, unsigned int &nHashUsed, std::vector<uint256> &vMatch) {
+    if (nBitsUsed >= vBits.size()) {
+        // overflowed the bits array - failure
+        fBad = true;
+        return 0;
+    }
+    bool fParentOfMatch = vBits[nBitsUsed++];
+    if (height==0 || !fParentOfMatch) {
+        // if at height 0, or nothing interesting below, use stored hash and do not descend
+        if (nHashUsed >= vHash.size()) {
+            // overflowed the hash array - failure
+            fBad = true;
+            return 0;
+        }
+        const uint256 &hash = vHash[nHashUsed++];
+        if (height==0 && fParentOfMatch) // in case of height 0, we have a matched txid
+            vMatch.push_back(hash);
+        return hash;
+    } else {
+        // otherwise, descend into the subtrees to extract matched txids and hashes
+        uint256 left = TraverseAndExtract(height-1, pos*2, nBitsUsed, nHashUsed, vMatch), right;
+        if (pos*2+1 < CalcTreeWidth(height-1))
+            right = TraverseAndExtract(height-1, pos*2+1, nBitsUsed, nHashUsed, vMatch);
+        else
+            right = left;
+        // and combine them before returning
+        return Hash(BEGIN(left), END(left), BEGIN(right), END(right));
+    }
+}
+
+CPartialMerkleTree::CPartialMerkleTree(const std::vector<uint256> &vTxid, const std::vector<bool> &vMatch) : nTransactions(vTxid.size()), fBad(false) {
+    // reset state
+    vBits.clear();
+    vHash.clear();
+
+    // calculate height of tree
+    int nHeight = 0;
+    while (CalcTreeWidth(nHeight) > 1)
+        nHeight++;
+
+    // traverse the partial tree
+    TraverseAndBuild(nHeight, 0, vTxid, vMatch);
+}
+
+CPartialMerkleTree::CPartialMerkleTree() : nTransactions(0), fBad(true) {}
+
+uint256 CPartialMerkleTree::ExtractMatches(std::vector<uint256> &vMatch) {
+    vMatch.clear();
+    // An empty set will not work
+    if (nTransactions == 0)
+        return 0;
+    // check for excessively high numbers of transactions
+    if (nTransactions > MAX_BLOCK_SIZE / 60) // 60 is the lower bound for the size of a serialized CTransaction
+        return 0;
+    // there can never be more hashes provided than one for every txid
+    if (vHash.size() > nTransactions)
+        return 0;
+    // there must be at least one bit per node in the partial tree, and at least one node per hash
+    if (vBits.size() < vHash.size())
+        return 0;
+    // calculate height of tree
+    int nHeight = 0;
+    while (CalcTreeWidth(nHeight) > 1)
+        nHeight++;
+    // traverse the partial tree
+    unsigned int nBitsUsed = 0, nHashUsed = 0;
+    uint256 hashMerkleRoot = TraverseAndExtract(nHeight, 0, nBitsUsed, nHashUsed, vMatch);
+    // verify that no problems occured during the tree traversal
+    if (fBad)
+        return 0;
+    // verify that all bits were consumed (except for the padding caused by serializing it as a byte sequence)
+    if ((nBitsUsed+7)/8 != (vBits.size()+7)/8)
+        return 0;
+    // verify that all hashes were consumed
+    if (nHashUsed != vHash.size())
+        return 0;
+    return hashMerkleRoot;
 }
