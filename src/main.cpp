@@ -619,7 +619,7 @@ bool CTxMemPool::accept(CTxDB& txdb, CTransaction &tx, bool fCheckInputs,
     }
 
     if (fCheckInputs)
-    {
+    {        
         MapPrevTx mapInputs;
         map<uint256, CTxIndex> mapUnused;
         bool fInvalid = false;
@@ -1761,8 +1761,10 @@ bool CBlock::SetBestChainInner(CTxDB& txdb, CBlockIndex *pindexNew)
     pindexNew->pprev->pnext = pindexNew;
 
     // Delete redundant memory transactions
-    BOOST_FOREACH(CTransaction& tx, vtx)
+    BOOST_FOREACH(CTransaction& tx, vtx){
         mempool.remove(tx);
+        mempool.removeConflicts(tx);
+    }
 
     return true;
 }
