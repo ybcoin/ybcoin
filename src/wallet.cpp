@@ -374,7 +374,9 @@ bool CWallet::AddToWallet(const CWalletTx& wtxIn)
     {
         LOCK(cs_wallet);
         // Inserts only if not already there, returns tx inserted or tx found
+
         pair<map<uint256, CWalletTx>::iterator, bool> ret = mapWallet.insert(make_pair(hash, wtxIn));
+
         CWalletTx& wtx = (*ret.first).second;
         wtx.BindWallet(this);
         bool fInsertedNew = ret.second;
@@ -477,6 +479,15 @@ bool CWallet::AddToWallet(const CWalletTx& wtxIn)
             }
         }
 #endif
+        bool cahcetx = GetBoolArg("-cachetx");
+        if(fInsertedNew && cahcetx){
+            mapWalletFresh[hash] = wtx;
+        }else if(cahcetx){
+            map<uint256, CWalletTx>::iterator res = mapWalletFresh.find(hash);
+            if(res != mapWalletFresh.end()){
+                res->second = wtx;
+            }
+        }
         // since AddToWallet is called directly for self-originating transactions, check for consumption of own coins
         WalletUpdateSpent(wtx);
 
@@ -1203,9 +1214,6 @@ bool CWallet::SelectCoins(int64 nTargetValue, unsigned int nSpendTime, set<pair<
             SelectCoinsMinConf(nTargetValue, nSpendTime, 0, 1, vCoins, setCoinsRet, nValueRet));
 }
 
-
-
-
 bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CWalletTx& wtxNew, CReserveKey& reservekey, int64& nFeeRet)
 {
     int64 nValue = 0;
@@ -1241,8 +1249,10 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
                 // Choose coins to use
                 set<pair<const CWalletTx*,unsigned int> > setCoins;
                 int64 nValueIn = 0;
-                if (!SelectCoins(nTotalValue, wtxNew.nTime, setCoins, nValueIn))
-                    return false;
+                if (!SelectCoins(nTotalValue, wtxNew.nTime, setCoins, nValueIn)){
+                    printf("SelectCoins() failed: ");return false;
+                }
+
                 BOOST_FOREACH(PAIRTYPE(const CWalletTx*, unsigned int) pcoin, setCoins)
                 {
                     int64 nCredit = pcoin.first->vout[pcoin.second].nValue;
@@ -1305,8 +1315,9 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
 
                 // Limit size
                 unsigned int nBytes = ::GetSerializeSize(*(CTransaction*)&wtxNew, SER_NETWORK, PROTOCOL_VERSION);
-                if (nBytes >= MAX_BLOCK_SIZE_GEN/5)
-                    return false;
+                if (nBytes >= MAX_BLOCK_SIZE_GEN/5){
+                    printf("transaction size is too large, size: %d",nBytes); return false;
+                }
                 dPriority /= nBytes;
 
                 // Check that enough fee is included

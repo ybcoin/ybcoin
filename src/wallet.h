@@ -80,7 +80,7 @@ private:
     int nWalletMaxVersion;
 
 public:
-    mutable CCriticalSection cs_wallet;
+    mutable CCriticalSection cs_wallet;    
 
     bool fFileBacked;
     std::string strWalletFile;
@@ -113,6 +113,7 @@ public:
     }
 
     std::map<uint256, CWalletTx> mapWallet;
+    std::map<uint256, CWalletTx> mapWalletFresh;
     int64 nOrderPosNext;
     std::map<uint256, int> mapRequestCount;
 

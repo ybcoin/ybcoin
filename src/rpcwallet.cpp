@@ -1197,8 +1197,7 @@ Value listsinceblock(const Array& params, bool fHelp)
     for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); it++)
     {
         CWalletTx tx = (*it).second;
-        int txDepth = tx.GetDepthInMainChain();
-        if (depth == -1 || (txDepth != 0 && txDepth < depth))
+        if (depth == -1 || tx.GetDepthInMainChain() < depth)
             ListTransactions(tx, "*", 0, true, transactions);
     }
 
@@ -1220,6 +1219,37 @@ Value listsinceblock(const Array& params, bool fHelp)
         lastblock = block ? block->GetBlockHash() : 0;
     }
 
+    Object ret;
+    ret.push_back(Pair("transactions", transactions));
+    ret.push_back(Pair("lastblock", lastblock.GetHex()));
+
+    return ret;
+}
+
+Value listlatesttx(const Array& params, bool fHelp)
+{
+    if (fHelp)
+        throw runtime_error(
+            "listlatesttx [reserve=false]\n"
+            "Get latest transactions involving me. if [reserve] is set, transactions will be stored in memory, or transactions will be delete since every call");
+    bool reserve = false;
+    if (params.size() > 0)
+    {
+        reserve = params[0].get_bool();
+    }
+
+    Array transactions;
+
+    for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWalletFresh.begin(); it != pwalletMain->mapWalletFresh.end(); it++)
+    {
+        CWalletTx tx = (*it).second;
+        ListTransactions(tx, "*", 0, true, transactions);
+    }
+    if(!reserve){
+        pwalletMain->mapWalletFresh.clear();
+    }
+
+    uint256 lastblock = hashBestChain;
     Object ret;
     ret.push_back(Pair("transactions", transactions));
     ret.push_back(Pair("lastblock", lastblock.GetHex()));
