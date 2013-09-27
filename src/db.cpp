@@ -201,10 +201,19 @@ bool CDBEnv::Salvage(std::string strFile, bool fAggressive,
 
     Db db(&dbenv, 0);
     int result = db.verify(strFile.c_str(), NULL, &strDump, flags);
-    if (result != 0)
+    if (result == DB_VERIFY_BAD)
     {
-        printf("ERROR: db salvage failed\n");
-        return false;
+       printf("Error: Salvage found errors, all data may not be recoverable.\n");
+       if (!fAggressive)
+       {
+           printf("Error: Rerun with aggressive mode to ignore errors and continue.\n");
+           return false;
+       }
+    }
+    if (result != 0 && result != DB_VERIFY_BAD)
+    {
+       printf("Error: db salvage failed: %d\n",result);
+       return false;
     }
 
     // Format of bdb dump is ascii lines:
