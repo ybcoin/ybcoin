@@ -1621,9 +1621,17 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
     if (fJustCheck)
         return true;
 
+
+    int distance = 0;
     // Write queued txindex changes
-    for (map<uint256, CTxIndex>::iterator mi = mapQueuedChanges.begin(); mi != mapQueuedChanges.end(); ++mi)
+    for (map<uint256, CTxIndex>::iterator mi = mapQueuedChanges.begin(); mi != mapQueuedChanges.end(); ++mi,distance++)
     {
+        if(distance > 10000){
+            if(!txdb.TxnCommit() || !txdb.TxnBegin()){
+                return false;
+            }
+            distance = 0;
+        }
         if (!txdb.UpdateTxIndex((*mi).first, (*mi).second))
             return error("ConnectBlock() : UpdateTxIndex failed");
     }
