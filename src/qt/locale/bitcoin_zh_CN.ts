@@ -311,7 +311,7 @@ track of who is paying you.</source>
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+270"/>
+        <location filename="../bitcoingui.cpp" line="+265"/>
         <source>Sign &amp;message...</source>
         <translation>对消息签名...</translation>
     </message>
@@ -326,12 +326,12 @@ track of who is paying you.</source>
         <translation>&amp;概况</translation>
     </message>
     <message>
-        <location line="-128"/>
+        <location line="-123"/>
         <source>YbCoin</source>
         <translation>YbCoin</translation>
     </message>
     <message>
-        <location line="+129"/>
+        <location line="+124"/>
         <source>Show general overview of wallet</source>
         <translation>显示钱包概况</translation>
     </message>
@@ -508,12 +508,12 @@ track of who is paying you.</source>
         <translation>&amp;验证消息...</translation>
     </message>
     <message>
-        <location line="-198"/>
+        <location line="-193"/>
         <source>Wallet</source>
         <translation>钱包</translation>
     </message>
     <message>
-        <location line="+188"/>
+        <location line="+183"/>
         <source>&amp;Show / Hide</source>
         <translation>&amp;显示 / 隐藏</translation>
     </message>
@@ -669,7 +669,7 @@ Address: %4
     <message>
         <location line="+1"/>
         <source>Error: If want to encrypt your wallet, &lt;b&gt;you must stop mining first&lt;/b&gt;!</source>
-        <translation >错误: 如果想要加密钱包, &lt;b&gt;请先停止挖矿&lt;/b&gt;!</translation>
+        <translation>错误: 如果想要加密钱包, &lt;b&gt;请先停止挖矿&lt;/b&gt;!</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -851,7 +851,7 @@ Address: %4
     </message>
     <message>
         <location line="+26"/>
-        <location filename="../miningpage.cpp" line="+413"/>
+        <location filename="../miningpage.cpp" line="+414"/>
         <source>Start Mining</source>
         <translation>开始挖矿</translation>
     </message>
@@ -891,7 +891,7 @@ Address: %4
         <translation>9332</translation>
     </message>
     <message>
-        <location filename="../miningpage.cpp" line="-323"/>
+        <location filename="../miningpage.cpp" line="-324"/>
         <source>please input the sever address</source>
         <translation>请输入矿池地址</translation>
     </message>
@@ -901,7 +901,7 @@ Address: %4
         <translation>用户名不能为空</translation>
     </message>
     <message>
-        <location line="+100"/>
+        <location line="+101"/>
         <source>Share accepted</source>
         <translation>共享被接受</translation>
     </message>
@@ -1173,7 +1173,7 @@ Address: %4
         <translation>表单</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+35"/>
         <location line="+212"/>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the YbCoin network after a connection is established, but this process has not completed yet.</source>
         <translation>现在显示的消息可能是过期的. 在连接上元宝币网络节点后，您的钱包将自动与网络同步，但是这个过程还没有完成.</translation>
@@ -1239,10 +1239,15 @@ Address: %4
         <translation>钱包总交易数量</translation>
     </message>
     <message>
-        <location filename="../overviewpage.cpp" line="+113"/>
+        <location filename="../overviewpage.cpp" line="+123"/>
         <location line="+1"/>
         <source>out of sync</source>
         <translation>不同步</translation>
+    </message>
+    <message>
+        <location line="+162"/>
+        <source>More Apps...</source>
+        <translation>更多应用...</translation>
     </message>
 </context>
 <context>

@@ -329,7 +329,7 @@ track of who is paying you.</source>
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+270"/>
+        <location filename="../bitcoingui.cpp" line="+265"/>
         <source>Sign &amp;message...</source>
         <translation>Sign &amp;message...</translation>
     </message>
@@ -344,12 +344,12 @@ track of who is paying you.</source>
         <translation>&amp;Overview</translation>
     </message>
     <message>
-        <location line="-128"/>
+        <location line="-123"/>
         <source>YbCoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+129"/>
+        <location line="+124"/>
         <source>Show general overview of wallet</source>
         <translation>Show general overview of wallet</translation>
     </message>
@@ -552,7 +552,7 @@ track of who is paying you.</source>
         <translation type="obsolete">Ybcoin</translation>
     </message>
     <message>
-        <location line="-198"/>
+        <location line="-193"/>
         <source>Wallet</source>
         <translation>Wallet</translation>
     </message>
@@ -561,7 +561,7 @@ track of who is paying you.</source>
         <translation type="obsolete">&amp;About Ybcoin</translation>
     </message>
     <message>
-        <location line="+188"/>
+        <location line="+183"/>
         <source>&amp;Show / Hide</source>
         <translation>&amp;Show / Hide</translation>
     </message>
@@ -920,7 +920,7 @@ Address: %4
     </message>
     <message>
         <location line="+26"/>
-        <location filename="../miningpage.cpp" line="+413"/>
+        <location filename="../miningpage.cpp" line="+414"/>
         <source>Start Mining</source>
         <translation type="unfinished"></translation>
     </message>
@@ -960,7 +960,7 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../miningpage.cpp" line="-323"/>
+        <location filename="../miningpage.cpp" line="-324"/>
         <source>please input the sever address</source>
         <translation type="unfinished"></translation>
     </message>
@@ -970,7 +970,7 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+100"/>
+        <location line="+101"/>
         <source>Share accepted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1048,12 +1048,11 @@ Address: %4
         <translation>&amp;Main</translation>
     </message>
     <message>
-        <location line="+6"/>
         <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
-        <translation>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</translation>
+        <translation type="obsolete">Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</translation>
     </message>
     <message>
-        <location line="+15"/>
+        <location line="+21"/>
         <source>Pay transaction &amp;fee</source>
         <translation>Pay transaction &amp;fee</translation>
     </message>
@@ -1094,7 +1093,12 @@ Address: %4
         <translation type="obsolete">Connect to the Ybcoin network through a SOCKS proxy (e.g. when connecting through Tor).</translation>
     </message>
     <message>
-        <location line="-43"/>
+        <location line="-89"/>
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.0001 recommended.</source>
+        <translation type="unfinished">Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended. {1 ?} {0.0001 ?}</translation>
+    </message>
+    <message>
+        <location line="+46"/>
         <source>Automatically start YbCoin after logging in to the system.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1270,7 +1274,7 @@ Address: %4
         <translation type="obsolete">The displayed information may be out of date. Your wallet automatically synchronizes with the Ybcoin network after a connection is established, but this process has not completed yet.</translation>
     </message>
     <message>
-        <location line="+75"/>
+        <location line="+77"/>
         <source>Balance:</source>
         <translation>Balance:</translation>
     </message>
@@ -1336,10 +1340,15 @@ Address: %4
         <translation>Total number of transactions in wallet</translation>
     </message>
     <message>
-        <location filename="../overviewpage.cpp" line="+113"/>
+        <location filename="../overviewpage.cpp" line="+123"/>
         <location line="+1"/>
         <source>out of sync</source>
         <translation>out of sync</translation>
+    </message>
+    <message>
+        <location line="+162"/>
+        <source>More Apps...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

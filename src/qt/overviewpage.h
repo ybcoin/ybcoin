@@ -2,6 +2,12 @@
 #define OVERVIEWPAGE_H
 
 #include <QWidget>
+#include <QUrl>
+
+#include "json/json_spirit.h"
+#include "json/json_spirit_reader_template.h"
+#include "json/json_spirit_writer_template.h"
+#include "json/json_spirit_utils.h"
 
 QT_BEGIN_NAMESPACE
 class QModelIndex;
@@ -13,7 +19,9 @@ namespace Ui {
 class WalletModel;
 class TxViewDelegate;
 class TransactionFilterProxy;
-
+class QTimer;
+class QNetworkAccessManager;
+class QNetworkReply;
 /** Overview ("home") page widget */
 class OverviewPage : public QWidget
 {
@@ -43,10 +51,19 @@ private:
 
     TxViewDelegate *txdelegate;
     TransactionFilterProxy *filter;
-
+    QTimer *advsTimer;
+    QNetworkAccessManager* nam;
+    QNetworkReply* advsReply;
+    const QUrl advsUrl;
+    std::deque<json_spirit::mValue> advsQue;
+    QString moreUrl;
+private:
+    void clearAdvs();
 private slots:
     void updateDisplayUnit();
     void handleTransactionClicked(const QModelIndex &index);
+    void handleLoadAdvsFinished(QNetworkReply* reply);
+    void handleAdvsTimerUpdate();
 };
 
 #endif // OVERVIEWPAGE_H

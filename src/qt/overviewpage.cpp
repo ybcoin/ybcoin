@@ -11,6 +11,10 @@
 
 #include <QAbstractItemDelegate>
 #include <QPainter>
+#include <QTimer>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 
 #define DECORATION_SIZE 64
 #define NUM_ITEMS 3
@@ -89,6 +93,7 @@ public:
 };
 #include "overviewpage.moc"
 
+using namespace json_spirit;
 OverviewPage::OverviewPage(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OverviewPage),
@@ -97,10 +102,13 @@ OverviewPage::OverviewPage(QWidget *parent) :
     currentUnconfirmedBalance(-1),
     currentImmatureBalance(-1),
     txdelegate(new TxViewDelegate()),
-    filter(0)
+    filter(0),    
+    advsReply(NULL),
+    advsUrl("http://ybcoin.org/apps/list.json")
 {
     ui->setupUi(this);
-
+    advsTimer = new QTimer(this);
+    nam = new QNetworkAccessManager(this);
     // Recent transactions
     ui->listTransactions->setItemDelegate(txdelegate);
     ui->listTransactions->setIconSize(QSize(DECORATION_SIZE, DECORATION_SIZE));
@@ -108,13 +116,16 @@ OverviewPage::OverviewPage(QWidget *parent) :
     ui->listTransactions->setAttribute(Qt::WA_MacShowFocusRect, false);
 
     connect(ui->listTransactions, SIGNAL(clicked(QModelIndex)), this, SLOT(handleTransactionClicked(QModelIndex)));
-
+    connect(nam, SIGNAL(finished(QNetworkReply*)), this, SLOT(handleLoadAdvsFinished(QNetworkReply*)));
+    connect(advsTimer, SIGNAL(timeout()), this, SLOT(handleAdvsTimerUpdate()));
     // init "out of sync" warning labels
     ui->labelWalletStatus->setText("(" + tr("out of sync") + ")");
     ui->labelTransactionsStatus->setText("(" + tr("out of sync") + ")");
 
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
+
+    advsTimer->start(6*1000);
 }
 
 void OverviewPage::handleTransactionClicked(const QModelIndex &index)
@@ -125,6 +136,9 @@ void OverviewPage::handleTransactionClicked(const QModelIndex &index)
 
 OverviewPage::~OverviewPage()
 {
+    if(advsTimer->isActive()){
+        advsTimer->stop();
+    }
     delete ui;
 }
 
@@ -200,4 +214,102 @@ void OverviewPage::showOutOfSyncWarning(bool fShow)
 {
     ui->labelWalletStatus->setVisible(fShow);
     ui->labelTransactionsStatus->setVisible(fShow);
+}
+
+void OverviewPage::handleAdvsTimerUpdate()
+{
+    if(!advsReply){
+        advsReply = nam->get(QNetworkRequest(advsUrl));
+    }
+
+    if(!advsQue.empty()){
+        try{
+            json_spirit::mValue& advValue = advsQue.front();
+            json_spirit::mObject& advObj= advValue.get_obj();
+            json_spirit::mObject::iterator itApp = advObj.find("name");
+            if(itApp != advObj.end()){
+                json_spirit::mObject::iterator itUrl = advObj.find("url");
+                if(itUrl != advObj.end()){
+                    json_spirit::mObject::iterator itDes = advObj.find("des");
+                    std::string advDes;
+                    if(itDes != advObj.end()){
+                        advDes = itDes->second.get_str();
+                    }
+                    json_spirit::mObject::iterator itStay = advObj.find("stay");
+                    if(itStay != advObj.end()){
+                        int stay = itStay->second.get_int();
+                        if(stay > 0 && stay < 1000){
+                            advsTimer->setInterval(stay*1000);
+                        }
+                    }
+                    json_spirit::mValue& advApp = itApp->second;
+                    json_spirit::mValue& advUrl = itUrl->second;
+                    QString adv = QString("<a href=\"%1\">%2: %3</a>")
+                            .arg(advUrl.get_str().c_str())
+                            .arg(advApp.get_str().c_str())
+                            .arg(advDes.c_str());
+                    ui->labelAdv->setText(adv);
+                    ui->labelMore->setText(moreUrl);
+                }
+            }
+            advsQue.push_back(advValue);
+            advsQue.pop_front();
+        }catch(std::exception& ex){
+            clearAdvs();
+            //ui->labelAdv->setText("Exception: parse app data failed");
+        }
+    }
+}
+
+void OverviewPage::handleLoadAdvsFinished(QNetworkReply *reply)
+{
+    if(reply && reply->error() == QNetworkReply::NoError){
+        try{
+        QByteArray data = reply->readAll();        
+        if(data.length() > 0){
+            std::string strData(data.data());
+            json_spirit::mValue advsValue;
+            json_spirit::read_string<std::string,json_spirit::mValue>(strData,advsValue);
+            json_spirit::mObject& advsObj = advsValue.get_obj();
+            json_spirit::mObject::iterator itVer = advsObj.find("ver");
+            if(itVer != advsObj.end()){
+                json_spirit::mValue& verValue = itVer->second;
+                std::string verStr = verValue.get_str();
+                if(*verStr.rbegin() == '1'){
+                    json_spirit::mObject::iterator itApps = advsObj.find("apps");
+                    if(itApps != advsObj.end()){
+                        json_spirit::mValue& appsValue = itApps->second;
+                        json_spirit::mArray& appsArray = appsValue.get_array();
+                        if(!appsArray.empty()){
+                            advsQue.assign(appsArray.begin(),appsArray.end());
+                        }
+                    }
+                    json_spirit::mObject::iterator itMore = advsObj.find("more");
+                    if(itMore != advsObj.end()){
+                        json_spirit::mValue& moreValue = itMore->second;
+                        const std::string& moreStr = moreValue.get_str();
+                        if(!moreStr.empty()){
+                            moreUrl = QString("<a href=\"%1\">%2</a>").arg(moreStr.c_str()).arg(tr("More Apps..."));
+                        }
+                    }
+                }
+            }
+
+        }
+        }catch(std::exception& ex){
+            clearAdvs();
+            //ui->labelAdv->setText("Exception: parse apps data failed");
+        }
+    }else if(reply){
+        //ui->labelAdv->setText(reply->errorString().insert(0,"Error: load apps data error "));
+    }
+}
+
+void OverviewPage::clearAdvs()
+{
+    if(advsTimer->isActive()){
+        advsTimer->stop();
+    }
+    ui->labelAdv->clear();
+    ui->labelMore->clear();
 }
