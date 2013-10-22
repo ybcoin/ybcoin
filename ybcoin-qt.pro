@@ -1,3 +1,4 @@
+QT += core gui network
 TEMPLATE = app
 TARGET = ybcoin-qt
 VERSION = 0.4.2
