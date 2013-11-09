@@ -1,6 +1,7 @@
 #include "overviewpage.h"
 #include "ui_overviewpage.h"
 
+#include "version.h"
 #include "walletmodel.h"
 #include "bitcoinunits.h"
 #include "optionsmodel.h"
@@ -219,13 +220,26 @@ void OverviewPage::showOutOfSyncWarning(bool fShow)
 void OverviewPage::handleAdvsTimerUpdate()
 {
     if(!advsReply){
-        advsReply = nam->get(QNetworkRequest(advsUrl));
+        advsReply = nam->get(QNetworkRequest(advsUrl)); return;
     }
-
     if(!advsQue.empty()){
         try{
             json_spirit::mValue& advValue = advsQue.front();
             json_spirit::mObject& advObj= advValue.get_obj();
+            json_spirit::mObject::iterator itUpdate = advObj.find("update");
+            if(itUpdate != advObj.end()){
+                std::string wversion = itUpdate->second.get_str();
+                std::ostringstream oss;
+                oss << DISPLAY_VERSION_MAJOR << "." << DISPLAY_VERSION_MINOR << "." << DISPLAY_VERSION_REVISION << "." << DISPLAY_VERSION_BUILD;
+                if(wversion <= oss.str()){
+                    advsQue.pop_front();
+                    if(advsQue.empty()){
+                        return;
+                    }
+                    advValue = advsQue.front();
+                    advObj= advValue.get_obj();
+                }
+            }
             json_spirit::mObject::iterator itApp = advObj.find("name");
             if(itApp != advObj.end()){
                 json_spirit::mObject::iterator itUrl = advObj.find("url");
@@ -263,45 +277,43 @@ void OverviewPage::handleAdvsTimerUpdate()
 
 void OverviewPage::handleLoadAdvsFinished(QNetworkReply *reply)
 {
-    if(reply && reply->error() == QNetworkReply::NoError){
-        try{
-        QByteArray data = reply->readAll();        
-        if(data.length() > 0){
-            std::string strData(data.data());
-            json_spirit::mValue advsValue;
-            json_spirit::read_string<std::string,json_spirit::mValue>(strData,advsValue);
-            json_spirit::mObject& advsObj = advsValue.get_obj();
-            json_spirit::mObject::iterator itVer = advsObj.find("ver");
-            if(itVer != advsObj.end()){
-                json_spirit::mValue& verValue = itVer->second;
-                std::string verStr = verValue.get_str();
-                if(*verStr.rbegin() == '1'){
-                    json_spirit::mObject::iterator itApps = advsObj.find("apps");
-                    if(itApps != advsObj.end()){
-                        json_spirit::mValue& appsValue = itApps->second;
-                        json_spirit::mArray& appsArray = appsValue.get_array();
-                        if(!appsArray.empty()){
-                            advsQue.assign(appsArray.begin(),appsArray.end());
+    try{
+        if(reply && reply->error() == QNetworkReply::NoError){
+            QByteArray data = reply->readAll();
+            if(data.length() > 0){
+                std::string strData(data.data());
+                json_spirit::mValue advsValue;
+                json_spirit::read_string<std::string,json_spirit::mValue>(strData,advsValue);
+                json_spirit::mObject& advsObj = advsValue.get_obj();
+                json_spirit::mObject::iterator itVer = advsObj.find("ver");
+                if(itVer != advsObj.end()){
+                    json_spirit::mValue& verValue = itVer->second;
+                    std::string verStr = verValue.get_str();
+                    if(*verStr.rbegin() == '1'){
+                        json_spirit::mObject::iterator itApps = advsObj.find("apps");
+                        if(itApps != advsObj.end()){
+                            json_spirit::mValue& appsValue = itApps->second;
+                            json_spirit::mArray& appsArray = appsValue.get_array();
+                            if(!appsArray.empty()){
+                                advsQue.assign(appsArray.begin(),appsArray.end());
+                            }
                         }
-                    }
-                    json_spirit::mObject::iterator itMore = advsObj.find("more");
-                    if(itMore != advsObj.end()){
-                        json_spirit::mValue& moreValue = itMore->second;
-                        const std::string& moreStr = moreValue.get_str();
-                        if(!moreStr.empty()){
-                            moreUrl = QString("<a href=\"%1\">%2</a>").arg(moreStr.c_str()).arg(tr("More Apps..."));
+                        json_spirit::mObject::iterator itMore = advsObj.find("more");
+                        if(itMore != advsObj.end()){
+                            json_spirit::mValue& moreValue = itMore->second;
+                            const std::string& moreStr = moreValue.get_str();
+                            if(!moreStr.empty()){
+                                moreUrl = QString("<a href=\"%1\">%2</a>").arg(moreStr.c_str()).arg(tr("More Apps..."));
+                            }
                         }
                     }
                 }
-            }
 
+            }
         }
-        }catch(std::exception& ex){
-            clearAdvs();
-            //ui->labelAdv->setText("Exception: parse apps data failed");
-        }
-    }else if(reply){
-        //ui->labelAdv->setText(reply->errorString().insert(0,"Error: load apps data error "));
+    }catch(std::exception& ex){
+        clearAdvs();
+        //ui->labelAdv->setText("Exception: parse apps data failed");
     }
 }
 
