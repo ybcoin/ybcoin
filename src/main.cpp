@@ -12,6 +12,7 @@
 #include "kernel.h"
 #include "scrypt_mine.h"
 #include <boost/algorithm/string/replace.hpp>
+#include <boost/foreach.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 
@@ -42,6 +43,9 @@ unsigned int nStakeMinAge = 60 * 60 * 24 * 30; // minimum age for coin age
 unsigned int nStakeMaxAge = 60 * 60 * 24 * 90; // stake age of full weight
 unsigned int nStakeTargetSpacing = 1 * 60; // DIFF: 1-minute block spacing
 int64 nChainStartTime = 1372386273;
+int64 nNextStageTime = 1384221600;
+int nNextStageHeight = 225858 + 5 * 24 * 60;
+int nTestnetNextStageHeight = 1500;
 
 int nCoinbaseMaturity = 500;
 CBlockIndex* pindexGenesisBlock = NULL;
@@ -52,8 +56,8 @@ CBigNum bnBestInvalidTrust = 0;
 uint256 hashBestChain = 0;
 CBlockIndex* pindexBest = NULL;
 int64 nTimeBestReceived = 0;
-static int64 nRewardCoinYear = 5 * CENT;  // creation amount per coin-year
-
+static int64 nRewardCoinYearMin = 5 * CENT;  // creation amount per coin-year
+static int64 nRewardCoinYearMax = 60 * CENT;
 CMedianFilter<int> cPeerBlockCounts(5, 0); // Amount of blocks that other nodes claim to have
 
 map<uint256, CBlock*> mapOrphanBlocks;
@@ -975,7 +979,7 @@ const unsigned char maxNfactor = 30;
 
 unsigned char GetNfactor(int64 nTimestamp) {
     int l = 0;
-    if (nTimestamp <= nChainStartTime)
+    if (nTimestamp <= nChainStartTime || fTestNet)
         return 4;
     int64 s = nTimestamp - nChainStartTime;
     while ((s >> 1) > 3) {
@@ -993,11 +997,17 @@ unsigned char GetNfactor(int64 nTimestamp) {
     return min(max(N, minNfactor), maxNfactor);
 }
 
-// miner's coin base reward based on nBits
-int64 GetProofOfWorkReward(unsigned int nBits)
+// miner's coin base reward based on nBits and nTime
+int64 GetProofOfWorkReward(unsigned int nBits, int nHeight)
 {
-    CBigNum bnSubsidyLimit = MAX_MINT_PROOF_OF_WORK;
-
+    int64 powMax = MAX_MINT_PROOF_OF_WORK;
+    int nextStageHeight = fTestNet ? nTestnetNextStageHeight : nNextStageHeight;
+    if(nHeight >= nextStageHeight){
+        int months = (nHeight - nextStageHeight) / 60 / 24 / 30;
+        powMax = std::pow(0.95,months + 1) * MAX_MINT_PROOF_OF_WORK;
+        powMax = std::max(powMax,MIN_MINT_PROOF_OF_WORK);
+    }
+    CBigNum bnSubsidyLimit = powMax;
     CBigNum bnTarget;
     bnTarget.SetCompact(nBits);
     CBigNum bnTargetLimit = bnProofOfWorkLimit;
@@ -1031,9 +1041,15 @@ int64 GetProofOfWorkReward(unsigned int nBits)
     return min(nSubsidy, MAX_MINT_PROOF_OF_WORK);
 }
 
-// miner's coin stake reward based on nBits and coin age spent (coin-days)
-int64 GetProofOfStakeReward(int64 nCoinAge)
+// miner's coin stake reward based on nBits , nTime and coin age spent (coin-days)
+int64 GetProofOfStakeReward(unsigned int nTime, int64 nCoinAge)
 {
+    int64 nRewardCoinYear = nRewardCoinYearMin;
+    if(nTime >= nNextStageTime){
+        int months = (nTime - nNextStageTime) / 3600 / 24 / 30;
+        nRewardCoinYear = std::pow(0.95, months + 1) * nRewardCoinYearMax;
+        nRewardCoinYear = std::max(nRewardCoinYearMin, nRewardCoinYear);
+    }
     int64 nSubsidy = nCoinAge * 33 / (365 * 33 + 8) * nRewardCoinYear;
     if (fDebug && GetBoolArg("-printcreation"))
         printf("GetProofOfStakeReward(): create=%s nCoinAge=%"PRI64d"\n", FormatMoney(nSubsidy).c_str(), nCoinAge);
@@ -1422,7 +1438,7 @@ bool CTransaction::ConnectInputs(CTxDB& txdb, MapPrevTx inputs,
             if (!GetCoinAge(txdb, nCoinAge))
                 return error("ConnectInputs() : %s unable to get coin age for coinstake", GetHash().ToString().substr(0,10).c_str());
             int64 nStakeReward = GetValueOut() - nValueIn;
-            if (nStakeReward > GetProofOfStakeReward(nCoinAge) - GetMinFee() + MIN_TX_FEE)
+            if (nStakeReward > GetProofOfStakeReward(nTime,nCoinAge) - GetMinFee() + MIN_TX_FEE)
                 return DoS(100, error("ConnectInputs() : %s stake reward exceeded", GetHash().ToString().substr(0,10).c_str()));
         }
         else
@@ -1609,6 +1625,9 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
 
     // ppcoin: track money supply and mint amount info
     pindex->nMint = nValueOut - nValueIn + nFees;
+    if(IsProofOfWork() && pindex->nMint > GetProofOfWorkReward(pindex->nBits,pindex->nHeight)){
+        return DoS(100, error("ConnectBlock() : coinbase pays too much (actual=%"PRI64d" vs limit=%"PRI64d")", pindex->nMint, GetProofOfWorkReward(pindex->nBits,pindex->nHeight)));
+    }
     pindex->nMoneySupply = (pindex->pprev? pindex->pprev->nMoneySupply : 0) + nValueOut - nValueIn;
     if (!txdb.WriteBlockIndex(CDiskBlockIndex(pindex)))
         return error("Connect() : WriteBlockIndex for pindex failed");
@@ -2078,12 +2097,17 @@ bool CBlock::CheckBlock(bool fCheckPOW, bool fCheckMerkleRoot) const
     if (IsProofOfStake() && !CheckCoinStakeTimestamp(GetBlockTime(), (int64)vtx[1].nTime))
         return DoS(50, error("CheckBlock() : coinstake timestamp violation nTimeBlock=%"PRI64d" nTimeTx=%u", GetBlockTime(), vtx[1].nTime));
 
-    // Check coinbase reward
-    if (vtx[0].GetValueOut() > (IsProofOfWork()? (GetProofOfWorkReward(nBits) - vtx[0].GetMinFee() + MIN_TX_FEE) : 0))
-        return DoS(50, error("CheckBlock() : coinbase reward exceeded %s > %s", 
-                   FormatMoney(vtx[0].GetValueOut()).c_str(),
-                   FormatMoney(IsProofOfWork()? GetProofOfWorkReward(nBits) : 0).c_str()));
 
+    /*map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.find(hashPrevBlock);
+    if (mi != mapBlockIndex.end()){
+        CBlockIndex* pindexPrev = (*mi).second;
+        int nHeight = pindexPrev->nHeight+1;
+        // Check coinbase reward
+        if (vtx[0].GetValueOut() > (IsProofOfWork()? (GetProofOfWorkReward(nBits,nHeight) - vtx[0].GetMinFee() + MIN_TX_FEE) : 0))
+            return DoS(50, error("CheckBlock() : coinbase reward exceeded %s > %s",
+                       FormatMoney(vtx[0].GetValueOut()).c_str(),
+                       FormatMoney(IsProofOfWork()? GetProofOfWorkReward(nBits,nHeight) : 0).c_str()));
+    }*/
     // Check transactions
     BOOST_FOREACH(const CTransaction& tx, vtx)
     {
@@ -4249,7 +4273,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake)
             printf("CreateNewBlock(): total size %"PRI64u"\n", nBlockSize);
 
         if (pblock->IsProofOfWork())
-            pblock->vtx[0].vout[0].nValue = GetProofOfWorkReward(pblock->nBits);
+            pblock->vtx[0].vout[0].nValue = GetProofOfWorkReward(pblock->nBits, pindexPrev->nHeight + 1);
 
         // Fill in header
         pblock->hashPrevBlock  = pindexPrev->GetBlockHash();
@@ -4257,8 +4281,10 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake)
             pblock->nTime      = pblock->vtx[1].nTime; //same as coinstake timestamp
         pblock->nTime          = max(pindexPrev->GetMedianTimePast()+1, pblock->GetMaxTransactionTime());
         pblock->nTime          = max(pblock->GetBlockTime(), pindexPrev->GetBlockTime() - nMaxClockDrift);
-        if (pblock->IsProofOfWork())
+        if (pblock->IsProofOfWork()){
             pblock->UpdateTime(pindexPrev);
+            //pblock->vtx[0].vout[0].nValue = GetProofOfWorkReward(pblock->nBits,pblock->nTime);
+        }
         pblock->nNonce         = 0;
     }
 

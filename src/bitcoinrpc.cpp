@@ -48,7 +48,7 @@ static inline unsigned short GetDefaultRPCPort()
 
 Object JSONRPCError(int code, const string& message)
 {
-    Object error;
+    Object error;    
     error.push_back(Pair("code", code));
     error.push_back(Pair("message", message));
     return error;

@@ -34,6 +34,7 @@ static const int64 MIN_TX_FEE = CENT / 100;
 static const int64 MIN_RELAY_TX_FEE = CENT / 100;
 static const int64 MAX_MONEY = 200000000 * COIN;
 static const int64 MAX_MINT_PROOF_OF_WORK = 10 * COIN;
+static const int64 MIN_MINT_PROOF_OF_WORK = 2 * COIN;
 
 static const int64 MIN_TXOUT_AMOUNT = MIN_TX_FEE;
 
@@ -111,8 +112,8 @@ void IncrementExtraNonce(CBlock* pblock, CBlockIndex* pindexPrev, unsigned int& 
 void FormatHashBuffers(CBlock* pblock, char* pmidstate, char* pdata, char* phash1);
 bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey);
 bool CheckProofOfWork(uint256 hash, unsigned int nBits);
-int64 GetProofOfWorkReward(unsigned int nBits);
-int64 GetProofOfStakeReward(int64 nCoinAge);
+int64 GetProofOfWorkReward(unsigned int nBits, int nHeight);
+int64 GetProofOfStakeReward(unsigned int nTime, int64 nCoinAge);
 unsigned int ComputeMinWork(unsigned int nBase, int64 nTime);
 int GetNumBlocksOfPeers();
 bool IsInitialBlockDownload();
@@ -122,7 +123,6 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan);
 const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfStake);
 void BitcoinMiner(CWallet *pwallet, bool fProofOfStake);
 void ResendWalletTransactions();
-
 // ybcoin: calculate Nfactor using timestamp
 unsigned char GetNfactor(int64 nTimestamp);
 

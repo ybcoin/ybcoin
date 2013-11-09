@@ -652,9 +652,10 @@ CBlockIndex static * InsertBlockIndex(uint256 hash)
 
 bool CTxDB::LoadBlockIndex()
 {
+    printf("load block index starting on %lld\n",GetTimeMillis());
     if (!LoadBlockIndexGuts())
         return false;
-
+    printf("load block index guts completed on %lld\n", GetTimeMillis());
     if (fRequestShutdown)
         return true;
 
@@ -666,7 +667,9 @@ bool CTxDB::LoadBlockIndex()
         CBlockIndex* pindex = item.second;
         vSortedByHeight.push_back(make_pair(pindex->nHeight, pindex));
     }
+    printf("sort block index starting on %lld\n", GetTimeMillis());
     sort(vSortedByHeight.begin(), vSortedByHeight.end());
+    printf("sort block index completed on %lld\n", GetTimeMillis());
     BOOST_FOREACH(const PAIRTYPE(int, CBlockIndex*)& item, vSortedByHeight)
     {
         CBlockIndex* pindex = item.second;
@@ -676,7 +679,7 @@ bool CTxDB::LoadBlockIndex()
         if (!CheckStakeModifierCheckpoints(pindex->nHeight, pindex->nStakeModifierChecksum))
             return error("CTxDB::LoadBlockIndex() : Failed stake modifier checkpoint height=%d, modifier=0x%016"PRI64x, pindex->nHeight, pindex->nStakeModifier);
     }
-
+    printf("check stake block modifier completed on %lld\n", GetTimeMillis());
     // Load hashBestChain pointer to end of best chain
     if (!ReadHashBestChain(hashBestChain))
     {
@@ -684,6 +687,7 @@ bool CTxDB::LoadBlockIndex()
             return true;
         return error("CTxDB::LoadBlockIndex() : hashBestChain not loaded");
     }
+    printf("load hashBestChain completed on %lld\n", GetTimeMillis());
     if (!mapBlockIndex.count(hashBestChain))
         return error("CTxDB::LoadBlockIndex() : hashBestChain not found in the block index");
     pindexBest = mapBlockIndex[hashBestChain];
@@ -815,6 +819,7 @@ bool CTxDB::LoadBlockIndex()
             }
         }
     }
+    printf("check block index completed on %lld\n", GetTimeMillis());
     if (pindexFork && !fRequestShutdown)
     {
         // Reorg back to the fork

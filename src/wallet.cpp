@@ -1354,7 +1354,8 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     // The following split & combine thresholds are important to security
     // Should not be adjusted if you don't understand the consequences
     static unsigned int nStakeSplitAge = (60 * 60 * 24 * 90);
-    int64 nCombineThreshold = GetProofOfWorkReward(GetLastBlockIndex(pindexBest, false)->nBits) / 3;
+    const CBlockIndex* pbl = GetLastBlockIndex(pindexBest, false);
+    int64 nCombineThreshold = GetProofOfWorkReward(pbl->nBits,pbl->nHeight) / 3;
 
     CBigNum bnTargetPerCoinDay;
     bnTargetPerCoinDay.SetCompact(nBits);
@@ -1493,7 +1494,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         CTxDB txdb("r");
         if (!txNew.GetCoinAge(txdb, nCoinAge))
             return error("CreateCoinStake : failed to calculate coin age");
-        nCredit += GetProofOfStakeReward(nCoinAge);
+        nCredit += GetProofOfStakeReward(txNew.nTime, nCoinAge);
     }
 
     int64 nMinFee = 0;
