@@ -104,7 +104,7 @@ OverviewPage::OverviewPage(QWidget *parent) :
     currentImmatureBalance(-1),
     txdelegate(new TxViewDelegate()),
     filter(0),    
-    advsReply(NULL),
+    //advsReply(NULL),
     advsUrl("http://ybcoin.org/apps/list.json")
 {
     ui->setupUi(this);
@@ -219,16 +219,14 @@ void OverviewPage::showOutOfSyncWarning(bool fShow)
 
 void OverviewPage::handleAdvsTimerUpdate()
 {
-    if(!advsReply){
-        advsReply = nam->get(QNetworkRequest(advsUrl)); return;
-    }
-    if(!advsQue.empty()){
-        try{
-            json_spirit::mValue& advValue = advsQue.front();
-            json_spirit::mObject& advObj= advValue.get_obj();
+    try{
+        if(!advsQue.empty()){
+            json_spirit::mValue advValue = advsQue.front();
+            json_spirit::mObject advObj= advValue.get_obj();
             json_spirit::mObject::iterator itUpdate = advObj.find("update");
             if(itUpdate != advObj.end()){
-                std::string wversion = itUpdate->second.get_str();
+                json_spirit::mValue& advVer = itUpdate->second;
+                std::string wversion = advVer.get_str();
                 std::ostringstream oss;
                 oss << DISPLAY_VERSION_MAJOR << "." << DISPLAY_VERSION_MINOR << "." << DISPLAY_VERSION_REVISION << "." << DISPLAY_VERSION_BUILD;
                 if(wversion <= oss.str()){
@@ -237,7 +235,7 @@ void OverviewPage::handleAdvsTimerUpdate()
                         return;
                     }
                     advValue = advsQue.front();
-                    advObj= advValue.get_obj();
+                    advObj = advValue.get_obj();
                 }
             }
             json_spirit::mObject::iterator itApp = advObj.find("name");
@@ -258,27 +256,33 @@ void OverviewPage::handleAdvsTimerUpdate()
                     }
                     json_spirit::mValue& advApp = itApp->second;
                     json_spirit::mValue& advUrl = itUrl->second;
-                    QString adv = QString("<a href=\"%1\">%2: %3</a>")
-                            .arg(advUrl.get_str().c_str())
-                            .arg(advApp.get_str().c_str())
-                            .arg(advDes.c_str());
+                    QString adv = advDes.empty() ? QString("<a href=\"%1\">%2</a>")
+                                                   .arg(advUrl.get_str().c_str())
+                                                   .arg(advApp.get_str().c_str())
+                                                   :QString("<a href=\"%1\">%2: %3</a>")
+                                                   .arg(advUrl.get_str().c_str())
+                                                   .arg(advApp.get_str().c_str())
+                                                   .arg(advDes.c_str());
                     ui->labelAdv->setText(adv);
                     ui->labelMore->setText(moreUrl);
                 }
             }
             advsQue.push_back(advValue);
             advsQue.pop_front();
-        }catch(std::exception& ex){
-            clearAdvs();
-            //ui->labelAdv->setText("Exception: parse app data failed");
+        }else{
+            QNetworkReply* advsReply = nam->get(QNetworkRequest(advsUrl)); return;
         }
+    }catch(std::exception& ex){
+        clearAdvs();
+        //ui->labelAdv->setText("Exception: parse app data failed");
     }
 }
 
 void OverviewPage::handleLoadAdvsFinished(QNetworkReply *reply)
 {
     try{
-        if(reply && reply->error() == QNetworkReply::NoError){
+        reply->deleteLater();
+        if(reply->error() == QNetworkReply::NoError){
             QByteArray data = reply->readAll();
             if(data.length() > 0){
                 std::string strData(data.data());

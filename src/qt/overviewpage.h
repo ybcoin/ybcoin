@@ -53,7 +53,7 @@ private:
     TransactionFilterProxy *filter;
     QTimer *advsTimer;
     QNetworkAccessManager* nam;
-    QNetworkReply* advsReply;
+    //QNetworkReply* advsReply;
     const QUrl advsUrl;
     std::deque<json_spirit::mValue> advsQue;
     QString moreUrl;
