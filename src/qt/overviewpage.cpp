@@ -104,7 +104,6 @@ OverviewPage::OverviewPage(QWidget *parent) :
     currentImmatureBalance(-1),
     txdelegate(new TxViewDelegate()),
     filter(0),    
-    //advsReply(NULL),
     advsUrl("http://ybcoin.org/apps/list.json")
 {
     ui->setupUi(this);
@@ -227,15 +226,21 @@ void OverviewPage::handleAdvsTimerUpdate()
             if(itUpdate != advObj.end()){
                 json_spirit::mValue& advVer = itUpdate->second;
                 std::string wversion = advVer.get_str();
-                std::ostringstream oss;
-                oss << DISPLAY_VERSION_MAJOR << "." << DISPLAY_VERSION_MINOR << "." << DISPLAY_VERSION_REVISION << "." << DISPLAY_VERSION_BUILD;
-                if(wversion <= oss.str()){
-                    advsQue.pop_front();
-                    if(advsQue.empty()){
-                        return;
+                if(!wversion.empty()){
+                    QString verQStr(QString::fromLocal8Bit(wversion.c_str()));
+                    QStringList verSL = verQStr.split('.');
+                    int verInt = 0;
+                    if(verSL.size() > 3){
+                        verInt = (verSL[0].toInt() << 24) + (verSL[1].toInt() << 16) + (verSL[0].toInt() << 8) + verSL[0].toInt();
+                        if(verInt <= ((DISPLAY_VERSION_MAJOR << 24) + (DISPLAY_VERSION_MINOR << 16) + (DISPLAY_VERSION_REVISION << 8) + DISPLAY_VERSION_BUILD)){
+                            advsQue.pop_front();
+                            if(advsQue.empty()){
+                                return;
+                            }
+                            advValue = advsQue.front();
+                            advObj = advValue.get_obj();
+                        }
                     }
-                    advValue = advsQue.front();
-                    advObj = advValue.get_obj();
                 }
             }
             json_spirit::mObject::iterator itApp = advObj.find("name");
