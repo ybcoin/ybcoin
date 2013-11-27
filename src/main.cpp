@@ -4057,7 +4057,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake)
     CBlockIndex* pindexPrev = pindexBest;
 
     if (fProofOfStake)  // attempt to find a coinstake
-    {
+    {        
         pblock->nBits = GetNextTargetRequired(pindexPrev, true);
         CTransaction txCoinStake;
         int64 nSearchTime = txCoinStake.nTime; // search to current time
@@ -4417,7 +4417,8 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
     {
         if (fShutdown)
             return;
-        while (vNodes.empty() || IsInitialBlockDownload())
+        while (vNodes.empty() || IsInitialBlockDownload()
+               || (fProofOfStake && vNodes.size() < 3 && nBestHeight < GetNumBlocksOfPeers()))
         {
             Sleep(1000);
             if (fShutdown)
