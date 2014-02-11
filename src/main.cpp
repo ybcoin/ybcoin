@@ -1439,7 +1439,8 @@ bool CTransaction::ConnectInputs(CTxDB& txdb, MapPrevTx inputs,
                 return error("ConnectInputs() : %s unable to get coin age for coinstake", GetHash().ToString().substr(0,10).c_str());
             int64 nStakeReward = GetValueOut() - nValueIn;
             if (nStakeReward > GetProofOfStakeReward(nTime,nCoinAge) - GetMinFee() + MIN_TX_FEE)
-                return DoS(100, error("ConnectInputs() : %s stake reward exceeded", GetHash().ToString().substr(0,10).c_str()));
+                return DoS(100, error("ConnectInputs() : %s stake reward exceeded, coin age: %lld, ntime: %lld, value in: %lld, value out: %lld, pos reward: %lld, target pos reward: %lld"
+                                      , GetHash().ToString().substr(0,10).c_str(),nCoinAge, nTime, nValueIn, GetValueOut(), nStakeReward, (GetProofOfStakeReward(nTime,nCoinAge) - GetMinFee() + MIN_TX_FEE)));
         }
         else
         {
