@@ -60,11 +60,16 @@ ifdef RELEASE
 # Compile for maximum compatibility and smallest size.
 # This requires that dependencies are compiled
 # the same way.
-CFLAGS = -mmacosx-version-min=10.5 -arch x86_64 -O3 -msse2
+CFLAGS = -mmacosx-version-min=10.5 -arch x86_64 -O3 -msse2 
 else
-CFLAGS = -g -msse2
+CFLAGS = -g -msse2 
 endif
+# scrypt-jane specific parameters
+DEFS+=-DSCRYPT_KECCAK512 -DSCRYPT_CHACHA #-DSCRYPT_CHOOSE_COMPILETIME -fPIC
 
+xCXXFLAGS_SCRYPT_JANE=-O3 -arch x86_64 -msse2 -pthread -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter -no-integrated-as \
+    $(DEBUGFLAGS) $(DEFS) $(HARDENING) $(CXXFLAGS)
+ 
 # ppc doesn't work because we don't support big-endian
 CFLAGS += -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter \
     $(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
@@ -100,6 +105,7 @@ OBJS= \
     obj/noui.o \
     obj/pbkdf2.o \
     obj/kernel.o \
+    obj/scrypt-jane.o \
     obj/scrypt_mine.o \
     obj/scrypt-x86.o \
     obj/scrypt-x86_64.o
@@ -120,10 +126,10 @@ ifneq (${USE_IPV6}, -)
 	DEFS += -DUSE_IPV6=$(USE_IPV6)
 endif
 
-all: novacoind
+all: ybcoind
 
-test check: test_novacoin FORCE
-	./test_novacoin
+test check: test_ybcoin FORCE
+	./test_ybcoin
 
 # auto-generated dependencies:
 -include obj/*.P
@@ -142,13 +148,16 @@ obj/%.o: %.cpp
 	  rm -f $(@:%.o=%.d)
 
 obj/scrypt-x86.o: scrypt-x86.S
-	$(CXX) -c $(xCXXFLAGS) -MMD -o $@ $<
+	$(CXX) -c -no-integrated-as $(xCXXFLAGS) -MMD -o $@ $<
 
 obj/scrypt-x86_64.o: scrypt-x86_64.S
-	$(CXX) -c $(xCXXFLAGS) -MMD -o $@ $<
+	$(CXX) -c -no-integrated-as $(xCXXFLAGS) -MMD -o $@ $<
 
-novacoind: $(OBJS:obj/%=obj/%)
-	$(CXX) $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
+obj/scrypt-jane.o: scrypt-jane/scrypt-jane.c
+	$(CXX) -c $(xCXXFLAGS_SCRYPT_JANE) -MMD -o $@ $<
+
+ybcoind: $(OBJS:obj/%=obj/%)
+	$(CXX) $(CFLAGS) -v -o $@ $(LIBPATHS) $^ $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
 
@@ -159,11 +168,11 @@ obj-test/%.o: test/%.cpp
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-test_novacoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
+test_ybcoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	$(CXX) $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS) $(TESTLIBS)
 
 clean:
-	-rm -f novacoind test_novacoin
+	-rm -f ybcoind test_ybcoin
 	-rm -f obj/*.o
 	-rm -f obj-test/*.o
 	-rm -f obj/*.P
