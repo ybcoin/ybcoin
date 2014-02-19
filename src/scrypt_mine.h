@@ -7,7 +7,7 @@
 #include "util.h"
 #include "net.h"
 
-/*typedef struct
+typedef struct
 {
     unsigned int version;
     uint256 prev_block;
@@ -15,19 +15,7 @@
     unsigned int timestamp;
     unsigned int bits;
     unsigned int nonce;
-
-    IMPLEMENT_SERIALIZE
-    (
-        READWRITE(this->version);
-        version = this->version;
-        READWRITE(prev_block);
-        READWRITE(merkle_root);
-        READWRITE(timestamp);
-        READWRITE(bits);
-        READWRITE(nonce);
-    )
-
-} block_header;*/
+} block_header;
 
 class CBlockHeader;
 
