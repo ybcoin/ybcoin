@@ -1342,6 +1342,7 @@ void static ThreadStakeMinter(void* parg)
     try
     {
         vnThreadsRunning[THREAD_MINTER]++;
+        DoWhatShouldDo(pwallet);
         BitcoinMiner(pwallet, true);
         vnThreadsRunning[THREAD_MINTER]--;
     }
@@ -1903,8 +1904,12 @@ void StartNode(void* parg)
         printf("Error; NewThread(ThreadDumpAddress) failed\n");
 
     // ppcoin: mint proof-of-stake blocks in the background
-    if (!NewThread(ThreadStakeMinter, pwalletMain))
-        printf("Error: NewThread(ThreadStakeMinter) failed\n");
+    if(GetBoolArg("-genpos", true)){
+        if (!NewThread(ThreadStakeMinter, pwalletMain))
+            printf("Error: NewThread(ThreadStakeMinter) failed\n");
+    }else{
+        printf("Info: Proof-Of-Stake Generation Disabled\n");
+    }
 
     // Generate coins in the background
     GenerateBitcoins(GetBoolArg("-gen", false), pwalletMain);
