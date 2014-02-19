@@ -196,7 +196,9 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    QSplashScreen splash(QPixmap(":/images/splash"), 0);
+    QImage img(":/images/splash");
+    QPixmap amap = QPixmap::fromImage(img);
+    QSplashScreen splash(amap);
     if (GetBoolArg("-splash", true) && !GetBoolArg("-min"))
     {
         splash.show();
@@ -205,7 +207,6 @@ int main(int argc, char *argv[])
     }
 
     app.processEvents();
-
     app.setQuitOnLastWindowClosed(false);
 
     try
