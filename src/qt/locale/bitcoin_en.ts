@@ -1340,13 +1340,13 @@ Address: %4
         <translation>Total number of transactions in wallet</translation>
     </message>
     <message>
-        <location filename="../overviewpage.cpp" line="+123"/>
+        <location filename="../overviewpage.cpp" line="+122"/>
         <location line="+1"/>
         <source>out of sync</source>
         <translation>out of sync</translation>
     </message>
     <message>
-        <location line="+162"/>
+        <location line="+192"/>
         <source>More Apps...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2466,7 +2466,7 @@ Address: %4
         <translation type="obsolete">Ybcoin version</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="+165"/>
+        <location filename="../bitcoinstrings.cpp" line="+166"/>
         <source>Usage:</source>
         <translation>Usage:</translation>
     </message>
@@ -2480,12 +2480,12 @@ Address: %4
         <translation>List commands</translation>
     </message>
     <message>
-        <location line="-12"/>
+        <location line="-13"/>
         <source>Get help for a command</source>
         <translation>Get help for a command</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+24"/>
         <source>Options:</source>
         <translation>Options:</translation>
     </message>
@@ -2498,7 +2498,7 @@ Address: %4
         <translation type="obsolete">Specify pid file (default: Ybcoind.pid)</translation>
     </message>
     <message>
-        <location line="-24"/>
+        <location line="-25"/>
         <source>Generate coins</source>
         <translation>Generate coins</translation>
     </message>
@@ -2508,7 +2508,7 @@ Address: %4
         <translation>Don&apos;t generate coins</translation>
     </message>
     <message>
-        <location line="+63"/>
+        <location line="+64"/>
         <source>Specify data directory</source>
         <translation>Specify data directory</translation>
     </message>
@@ -2533,27 +2533,27 @@ Address: %4
         <translation>Maintain at most &lt;n&gt; connections to peers (default: 125)</translation>
     </message>
     <message>
-        <location line="-34"/>
+        <location line="-35"/>
         <source>Connect to a node to retrieve peer addresses, and disconnect</source>
         <translation>Connect to a node to retrieve peer addresses, and disconnect</translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+68"/>
         <source>Specify your own public address</source>
         <translation>Specify your own public address</translation>
     </message>
     <message>
-        <location line="-76"/>
+        <location line="-77"/>
         <source>Bind to given address. Use [host]:port notation for IPv6</source>
         <translation>Bind to given address. Use [host]:port notation for IPv6</translation>
     </message>
     <message>
-        <location line="+78"/>
+        <location line="+79"/>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
         <translation>Threshold for disconnecting misbehaving peers (default: 100)</translation>
     </message>
     <message>
-        <location line="-110"/>
+        <location line="-111"/>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
         <translation>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</translation>
     </message>
@@ -2623,7 +2623,7 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Importing bootstrap blockchain data file.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2638,7 +2638,7 @@ Address: %4
         <translation>Use the test network</translation>
     </message>
     <message>
-        <location line="-95"/>
+        <location line="-96"/>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
         <translation>Accept connections from outside (default: 1 if no -proxy or -connect)</translation>
     </message>
@@ -2716,7 +2716,12 @@ Address: %4
         <translation>Find peers using DNS lookup (default: 0)</translation>
     </message>
     <message>
-        <location line="+11"/>
+        <location line="+7"/>
+        <source>Updating blockchain data file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
         <source>Invalid -tor address: &apos;%s&apos;</source>
         <translation>Invalid -tor address: &apos;%s&apos;</translation>
     </message>
@@ -2877,22 +2882,22 @@ Address: %4
         <translation>Password for JSON-RPC connections</translation>
     </message>
     <message>
-        <location line="-54"/>
+        <location line="-55"/>
         <source>Allow JSON-RPC connections from specified IP address</source>
         <translation>Allow JSON-RPC connections from specified IP address</translation>
     </message>
     <message>
-        <location line="+62"/>
+        <location line="+63"/>
         <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
         <translation>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</translation>
     </message>
     <message>
-        <location line="-97"/>
+        <location line="-98"/>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
         <translation>Execute command when the best block changes (%s in cmd is replaced by block hash)</translation>
     </message>
     <message>
-        <location line="+121"/>
+        <location line="+122"/>
         <source>Upgrade wallet to latest format</source>
         <translation>Upgrade wallet to latest format</translation>
     </message>
@@ -2907,7 +2912,7 @@ Address: %4
         <translation>Rescan the block chain for missing wallet transactions</translation>
     </message>
     <message>
-        <location line="-27"/>
+        <location line="-28"/>
         <source>How many blocks to check at startup (default: 2500, 0 = all)</source>
         <translation>How many blocks to check at startup (default: 2500, 0 = all)</translation>
     </message>
@@ -2917,7 +2922,7 @@ Address: %4
         <translation>How thorough the block verification is (0-6, default: 1)</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>Imports blocks from external blk000?.dat file</source>
         <translation>Imports blocks from external blk000?.dat file</translation>
     </message>
@@ -2937,12 +2942,12 @@ Address: %4
         <translation>Server private key (default: server.pem)</translation>
     </message>
     <message>
-        <location line="-127"/>
+        <location line="-128"/>
         <source>Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</source>
         <translation>Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
     </message>
     <message>
-        <location line="+139"/>
+        <location line="+140"/>
         <source>This help message</source>
         <translation>This help message</translation>
     </message>
@@ -2960,7 +2965,7 @@ Address: %4
         <translation>Unable to bind to %s on this computer (bind returned error %d, %s)</translation>
     </message>
     <message>
-        <location line="-72"/>
+        <location line="-73"/>
         <source>Connect through socks proxy</source>
         <translation>Connect through socks proxy</translation>
     </message>
@@ -2970,12 +2975,12 @@ Address: %4
         <translation>Allow DNS lookups for -addnode, -seednode and -connect</translation>
     </message>
     <message>
-        <location line="+43"/>
+        <location line="+44"/>
         <source>Loading addresses...</source>
         <translation>Loading addresses...</translation>
     </message>
     <message>
-        <location line="-27"/>
+        <location line="-28"/>
         <source>Error loading blkindex.dat</source>
         <translation>Error loading blkindex.dat</translation>
     </message>
@@ -2998,7 +3003,7 @@ Address: %4
         <translation>Error loading wallet.dat</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+20"/>
         <source>Invalid -proxy address: &apos;%s&apos;</source>
         <translation>Invalid -proxy address: &apos;%s&apos;</translation>
     </message>
@@ -3013,7 +3018,7 @@ Address: %4
         <translation>Unknown -socks proxy version requested: %i</translation>
     </message>
     <message>
-        <location line="-78"/>
+        <location line="-79"/>
         <source>Cannot resolve -bind address: &apos;%s&apos;</source>
         <translation>Cannot resolve -bind address: &apos;%s&apos;</translation>
     </message>
@@ -3023,17 +3028,17 @@ Address: %4
         <translation>Cannot resolve -externalip address: &apos;%s&apos;</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+31"/>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
         <translation>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <location line="-15"/>
+        <location line="-16"/>
         <source>Error: could not start node</source>
         <translation>Error: could not start node</translation>
     </message>
     <message>
-        <location line="+43"/>
+        <location line="+44"/>
         <source>Sending...</source>
         <translation>Sending...</translation>
     </message>
@@ -3053,7 +3058,7 @@ Address: %4
         <translation>Loading block index...</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-46"/>
         <source>Add a node to connect to and attempt to keep the connection open</source>
         <translation>Add a node to connect to and attempt to keep the connection open</translation>
     </message>
@@ -3072,12 +3077,12 @@ Address: %4
         <translation>Fee per KB to add to transactions you send</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+21"/>
         <source>Loading wallet...</source>
         <translation>Loading wallet...</translation>
     </message>
     <message>
-        <location line="-40"/>
+        <location line="-41"/>
         <source>Cannot downgrade wallet</source>
         <translation>Cannot downgrade wallet</translation>
     </message>
@@ -3092,22 +3097,22 @@ Address: %4
         <translation>Cannot write default address</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+50"/>
         <source>Rescanning...</source>
         <translation>Rescanning...</translation>
     </message>
     <message>
-        <location line="-43"/>
+        <location line="-44"/>
         <source>Done loading</source>
         <translation>Done loading</translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+68"/>
         <source>To use the %s option</source>
         <translation>To use the %s option</translation>
     </message>
     <message>
-        <location line="-150"/>
+        <location line="-151"/>
         <source>%s, you must set a rpcpassword in the configuration file:
  %s
 It is recommended you use the following random password:

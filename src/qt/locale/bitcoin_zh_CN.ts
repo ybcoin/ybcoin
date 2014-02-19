@@ -564,7 +564,7 @@ track of who is paying you.</source>
         <location line="+4"/>
         <source>%n minute(s) ago</source>
         <translation>
-            <numerusform>%n 分种前</numerusform>
+            <numerusform>%n 分钟前</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -1239,13 +1239,13 @@ Address: %4
         <translation>钱包总交易数量</translation>
     </message>
     <message>
-        <location filename="../overviewpage.cpp" line="+123"/>
+        <location filename="../overviewpage.cpp" line="+122"/>
         <location line="+1"/>
         <source>out of sync</source>
         <translation>不同步</translation>
     </message>
     <message>
-        <location line="+162"/>
+        <location line="+192"/>
         <source>More Apps...</source>
         <translation>更多应用...</translation>
     </message>
@@ -2328,7 +2328,7 @@ Address: %4
 <context>
     <name>bitcoin-core</name>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="+126"/>
+        <location filename="../bitcoinstrings.cpp" line="+127"/>
         <source>YbCoin version</source>
         <translation>YbCoin 版本</translation>
     </message>
@@ -2347,12 +2347,12 @@ Address: %4
         <translation>列出命令</translation>
     </message>
     <message>
-        <location line="-12"/>
+        <location line="-13"/>
         <source>Get help for a command</source>
         <translation>获得某条命令的帮助</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+24"/>
         <source>Options:</source>
         <translation>选项：</translation>
     </message>
@@ -2365,7 +2365,7 @@ Address: %4
         <translation type="obsolete">指定配置文件 (默认为 YbCoind.pid) </translation>
     </message>
     <message>
-        <location line="-24"/>
+        <location line="-25"/>
         <source>Generate coins</source>
         <translation>生成货币</translation>
     </message>
@@ -2375,7 +2375,7 @@ Address: %4
         <translation>不要生成货币</translation>
     </message>
     <message>
-        <location line="+63"/>
+        <location line="+64"/>
         <source>Specify data directory</source>
         <translation>指定数据目录</translation>
     </message>
@@ -2400,27 +2400,27 @@ Address: %4
         <translation>最大连接数 &lt;n&gt;  (缺省: 125)</translation>
     </message>
     <message>
-        <location line="-34"/>
+        <location line="-35"/>
         <source>Connect to a node to retrieve peer addresses, and disconnect</source>
         <translation>连接一个节点并获取对端地址, 然后断开连接</translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+68"/>
         <source>Specify your own public address</source>
         <translation>指定您的公共地址</translation>
     </message>
     <message>
-        <location line="-76"/>
+        <location line="-77"/>
         <source>Bind to given address. Use [host]:port notation for IPv6</source>
         <translation>绑定指定地址. IPv6 使用 [host]:port </translation>
     </message>
     <message>
-        <location line="+78"/>
+        <location line="+79"/>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
         <translation>拒绝行为不当的节点连接的最大数 (默认: 100)</translation>
     </message>
     <message>
-        <location line="-110"/>
+        <location line="-111"/>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
         <translation>拒绝行为不当的节点重新连接的秒数 (默认: 86400)</translation>
     </message>
@@ -2487,12 +2487,12 @@ Address: %4
     <message>
         <location line="+10"/>
         <source>Importing blockchain data file.</source>
-        <translation>导入数据链文件。</translation>
+        <translation>正在导入数据链文件</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Importing bootstrap blockchain data file.</source>
-        <translation>导入引导数据链文件</translation>
+        <translation>正在导入引导数据链文件</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -2505,7 +2505,7 @@ Address: %4
         <translation>使用测试网络</translation>
     </message>
     <message>
-        <location line="-95"/>
+        <location line="-96"/>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
         <translation>A接受来自外部的连接 (缺省: 1 if no -proxy or -connect)</translation>
     </message>
@@ -2579,7 +2579,12 @@ Address: %4
         <translation>通过DNS查找网络上的元宝币节点 (缺省: 0)</translation>
     </message>
     <message>
-        <location line="+11"/>
+        <location line="+7"/>
+        <source>Updating blockchain data file.</source>
+        <translation>正在更新数据链文件</translation>
+    </message>
+    <message>
+        <location line="+5"/>
         <source>Invalid -tor address: &apos;%s&apos;</source>
         <translation>-tor 地址不正确: &apos;%s&apos;</translation>
     </message>
@@ -2735,22 +2740,22 @@ Address: %4
         <translation>JSON-RPC连接密码</translation>
     </message>
     <message>
-        <location line="-54"/>
+        <location line="-55"/>
         <source>Allow JSON-RPC connections from specified IP address</source>
         <translation>允许从指定IP接受到的JSON-RPC连接</translation>
     </message>
     <message>
-        <location line="+62"/>
+        <location line="+63"/>
         <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
         <translation>向IP地址为 &lt;ip&gt; 的节点发送指令 (缺省: 127.0.0.1)</translation>
     </message>
     <message>
-        <location line="-97"/>
+        <location line="-98"/>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
         <translation>当最佳区块变化时执行命令 (命令行中的 %s 会被替换成区块哈希值)</translation>
     </message>
     <message>
-        <location line="+121"/>
+        <location line="+122"/>
         <source>Upgrade wallet to latest format</source>
         <translation>将钱包升级到最新的格式</translation>
     </message>
@@ -2765,7 +2770,7 @@ Address: %4
         <translation>重新扫描数据链以查找遗漏的交易</translation>
     </message>
     <message>
-        <location line="-27"/>
+        <location line="-28"/>
         <source>How many blocks to check at startup (default: 2500, 0 = all)</source>
         <translation>启动时需检查的区块数量 (缺省: 2500, 设置0为检查所有区块)</translation>
     </message>
@@ -2775,7 +2780,7 @@ Address: %4
         <translation>需要几个确认 (0-6个, 缺省: 1个)</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>Imports blocks from external blk000?.dat file</source>
         <translation>从外来文件 blk000?.dat 导入区块数据</translation>
     </message>
@@ -2795,12 +2800,12 @@ Address: %4
         <translation>服务器私钥 (默认为 server.pem)</translation>
     </message>
     <message>
-        <location line="-127"/>
+        <location line="-128"/>
         <source>Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</source>
         <translation>可接受的加密器 (默认为 TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
     </message>
     <message>
-        <location line="+139"/>
+        <location line="+140"/>
         <source>This help message</source>
         <translation>该帮助信息</translation>
     </message>
@@ -2810,7 +2815,7 @@ Address: %4
         <translation>无法绑定本机端口 %s  (返回错误消息 %d, %s)</translation>
     </message>
     <message>
-        <location line="-72"/>
+        <location line="-73"/>
         <source>Connect through socks proxy</source>
         <translation>通过 socks 代理连接</translation>
     </message>
@@ -2820,12 +2825,12 @@ Address: %4
         <translation>使用 -addnode, -seednode 和 -connect选项时允许DNS查找</translation>
     </message>
     <message>
-        <location line="+43"/>
+        <location line="+44"/>
         <source>Loading addresses...</source>
         <translation>正在加载地址...</translation>
     </message>
     <message>
-        <location line="-27"/>
+        <location line="-28"/>
         <source>Error loading blkindex.dat</source>
         <translation>blkindex.dat文件加载错误</translation>
     </message>
@@ -2840,7 +2845,7 @@ Address: %4
         <translation>wallet.dat钱包文件加载错误</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+20"/>
         <source>Invalid -proxy address: &apos;%s&apos;</source>
         <translation>非法的代理地址: &apos;%s&apos;</translation>
     </message>
@@ -2855,7 +2860,7 @@ Address: %4
         <translation>被指定的是未知socks代理版本: %i</translation>
     </message>
     <message>
-        <location line="-78"/>
+        <location line="-79"/>
         <source>Cannot resolve -bind address: &apos;%s&apos;</source>
         <translation>无法解析 -bind 端口地址: &apos;%s&apos;</translation>
     </message>
@@ -2865,17 +2870,17 @@ Address: %4
         <translation>无法解析 -externalip 地址: &apos;%s&apos;</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+31"/>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
         <translation>非法金额 -paytxfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <location line="-15"/>
+        <location line="-16"/>
         <source>Error: could not start node</source>
         <translation>错误: 无法启动节点</translation>
     </message>
     <message>
-        <location line="+43"/>
+        <location line="+44"/>
         <source>Sending...</source>
         <translation>发送中</translation>
     </message>
@@ -2895,7 +2900,7 @@ Address: %4
         <translation>加载区块索引...</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-46"/>
         <source>Add a node to connect to and attempt to keep the connection open</source>
         <translation>添加节点并与其保持连接</translation>
     </message>
@@ -2910,12 +2915,12 @@ Address: %4
         <translation>每发送1KB交易所需的费用</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+21"/>
         <source>Loading wallet...</source>
         <translation>正在加载钱包...</translation>
     </message>
     <message>
-        <location line="-40"/>
+        <location line="-41"/>
         <source>Cannot downgrade wallet</source>
         <translation>无法降级钱包格式</translation>
     </message>
@@ -2930,22 +2935,22 @@ Address: %4
         <translation>无法写入缺省地址</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+50"/>
         <source>Rescanning...</source>
         <translation>正在重新扫描...</translation>
     </message>
     <message>
-        <location line="-43"/>
+        <location line="-44"/>
         <source>Done loading</source>
         <translation>加载完成</translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+68"/>
         <source>To use the %s option</source>
         <translation>使用 %s 选项</translation>
     </message>
     <message>
-        <location line="-150"/>
+        <location line="-151"/>
         <source>%s, you must set a rpcpassword in the configuration file:
  %s
 It is recommended you use the following random password:
