@@ -134,7 +134,7 @@ scrypt_free(scrypt_aligned_alloc *aa) {
 void
 scrypt(const uint8_t *password, size_t password_len, const uint8_t *salt, size_t salt_len, uint8_t Nfactor, uint8_t rfactor, uint8_t pfactor, uint8_t *out, size_t bytes) {
 	scrypt_aligned_alloc YX, V;
-	uint8_t *X, *Y;
+    	uint8_t *X, *Y;
 	uint32_t N, r, p, chunk_bytes, i;
 
 #if !defined(SCRYPT_CHOOSE_COMPILETIME)
