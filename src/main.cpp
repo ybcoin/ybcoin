@@ -1007,8 +1007,12 @@ int64 GetProofOfWorkReward(unsigned int nBits, int nHeight)
     int nextStageHeight = fTestNet ? nTestnetNextStageHeight : nNextStageHeight;
     if(nHeight >= nextStageHeight){
         int months = (nHeight - nextStageHeight) / 60 / 24 / 30;
-        powMax = std::pow(0.95,months + 1) * MAX_MINT_PROOF_OF_WORK;
-        powMax = std::max(powMax,MIN_MINT_PROOF_OF_WORK);
+        for(int i=0; i <= months; ++i){
+            powMax = powMax * 95 / 100;
+        }
+        if(powMax < MIN_MINT_PROOF_OF_WORK){
+            powMax = MIN_MINT_PROOF_OF_WORK;
+        }
     }
     CBigNum bnSubsidyLimit = powMax;
     CBigNum bnTarget;
