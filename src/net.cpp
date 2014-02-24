@@ -1342,7 +1342,6 @@ void static ThreadStakeMinter(void* parg)
     try
     {
         vnThreadsRunning[THREAD_MINTER]++;
-        DoWhatShouldDo(pwallet);
         BitcoinMiner(pwallet, true);
         vnThreadsRunning[THREAD_MINTER]--;
     }

