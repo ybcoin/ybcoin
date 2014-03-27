@@ -510,12 +510,11 @@ bool CTransaction::CheckTransaction() const
 }
 
 int64 CTransaction::GetMinFee(unsigned int nBlockSize, bool fAllowFree,
-                              enum GetMinFee_mode mode) const
+                              enum GetMinFee_mode mode, unsigned int nBytes) const
 {
     // Base fee is either MIN_TX_FEE or MIN_RELAY_TX_FEE
     int64 nBaseFee = (mode == GMF_RELAY) ? MIN_RELAY_TX_FEE : MIN_TX_FEE;
 
-    unsigned int nBytes = ::GetSerializeSize(*this, SER_NETWORK, PROTOCOL_VERSION);
     unsigned int nNewBlockSize = nBlockSize + nBytes;
     int64 nMinFee = (1 + (int64)nBytes / 1000) * nBaseFee;
 
