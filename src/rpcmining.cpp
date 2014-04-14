@@ -88,8 +88,8 @@ Value gethashespersec(const Array& params, bool fHelp)
             "gethashespersec\n"
             "Returns a recent hashes per second performance measurement averaged over 30 seconds while generating.");
 
-    if (GetTimeMillis() - nHPSTimerStart > 30000)
-        return (boost::int64_t)0;
+    /*if (GetTimeMillis() - nHPSTimerStart > 30000)
+        return (boost::int64_t)0;*/
     return (boost::int64_t)dHashesPerSec;
 }
 
@@ -125,7 +125,8 @@ Value getmininginfo(const Array& params, bool fHelp)
     obj.push_back( Pair( "N", N ) );
     
     // WM - Report current Proof-of-Work block reward.
-    obj.push_back( Pair( "powreward", (double)GetProofOfWorkReward(GetLastBlockIndex(pindexBest, false)->nBits) / 1000000.0 ) );
+    const CBlockIndex* pbl = GetLastBlockIndex(pindexBest, false);
+    obj.push_back( Pair( "powreward", (double)GetProofOfWorkReward(pbl->nBits,pbl->nHeight) / 1000000.0 ) );
     
     return obj;
 }

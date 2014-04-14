@@ -8,7 +8,7 @@
 #include "main.h"
 #include "init.h"
 #include "ui_interface.h"
-
+#include <boost/thread.hpp>
 #include <QDateTime>
 #include <QTimer>
 
@@ -21,12 +21,20 @@ ClientModel::ClientModel(OptionsModel *optionsModel, QObject *parent) :
     numBlocksAtStartup = -1;
 
     pollTimer = new QTimer(this);
-	miningType = SoloMining;
-    miningStarted = true;
+    miningStarted = false;
     pollTimer->setInterval(MODEL_UPDATE_DELAY);
     pollTimer->start();
-    connect(pollTimer, SIGNAL(timeout()), this, SLOT(updateTimer()));
+    miningDebug = true;
+    miningType = PoolMining;
+    miningThreads = boost::thread::hardware_concurrency();;
+    if (miningThreads < 1){
+        miningThreads = 1;
+    }
+    miningScanTime = 5;
+    miningServer = "pool.ybcoin.com";
+    miningPort = "8337";
 
+    connect(pollTimer, SIGNAL(timeout()), this, SLOT(updateTimer()));
     subscribeToCoreSignals();
 }
 
@@ -134,8 +142,8 @@ void ClientModel::setMiningPassword(QString password)
 
 int ClientModel::getHashrate() const
 {
-    if (GetTimeMillis() - nHPSTimerStart < 8000)
-        return (boost::int64_t)0;
+    /*if (GetTimeMillis() - nHPSTimerStart < 8000)
+        return (boost::int64_t)0;*/
     return (boost::int64_t)dHashesPerSec;
 }
 
@@ -236,10 +244,7 @@ int ClientModel::getNumBlocksOfPeers() const
 void ClientModel::setMining(MiningType type, bool mining, int threads, int hashrate)
 {
     if (type == SoloMining /*&& mining != miningStarted*/)
-    {        
-        if(pwalletMain->IsLocked()){
-
-        }
+    {
         GenerateBitcoins(mining ? 1 : 0, pwalletMain);
     }
     miningType = type;

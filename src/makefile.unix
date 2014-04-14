@@ -118,6 +118,7 @@ OBJS= \
     obj/init.o \
     obj/irc.o \
     obj/keystore.o \
+    obj/bloom.o \
     obj/main.o \
     obj/net.o \
     obj/protocol.o \

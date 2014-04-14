@@ -1197,7 +1197,6 @@ Value listsinceblock(const Array& params, bool fHelp)
     for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); it++)
     {
         CWalletTx tx = (*it).second;
-
         if (depth == -1 || tx.GetDepthInMainChain() < depth)
             ListTransactions(tx, "*", 0, true, transactions);
     }
@@ -1220,6 +1219,37 @@ Value listsinceblock(const Array& params, bool fHelp)
         lastblock = block ? block->GetBlockHash() : 0;
     }
 
+    Object ret;
+    ret.push_back(Pair("transactions", transactions));
+    ret.push_back(Pair("lastblock", lastblock.GetHex()));
+
+    return ret;
+}
+
+Value listlatesttx(const Array& params, bool fHelp)
+{
+    if (fHelp)
+        throw runtime_error(
+            "listlatesttx [reserve=false]\n"
+            "Get latest transactions involving me. if [reserve] is set, transactions will be stored in memory, or transactions will be delete since every call");
+    bool reserve = false;
+    if (params.size() > 0)
+    {
+        reserve = params[0].get_bool();
+    }
+
+    Array transactions;
+
+    for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWalletFresh.begin(); it != pwalletMain->mapWalletFresh.end(); it++)
+    {
+        CWalletTx tx = (*it).second;
+        ListTransactions(tx, "*", 0, true, transactions);
+    }
+    if(!reserve){
+        pwalletMain->mapWalletFresh.clear();
+    }
+
+    uint256 lastblock = hashBestChain;
     Object ret;
     ret.push_back(Pair("transactions", transactions));
     ret.push_back(Pair("lastblock", lastblock.GetHex()));
@@ -1635,7 +1665,7 @@ Value reservebalance(const Array& params, bool fHelp)
             if (params.size() == 1)
                 throw runtime_error("must provide amount to reserve balance.\n");
             int64 nAmount = AmountFromValue(params[1]);
-            nAmount = (nAmount / CENT) * CENT;  // round to cent
+            nAmount = (nAmount / MIN_TXOUT_AMOUNT) * MIN_TXOUT_AMOUNT;  // round to cent
             if (nAmount < 0)
                 throw runtime_error("amount cannot be negative.\n");
             mapArgs["-reservebalance"] = FormatMoney(nAmount).c_str();

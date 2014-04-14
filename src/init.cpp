@@ -223,6 +223,7 @@ std::string HelpMessage()
         "  -pid=<file>            " + _("Specify pid file (default: ybcoind.pid)") + "\n" +
         "  -gen                   " + _("Generate coins") + "\n" +
         "  -gen=0                 " + _("Don't generate coins") + "\n" +
+        "  -genpos=0              " + _("Don't generate pos coins") + "\n" +
         "  -datadir=<dir>         " + _("Specify data directory") + "\n" +
         "  -dbcache=<n>           " + _("Set database cache size in megabytes (default: 25)") + "\n" +
         "  -dblogsize=<n>         " + _("Set database disk log size in megabytes (default: 100)") + "\n" +
@@ -249,6 +250,7 @@ std::string HelpMessage()
         "  -bantime=<n>           " + _("Number of seconds to keep misbehaving peers from reconnecting (default: 86400)") + "\n" +
         "  -maxreceivebuffer=<n>  " + _("Maximum per-connection receive buffer, <n>*1000 bytes (default: 5000)") + "\n" +
         "  -maxsendbuffer=<n>     " + _("Maximum per-connection send buffer, <n>*1000 bytes (default: 1000)") + "\n" +
+        "  -cachetx               " + _("Cache latest transactions for rpc listlatesttx") + "\n" +
 #ifdef USE_UPNP
 #if USE_UPNP
         "  -upnp                  " + _("Use UPnP to map the listening port (default: 1 when listening)") + "\n" +
@@ -492,6 +494,7 @@ bool AppInit2()
     int64 nStart;
 
     // ********************************************************* Step 5: verify database integrity
+
 
     uiInterface.InitMessage(_("Verifying database integrity..."));
 
@@ -794,17 +797,24 @@ bool AppInit2()
     }
 
     // ********************************************************* Step 9: import blocks
-
+    filesystem::path oldBlock = OldBlockFilePath();
     if (mapArgs.count("-loadblock"))
     {
         uiInterface.InitMessage(_("Importing blockchain data file."));
-
         BOOST_FOREACH(string strFile, mapMultiArgs["-loadblock"])
         {
             FILE *file = fopen(strFile.c_str(), "rb");
             if (file)
                 LoadExternalBlockFile(file);
         }
+    }else if(filesystem::exists(oldBlock)){
+        uiInterface.InitMessage(_("Updating blockchain data file."));
+        FILE *file = fopen(oldBlock.string().c_str(), "rb");
+        if (file)
+            LoadExternalBlockFile(file);
+        boost::system::error_code ignored_ec;
+        filesystem::remove(oldBlock,ignored_ec);
+        filesystem::remove(GetDataDir() / "blkindex.dat",ignored_ec);
     }
 
     filesystem::path pathBootstrap = GetDataDir() / "bootstrap.dat";

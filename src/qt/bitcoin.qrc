@@ -46,7 +46,7 @@
     </qresource>
     <qresource prefix="/images">
         <file alias="about">res/images/about.png</file>
-        <file alias="splash">res/images/splash2.jpg</file>
+        <file alias="splash">res/images/splash2.png</file>
     </qresource>
     <qresource prefix="/movies">
         <file alias="update_spinner">res/movies/update_spinner.mng</file>
@@ -54,5 +54,6 @@
     <qresource prefix="/translations">
         <file alias="en">locale/bitcoin_en.qm</file>
         <file alias="zh_CN">locale/bitcoin_zh_CN.qm</file>
+        <file alias="ko_KR">locale/bitcoin_ko_KR.qm</file>
     </qresource>
 </RCC>

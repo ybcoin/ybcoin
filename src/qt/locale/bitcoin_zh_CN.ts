@@ -236,7 +236,7 @@ track of who is paying you.</source>
     <message>
         <location line="+1"/>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR COINS&lt;/b&gt;!</source>
-        <translation>警告：加密钱包将导致无法使用本客户端挖矿，请慎重！如果您加密了您的钱包之后忘记了口令，您也将会&lt;b&gt;失去所有的元宝币&lt;/b&gt;！
+        <translation>警告：如果您加密了您的钱包之后忘记了口令，您将会&lt;b&gt;失去所有的元宝币&lt;/b&gt;！
 确定要加密钱包吗？</translation>
     </message>
     <message>
@@ -252,7 +252,7 @@ track of who is paying you.</source>
     <message>
         <location line="+4"/>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>重要：之前备份的钱包文件将会被替换为新生成的，加密的钱包文见。出于安全考虑，只要使用新的加密过的钱包，之前未加密的钱包将不再使用。</translation>
+        <translation>重要：之前备份的钱包文件将会被替换为新生成的，加密的钱包文件。出于安全考虑，只要使用新的加密过的钱包，之前未加密的钱包将不再使用。</translation>
     </message>
     <message>
         <location line="+100"/>
@@ -311,7 +311,7 @@ track of who is paying you.</source>
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+269"/>
+        <location filename="../bitcoingui.cpp" line="+265"/>
         <source>Sign &amp;message...</source>
         <translation>对消息签名...</translation>
     </message>
@@ -321,17 +321,17 @@ track of who is paying you.</source>
         <translation>网络同步中...</translation>
     </message>
     <message>
-        <location line="-309"/>
+        <location line="-310"/>
         <source>&amp;Overview</source>
         <translation>&amp;概况</translation>
     </message>
     <message>
-        <location line="-128"/>
+        <location line="-123"/>
         <source>YbCoin</source>
         <translation>YbCoin</translation>
     </message>
     <message>
-        <location line="+129"/>
+        <location line="+124"/>
         <source>Show general overview of wallet</source>
         <translation>显示钱包概况</translation>
     </message>
@@ -426,7 +426,7 @@ track of who is paying you.</source>
         <translation>&amp;加密钱包...</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>&amp;Backup Wallet...</source>
         <translation>&amp;备份钱包...</translation>
     </message>
@@ -473,7 +473,7 @@ track of who is paying you.</source>
         <translation>导出当前数据到文件</translation>
     </message>
     <message>
-        <location line="-10"/>
+        <location line="-11"/>
         <source>Encrypt or decrypt wallet</source>
         <translation>加密或解密钱包</translation>
     </message>
@@ -483,7 +483,7 @@ track of who is paying you.</source>
         <translation>关于 YbCoin</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+15"/>
         <source>Backup wallet to another location</source>
         <translation>备份钱包到其它文件夹</translation>
     </message>
@@ -508,17 +508,17 @@ track of who is paying you.</source>
         <translation>&amp;验证消息...</translation>
     </message>
     <message>
-        <location line="-197"/>
+        <location line="-193"/>
         <source>Wallet</source>
         <translation>钱包</translation>
     </message>
     <message>
-        <location line="+188"/>
+        <location line="+183"/>
         <source>&amp;Show / Hide</source>
         <translation>&amp;显示 / 隐藏</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+40"/>
         <source>&amp;File</source>
         <translation>&amp;文件</translation>
     </message>
@@ -564,7 +564,7 @@ track of who is paying you.</source>
         <location line="+4"/>
         <source>%n minute(s) ago</source>
         <translation>
-            <numerusform>%n 分种前</numerusform>
+            <numerusform>%n 分钟前</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -662,7 +662,17 @@ Address: %4
         <translation>钱包已被&lt;b&gt;加密&lt;/b&gt;，当前为&lt;b&gt;锁定&lt;/b&gt;状态</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+13"/>
+        <source>Confirm wallet encryption</source>
+        <translation>确认加密钱包</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Error: If want to encrypt your wallet, &lt;b&gt;you must stop mining first&lt;/b&gt;!</source>
+        <translation>错误: 如果想要加密钱包, &lt;b&gt;请先停止挖矿&lt;/b&gt;!</translation>
+    </message>
+    <message>
+        <location line="+15"/>
         <source>Backup Wallet</source>
         <translation>备份钱包</translation>
     </message>
@@ -690,7 +700,7 @@ Address: %4
 <context>
     <name>ClientModel</name>
     <message>
-        <location filename="../clientmodel.cpp" line="+212"/>
+        <location filename="../clientmodel.cpp" line="+220"/>
         <source>Network Alert</source>
         <translation>网络警报</translation>
     </message>
@@ -815,17 +825,22 @@ Address: %4
         <translation>挖矿</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+237"/>
         <source>Username</source>
         <translation>用户名</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="-10"/>
         <source>Server</source>
         <translation>服务器</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="-103"/>
+        <source>pool.ybcoin.com</source>
+        <translation>pool.ybcoin.com</translation>
+    </message>
+    <message>
+        <location line="+57"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
@@ -835,33 +850,33 @@ Address: %4
         <translation>端口</translation>
     </message>
     <message>
-        <location line="+13"/>
-        <location filename="../miningpage.cpp" line="+384"/>
+        <location line="+26"/>
+        <location filename="../miningpage.cpp" line="+414"/>
         <source>Start Mining</source>
         <translation>开始挖矿</translation>
     </message>
     <message>
-        <location line="+65"/>
+        <location line="-169"/>
         <source>Scantime</source>
         <translation>扫描时间</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+116"/>
         <source>Threads</source>
         <translation>线程数</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="-129"/>
         <source>Debug Logging</source>
         <translation>调试日志输出</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+136"/>
         <source>Type</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+80"/>
         <source>Solo Mining</source>
         <translation>单独挖矿</translation>
     </message>
@@ -871,12 +886,82 @@ Address: %4
         <translation>矿池</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="-244"/>
         <source>9332</source>
         <translation>9332</translation>
     </message>
     <message>
-        <location filename="../miningpage.cpp" line="+0"/>
+        <location filename="../miningpage.cpp" line="-324"/>
+        <source>please input the sever address</source>
+        <translation>请输入矿池地址</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>use name should not be empty</source>
+        <translation>用户名不能为空</translation>
+    </message>
+    <message>
+        <location line="+101"/>
+        <source>Share accepted</source>
+        <translation>共享被接受</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Share rejected</source>
+        <translation>共享被拒绝</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>LONGPOLL detected a new block</source>
+        <translation>LONGPOLL 发现一个新的区块</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Miner didn&apos;t start properly. Try checking your settings.</source>
+        <translation>挖矿进程启动异常，正在尝试检查你的设置。</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Couldn&apos;t connect. Please check your username and password.</source>
+        <translation>连接矿池失败，请检查你的用户名和密码。</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Couldn&apos;t connect. Please check pool server and port.</source>
+        <translation>连接矿池失败，请检查矿池地址和端口号。</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Couldn&apos;t communicate with server. Retrying in 30 seconds.</source>
+        <translation>与矿池服务器交互失败，30秒后重试。</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <source>Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as YbCoin-Qt.</source>
+        <translation>挖矿进程启动失败。</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Solo mining stopped.</source>
+        <translation>单独挖矿已停止</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Miner exited.</source>
+        <translation>挖矿进程已退出</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Solo mining started.</source>
+        <translation>单独挖矿已启动</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Miner started. You might not see any output for a few minutes.</source>
+        <translation>挖矿进程已启动，可能需要一些时间才能有产出</translation>
+    </message>
+    <message>
+        <location line="+157"/>
         <source>Stop Mining</source>
         <translation>停止挖矿</translation>
     </message>
@@ -895,8 +980,8 @@ Address: %4
     </message>
     <message>
         <location line="+6"/>
-        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
-        <translation>建议支付交易费用，有助于您的交易得到尽快处理.  绝大多数交易的字节数为 1 kB. 建议支付0.01个元宝币.</translation>
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.0001 recommended.</source>
+        <translation>建议支付交易费用，有助于您的交易得到尽快处理.  绝大多数交易的字节数为 1 kB. 建议支付0.0001个元宝币.</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -941,7 +1026,7 @@ Address: %4
     <message>
         <location line="+7"/>
         <source>Connect to the YbCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation >通过 SOCKS proxy 连接网络(例如：通过 Tor 连接网络).</translation>
+        <translation>通过 SOCKS proxy 连接网络(例如：通过 Tor 连接网络).</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1088,7 +1173,7 @@ Address: %4
         <translation>表单</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+35"/>
         <location line="+212"/>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the YbCoin network after a connection is established, but this process has not completed yet.</source>
         <translation>现在显示的消息可能是过期的. 在连接上元宝币网络节点后，您的钱包将自动与网络同步，但是这个过程还没有完成.</translation>
@@ -1154,10 +1239,15 @@ Address: %4
         <translation>钱包总交易数量</translation>
     </message>
     <message>
-        <location filename="../overviewpage.cpp" line="+113"/>
+        <location filename="../overviewpage.cpp" line="+122"/>
         <location line="+1"/>
         <source>out of sync</source>
         <translation>不同步</translation>
+    </message>
+    <message>
+        <location line="+192"/>
+        <source>More Apps...</source>
+        <translation>更多应用...</translation>
     </message>
 </context>
 <context>
@@ -2238,7 +2328,7 @@ Address: %4
 <context>
     <name>bitcoin-core</name>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="+126"/>
+        <location filename="../bitcoinstrings.cpp" line="+127"/>
         <source>YbCoin version</source>
         <translation>YbCoin 版本</translation>
     </message>
@@ -2257,12 +2347,12 @@ Address: %4
         <translation>列出命令</translation>
     </message>
     <message>
-        <location line="-12"/>
+        <location line="-13"/>
         <source>Get help for a command</source>
         <translation>获得某条命令的帮助</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+24"/>
         <source>Options:</source>
         <translation>选项：</translation>
     </message>
@@ -2275,7 +2365,7 @@ Address: %4
         <translation type="obsolete">指定配置文件 (默认为 YbCoind.pid) </translation>
     </message>
     <message>
-        <location line="-24"/>
+        <location line="-25"/>
         <source>Generate coins</source>
         <translation>生成货币</translation>
     </message>
@@ -2285,7 +2375,7 @@ Address: %4
         <translation>不要生成货币</translation>
     </message>
     <message>
-        <location line="+63"/>
+        <location line="+64"/>
         <source>Specify data directory</source>
         <translation>指定数据目录</translation>
     </message>
@@ -2310,27 +2400,27 @@ Address: %4
         <translation>最大连接数 &lt;n&gt;  (缺省: 125)</translation>
     </message>
     <message>
-        <location line="-34"/>
+        <location line="-35"/>
         <source>Connect to a node to retrieve peer addresses, and disconnect</source>
         <translation>连接一个节点并获取对端地址, 然后断开连接</translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+68"/>
         <source>Specify your own public address</source>
         <translation>指定您的公共地址</translation>
     </message>
     <message>
-        <location line="-76"/>
+        <location line="-77"/>
         <source>Bind to given address. Use [host]:port notation for IPv6</source>
         <translation>绑定指定地址. IPv6 使用 [host]:port </translation>
     </message>
     <message>
-        <location line="+78"/>
+        <location line="+79"/>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
         <translation>拒绝行为不当的节点连接的最大数 (默认: 100)</translation>
     </message>
     <message>
-        <location line="-110"/>
+        <location line="-111"/>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
         <translation>拒绝行为不当的节点重新连接的秒数 (默认: 86400)</translation>
     </message>
@@ -2397,12 +2487,12 @@ Address: %4
     <message>
         <location line="+10"/>
         <source>Importing blockchain data file.</source>
-        <translation>导入数据链文件。</translation>
+        <translation>正在导入数据链文件</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>Importing bootstrap blockchain data file.</source>
-        <translation>导入引导数据链文件</translation>
+        <translation>正在导入引导数据链文件</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -2415,7 +2505,7 @@ Address: %4
         <translation>使用测试网络</translation>
     </message>
     <message>
-        <location line="-95"/>
+        <location line="-96"/>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
         <translation>A接受来自外部的连接 (缺省: 1 if no -proxy or -connect)</translation>
     </message>
@@ -2489,7 +2579,12 @@ Address: %4
         <translation>通过DNS查找网络上的元宝币节点 (缺省: 0)</translation>
     </message>
     <message>
-        <location line="+11"/>
+        <location line="+7"/>
+        <source>Updating blockchain data file.</source>
+        <translation>正在更新数据链文件</translation>
+    </message>
+    <message>
+        <location line="+5"/>
         <source>Invalid -tor address: &apos;%s&apos;</source>
         <translation>-tor 地址不正确: &apos;%s&apos;</translation>
     </message>
@@ -2645,22 +2740,22 @@ Address: %4
         <translation>JSON-RPC连接密码</translation>
     </message>
     <message>
-        <location line="-54"/>
+        <location line="-55"/>
         <source>Allow JSON-RPC connections from specified IP address</source>
         <translation>允许从指定IP接受到的JSON-RPC连接</translation>
     </message>
     <message>
-        <location line="+62"/>
+        <location line="+63"/>
         <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
         <translation>向IP地址为 &lt;ip&gt; 的节点发送指令 (缺省: 127.0.0.1)</translation>
     </message>
     <message>
-        <location line="-97"/>
+        <location line="-98"/>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
         <translation>当最佳区块变化时执行命令 (命令行中的 %s 会被替换成区块哈希值)</translation>
     </message>
     <message>
-        <location line="+121"/>
+        <location line="+122"/>
         <source>Upgrade wallet to latest format</source>
         <translation>将钱包升级到最新的格式</translation>
     </message>
@@ -2675,7 +2770,7 @@ Address: %4
         <translation>重新扫描数据链以查找遗漏的交易</translation>
     </message>
     <message>
-        <location line="-27"/>
+        <location line="-28"/>
         <source>How many blocks to check at startup (default: 2500, 0 = all)</source>
         <translation>启动时需检查的区块数量 (缺省: 2500, 设置0为检查所有区块)</translation>
     </message>
@@ -2685,7 +2780,7 @@ Address: %4
         <translation>需要几个确认 (0-6个, 缺省: 1个)</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>Imports blocks from external blk000?.dat file</source>
         <translation>从外来文件 blk000?.dat 导入区块数据</translation>
     </message>
@@ -2705,12 +2800,12 @@ Address: %4
         <translation>服务器私钥 (默认为 server.pem)</translation>
     </message>
     <message>
-        <location line="-127"/>
+        <location line="-128"/>
         <source>Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</source>
         <translation>可接受的加密器 (默认为 TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
     </message>
     <message>
-        <location line="+139"/>
+        <location line="+140"/>
         <source>This help message</source>
         <translation>该帮助信息</translation>
     </message>
@@ -2720,7 +2815,7 @@ Address: %4
         <translation>无法绑定本机端口 %s  (返回错误消息 %d, %s)</translation>
     </message>
     <message>
-        <location line="-72"/>
+        <location line="-73"/>
         <source>Connect through socks proxy</source>
         <translation>通过 socks 代理连接</translation>
     </message>
@@ -2730,12 +2825,12 @@ Address: %4
         <translation>使用 -addnode, -seednode 和 -connect选项时允许DNS查找</translation>
     </message>
     <message>
-        <location line="+43"/>
+        <location line="+44"/>
         <source>Loading addresses...</source>
         <translation>正在加载地址...</translation>
     </message>
     <message>
-        <location line="-27"/>
+        <location line="-28"/>
         <source>Error loading blkindex.dat</source>
         <translation>blkindex.dat文件加载错误</translation>
     </message>
@@ -2750,7 +2845,7 @@ Address: %4
         <translation>wallet.dat钱包文件加载错误</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+20"/>
         <source>Invalid -proxy address: &apos;%s&apos;</source>
         <translation>非法的代理地址: &apos;%s&apos;</translation>
     </message>
@@ -2765,7 +2860,7 @@ Address: %4
         <translation>被指定的是未知socks代理版本: %i</translation>
     </message>
     <message>
-        <location line="-78"/>
+        <location line="-79"/>
         <source>Cannot resolve -bind address: &apos;%s&apos;</source>
         <translation>无法解析 -bind 端口地址: &apos;%s&apos;</translation>
     </message>
@@ -2775,17 +2870,17 @@ Address: %4
         <translation>无法解析 -externalip 地址: &apos;%s&apos;</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+31"/>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
         <translation>非法金额 -paytxfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <location line="-15"/>
+        <location line="-16"/>
         <source>Error: could not start node</source>
         <translation>错误: 无法启动节点</translation>
     </message>
     <message>
-        <location line="+43"/>
+        <location line="+44"/>
         <source>Sending...</source>
         <translation>发送中</translation>
     </message>
@@ -2805,7 +2900,7 @@ Address: %4
         <translation>加载区块索引...</translation>
     </message>
     <message>
-        <location line="-45"/>
+        <location line="-46"/>
         <source>Add a node to connect to and attempt to keep the connection open</source>
         <translation>添加节点并与其保持连接</translation>
     </message>
@@ -2820,12 +2915,12 @@ Address: %4
         <translation>每发送1KB交易所需的费用</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+21"/>
         <source>Loading wallet...</source>
         <translation>正在加载钱包...</translation>
     </message>
     <message>
-        <location line="-40"/>
+        <location line="-41"/>
         <source>Cannot downgrade wallet</source>
         <translation>无法降级钱包格式</translation>
     </message>
@@ -2840,22 +2935,22 @@ Address: %4
         <translation>无法写入缺省地址</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+50"/>
         <source>Rescanning...</source>
         <translation>正在重新扫描...</translation>
     </message>
     <message>
-        <location line="-43"/>
+        <location line="-44"/>
         <source>Done loading</source>
         <translation>加载完成</translation>
     </message>
     <message>
-        <location line="+67"/>
+        <location line="+68"/>
         <source>To use the %s option</source>
         <translation>使用 %s 选项</translation>
     </message>
     <message>
-        <location line="-150"/>
+        <location line="-151"/>
         <source>%s, you must set a rpcpassword in the configuration file:
  %s
 It is recommended you use the following random password:

@@ -1,8 +1,9 @@
+QT += core gui network
 TEMPLATE = app
 TARGET = ybcoin-qt
 VERSION = 0.4.2
 INCLUDEPATH += src src/json src/qt
-DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE SCRYPT_CHACHA SCRYPT_KECCAK512
+DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE SCRYPT_CHACHA SCRYPT_KECCAK512 #CPU_X86_FORCE_INTRINSICS __MINGW64__ BOOST_USE_WINDOWS_H
 CONFIG += no_include_pwd
 CONFIG += thread
 
@@ -12,16 +13,16 @@ CONFIG += thread
 # use: BOOST_THREAD_LIB_SUFFIX=_win32-...
 # or when linking against a specific BerkelyDB version: BDB_LIB_SUFFIX=-4.8
 
-# BOOST_INCLUDE_PATH = E:/libraries/boost_1_53_0
-# BOOST_LIB_PATH = E:/libraries/boost_1_53_0/stage/lib
-# BDB_INCLUDE_PATH = E:/libraries/db-5.3.21/stage/include
-# BDB_LIB_PATH = E:/libraries/db-5.3.21/stage/lib
-# OPENSSL_INCLUDE_PATH = E:/libraries/openssl-1.0.0d/include
-# OPENSSL_LIB_PATH = E:/libraries/openssl-1.0.0d
-# MINIUPNPC_INCLUDE_PATH = E:/libraries/miniupnpc-1.5
-# MINIUPNPC_LIB_PATH = E:/libraries/miniupnpc-1.5/miniupnpc
-# BDB_LIB_SUFFIX = -5.3
-# BOOST_LIB_SUFFIX = -mgw44-mt-1_53
+ BOOST_INCLUDE_PATH = C:/boost-1.50.0-mgw
+ BOOST_LIB_PATH = C:/boost-1.50.0-mgw/stage/lib
+ BDB_INCLUDE_PATH = C:/db-4.8.30.NC-mgw/build_unix
+ BDB_LIB_PATH = C:/db-4.8.30.NC-mgw/build_unix
+ OPENSSL_INCLUDE_PATH = C:/openssl-1.0.1e-mgw/include
+ OPENSSL_LIB_PATH = C:/openssl-1.0.1e-mgw
+ MINIUPNPC_INCLUDE_PATH = C:/miniupnpc-1.6-mgw
+ MINIUPNPC_LIB_PATH = C:/miniupnpc-1.6-mgw
+ #BDB_LIB_SUFFIX = -5.3
+ BOOST_LIB_SUFFIX = -mgw46-mt-s-1_50
 
 # Dependency library locations can be customized with:
 #    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
@@ -123,6 +124,8 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/addresstablemodel.h \
     src/qt/optionsdialog.h \
     src/qt/sendcoinsdialog.h \
+    src/qt/coincontroldialog.h \
+    src/qt/coincontroltreewidget.h \
     src/qt/addressbookpage.h \
     src/qt/signverifymessagedialog.h \
     src/qt/aboutdialog.h \
@@ -132,7 +135,9 @@ HEADERS += src/qt/bitcoingui.h \
     src/addrman.h \
     src/base58.h \
     src/bignum.h \
+	src/bloom.h \
     src/checkpoints.h \
+    src/coincontrol.h \
     src/compat.h \
     src/sync.h \
     src/util.h \
@@ -199,12 +204,15 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/addresstablemodel.cpp \
     src/qt/optionsdialog.cpp \
     src/qt/sendcoinsdialog.cpp \
+    src/qt/coincontroldialog.cpp \
+    src/qt/coincontroltreewidget.cpp \
     src/qt/addressbookpage.cpp \
     src/qt/signverifymessagedialog.cpp \
     src/qt/aboutdialog.cpp \
     src/qt/editaddressdialog.cpp \
     src/qt/bitcoinaddressvalidator.cpp \
     src/alert.cpp \
+    src/bloom.cpp \	
     src/version.cpp \
     src/sync.cpp \
     src/util.cpp \
@@ -266,6 +274,7 @@ RESOURCES += \
 
 FORMS += \
     src/qt/forms/sendcoinsdialog.ui \
+    src/qt/forms/coincontroldialog.ui \
     src/qt/forms/addressbookpage.ui \
     src/qt/forms/signverifymessagedialog.ui \
     src/qt/forms/aboutdialog.ui \

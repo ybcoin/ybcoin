@@ -1,3 +1,6 @@
+#include <boost/thread.hpp>
+#include "walletmodel.h"
+#include "askpassphrasedialog.h"
 #include "miningpage.h"
 #include "ui_miningpage.h"
 
@@ -22,13 +25,11 @@ MiningPage::MiningPage(QWidget *parent) :
     roundAcceptedShares = 0;
     roundRejectedShares = 0;
 
-    initThreads = 0;
-
     connect(readTimer, SIGNAL(timeout()), this, SLOT(readProcessOutput()));
-
     connect(ui->startButton, SIGNAL(pressed()), this, SLOT(startPressed()));
     connect(ui->typeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(typeChanged(int)));
     connect(ui->debugCheckBox, SIGNAL(toggled(bool)), this, SLOT(debugToggled(bool)));
+    connect(ui->serverLine, SIGNAL(currentIndexChanged(int)), this, SLOT(serverChanged(int)));
     connect(minerProcess, SIGNAL(started()), this, SLOT(minerStarted()));
     connect(minerProcess, SIGNAL(error(QProcess::ProcessError)), this, SLOT(minerError(QProcess::ProcessError)));
     connect(minerProcess, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(minerFinished()));
@@ -42,17 +43,15 @@ MiningPage::~MiningPage()
     delete ui;
 }
 
-void MiningPage::setModel(ClientModel *model)
+void MiningPage::setModel(ClientModel *clietModel,WalletModel *walletModel)
 {
-    this->model = model;
-
+    this->clientModel = clietModel;
+    this->walletModel = walletModel;
     loadSettings();
 
-    bool pool = model->getMiningType() == ClientModel::PoolMining;
-    ui->threadsBox->setValue(model->getMiningThreads());
+    bool pool = clientModel->getMiningType() == ClientModel::PoolMining;
+    ui->threadsBox->setValue(clientModel->getMiningThreads());
     ui->typeBox->setCurrentIndex(pool ? 1 : 0);
-//    if (model->getMiningStarted())
-//        startPressed();
 }
 
 void MiningPage::startPressed()
@@ -61,8 +60,14 @@ void MiningPage::startPressed()
 
     if (minerActive == false)
     {
+        if(walletModel->getEncryptionStatus() == WalletModel::Locked){
+            AskPassphraseDialog dlg(AskPassphraseDialog::Unlock, this);
+            dlg.setModel(walletModel);
+            if(QDialog::Accepted != dlg.exec()){
+                return;
+            }
+        }
         saveSettings();
-
         if (getMiningType() == ClientModel::SoloMining)
             minerStarted();
         else
@@ -80,15 +85,28 @@ void MiningPage::startPressed()
 void MiningPage::startPoolMining()
 {
     QStringList args;
-    QString url = ui->serverLine->text();
-    if (!url.contains("http://"))
+    QString url = ui->serverLine->currentText();
+    if(url.length() == 0){
+        reportToList(tr("please input the sever address"), ERROR, NULL);
+        return;
+    }
+    if(ui->usernameLine->text().length() == 0){
+        reportToList(tr("use name should not be empty"), ERROR, NULL);
+        return;
+    }
+    if (!url.contains("http://")){
         url.prepend("http://");
-    QString urlLine = QString("%1:%2").arg(url, ui->portLine->text());
-    QString userpassLine = QString("%1:%2").arg(ui->usernameLine->text(), ui->passwordLine->text());
-    args << "--algo" << "scrypt";
+    }
+    QString urlLine = QString("%1:%2").arg(url, ui->portLine->text().length() == 0 ? "80" : ui->portLine->text());
+    args << "--algo" << "scrypt-jane";
+    if(ui->passwordLine->text().length() == 0){
+        args << "--user" << ui->usernameLine->text().toAscii();
+    }else{
+        args << "--userpass" << QString("%1:%2").arg(ui->usernameLine->text(), ui->passwordLine->text()).toAscii();
+    }
     args << "--scantime" << ui->scantimeBox->text().toAscii();
     args << "--url" << urlLine.toAscii();
-    args << "--userpass" << userpassLine.toAscii();
+
     args << "--threads" << ui->threadsBox->text().toAscii();
     args << "--retries" << "-1"; // Retry forever.
     args << "-P"; // This is needed for this to work correctly on Windows. Extra protocol dump helps flush the buffer quicker.
@@ -102,7 +120,8 @@ void MiningPage::startPoolMining()
     roundRejectedShares = 0;
 
     // If minerd is in current path, then use that. Otherwise, assume minerd is in the path somewhere.
-    QString program = QDir::current().filePath("minerd");
+    //QString program = QDir::current().filePath("minerd");
+    QString program = QDir(QCoreApplication::applicationDirPath()).filePath("minerd");
     if (!QFile::exists(program))
         program = "minerd";
 
@@ -126,22 +145,22 @@ void MiningPage::stopPoolMining()
 
 void MiningPage::saveSettings()
 {
-    model->setMiningDebug(ui->debugCheckBox->isChecked());
-    model->setMiningScanTime(ui->scantimeBox->value());
-    model->setMiningServer(ui->serverLine->text());
-    model->setMiningPort(ui->portLine->text());
-    model->setMiningUsername(ui->usernameLine->text());
-    model->setMiningPassword(ui->passwordLine->text());
+    clientModel->setMiningDebug(ui->debugCheckBox->isChecked());
+    clientModel->setMiningScanTime(ui->scantimeBox->value());
+    clientModel->setMiningServer(ui->serverLine->currentText());
+    clientModel->setMiningPort(ui->portLine->text());
+    clientModel->setMiningUsername(ui->usernameLine->text());
+    clientModel->setMiningPassword(ui->passwordLine->text());
 }
 
 void MiningPage::loadSettings()
 {
-    ui->debugCheckBox->setChecked(model->getMiningDebug());
-    ui->scantimeBox->setValue(model->getMiningScanTime());
-    ui->serverLine->setText(model->getMiningServer());
-    ui->portLine->setText(model->getMiningPort());
-    ui->usernameLine->setText(model->getMiningUsername());
-    ui->passwordLine->setText(model->getMiningPassword());
+    ui->debugCheckBox->setChecked(clientModel->getMiningDebug());
+    ui->scantimeBox->setValue(clientModel->getMiningScanTime());
+    ui->serverLine->setEditText(clientModel->getMiningServer());
+    ui->portLine->setText(clientModel->getMiningPort());
+    ui->usernameLine->setText(clientModel->getMiningUsername());
+    ui->passwordLine->setText(clientModel->getMiningPassword());
 }
 
 void MiningPage::readProcessOutput()
@@ -173,19 +192,19 @@ void MiningPage::readProcessOutput()
             }
 
             if (line.contains("(yay!!!)"))
-                reportToList("Share accepted", SHARE_SUCCESS, getTime(line));
+                reportToList(tr("Share accepted"), SHARE_SUCCESS, getTime(line));
             else if (line.contains("(booooo)"))
-                reportToList("Share rejected", SHARE_FAIL, getTime(line));
+                reportToList(tr("Share rejected"), SHARE_FAIL, getTime(line));
             else if (line.contains("LONGPOLL detected new block"))
-                reportToList("LONGPOLL detected a new block", LONGPOLL, getTime(line));
+                reportToList(tr("LONGPOLL detected a new block"), LONGPOLL, getTime(line));
             else if (line.contains("Supported options:"))
-                reportToList("Miner didn't start properly. Try checking your settings.", ERROR, NULL);
+                reportToList(tr("Miner didn't start properly. Try checking your settings."), ERROR, NULL);
             else if (line.contains("The requested URL returned error: 403"))
-                reportToList("Couldn't connect. Please check your username and password.", ERROR, NULL);
+                reportToList(tr("Couldn't connect. Please check your username and password."), ERROR, NULL);
             else if (line.contains("HTTP request failed"))
-                reportToList("Couldn't connect. Please check pool server and port.", ERROR, NULL);
+                reportToList(tr("Couldn't connect. Please check pool server and port."), ERROR, NULL);
             else if (line.contains("JSON-RPC call failed"))
-                reportToList("Couldn't communicate with server. Retrying in 30 seconds.", ERROR, NULL);
+                reportToList(tr("Couldn't communicate with server. Retrying in 30 seconds."), ERROR, NULL);
             else if (line.contains("thread ") && line.contains("khash/s"))
             {
                 QString threadIDstr = line.at(line.indexOf("thread ")+7);
@@ -212,34 +231,33 @@ void MiningPage::minerError(QProcess::ProcessError error)
 {
     if (error == QProcess::FailedToStart)
     {
-        reportToList("Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as YbCoin-Qt.", ERROR, NULL);
+        reportToList(tr("Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as YbCoin-Qt."), ERROR, NULL);
     }
 }
 
 void MiningPage::minerFinished()
 {
     if (getMiningType() == ClientModel::SoloMining)
-        reportToList("Solo mining stopped.", ERROR, NULL);
+        reportToList(tr("Solo mining stopped."), ERROR, NULL);
     else
-        reportToList("Miner exited.", ERROR, NULL);
+        reportToList(tr("Miner exited."), ERROR, NULL);
     ui->list->addItem("");
     minerActive = false;
     resetMiningButton();
-    model->setMining(getMiningType(), false, initThreads, 0);
+    clientModel->setMining(getMiningType(), false, initThreads, 0);
 }
 
 void MiningPage::minerStarted()
 {
     if (!minerActive)
         if (getMiningType() == ClientModel::SoloMining)
-            reportToList("Solo mining started.", ERROR, NULL);
+            reportToList(tr("Solo mining started."), ERROR, NULL);
 
         else
-            reportToList("Miner started. You might not see any output for a few minutes.", STARTED, NULL);
+            reportToList(tr("Miner started. You might not see any output for a few minutes."), STARTED, NULL);
     minerActive = true;
-    resetMiningButton();
-
-    model->setMining(getMiningType(), true, initThreads, 0);
+    resetMiningButton();    
+    clientModel->setMining(getMiningType(), true, initThreads, 0);
 }
 
 void MiningPage::updateSpeed()
@@ -277,7 +295,7 @@ void MiningPage::updateSpeed()
 
     ui->shareCount->setText(QString("Accepted: %1 (%3) - Rejected: %2 (%4)").arg(acceptedString, rejectedString, roundAcceptedString, roundRejectedString));
 
-    model->setMining(getMiningType(), true, initThreads, totalSpeed*1000);
+    clientModel->setMining(getMiningType(), true, initThreads, totalSpeed*1000);
 }
 
 void MiningPage::reportToList(QString msg, int type, QString time)
@@ -364,6 +382,16 @@ ClientModel::MiningType MiningPage::getMiningType()
     return ClientModel::SoloMining;
 }
 
+void MiningPage::serverChanged(int index)
+{
+    if (index == 0){  // pool.ybcoin.com
+        ui->portLine->setText("8337");
+    }
+    else {//others
+        ui->portLine->setText("");
+    }
+}
+
 void MiningPage::typeChanged(int index)
 {
     if (index == 0)  // Solo Mining
@@ -378,7 +406,7 @@ void MiningPage::typeChanged(int index)
 
 void MiningPage::debugToggled(bool checked)
 {
-    model->setMiningDebug(checked);
+    clientModel->setMiningDebug(checked);
 }
 
 void MiningPage::resetMiningButton()
