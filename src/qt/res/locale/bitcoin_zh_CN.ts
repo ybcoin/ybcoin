@@ -6,18 +6,18 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About YBCoin</source>
-        <translation>关于 YBCoin </translation>
+        <source>About UTCoin</source>
+        <translation>关于 UTCoin </translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;YBCoin&lt;/b&gt; version</source>
-        <translation>&lt;b&gt; YBCoin &lt;/b&gt; 版本</translation>
+        <source>&lt;b&gt;UTCoin&lt;/b&gt; version</source>
+        <translation>&lt;b&gt; UTCoin &lt;/b&gt; 版本</translation>
     </message>
     <message>
         <location line="+41"/>
-        <source>Copyright © 2013 The YBCoin developers</source>
-        <translation>Copyright © 2013 The YBCoin developers</translation>
+        <source>Copyright © 2013 The UTCoin developers</source>
+        <translation>Copyright © 2013 The UTCoin developers</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -27,7 +27,7 @@ This is experimental software.
 Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.</source>
-        <translation>版权归 YBCoin 开发者所有  © 201
+        <translation>版权归 UTCoin 开发者所有  © 201
 
 这是一个实验性软件。
 
@@ -65,8 +65,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-46"/>
-        <source>These are your YBCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>这些是你接受支付的 YBCoin 地址。当支付时你可以给出不同的地址，以便追踪不同的支付者。</translation>
+        <source>These are your UTCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation>这些是你接受支付的 UTCoin 地址。当支付时你可以给出不同的地址，以便追踪不同的支付者。</translation>
     </message>
     <message>
         <location line="+60"/>
@@ -80,7 +80,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+11"/>
-        <source>Sign a message to prove you own a YBCoin address</source>
+        <source>Sign a message to prove you own a UTCoin address</source>
         <translation>发送签名消息以证明您是该比特币地址的拥有者</translation>
     </message>
     <message>
@@ -95,8 +95,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-14"/>
-        <source>Verify a message to ensure it was signed with a specified YBCoin address</source>
-        <translation>Verify a message to ensure it was signed with a specified YBCoin address</translation>
+        <source>Verify a message to ensure it was signed with a specified UTCoin address</source>
+        <translation>Verify a message to ensure it was signed with a specified UTCoin address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -254,7 +254,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-56"/>
-        <source>YBCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <source>UTCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
         <translation>将关闭软件以完成加密过程。 请您谨记：钱包加密并不是万能的，电脑中毒，您的比特币还是有可能丢失。</translation>
     </message>
     <message>
@@ -368,8 +368,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+4"/>
-        <source>Show information about YBCoin</source>
-        <translation>显示 YBCoin 的相关信息</translation>
+        <source>Show information about UTCoin</source>
+        <translation>显示 UTCoin 的相关信息</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -418,12 +418,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-58"/>
-        <source>Send coins to a YBCoin address</source>
-        <translation>向一个 YBCoin 地址发送 YBCoin </translation>
+        <source>Send coins to a UTCoin address</source>
+        <translation>向一个 UTCoin 地址发送 UTCoin </translation>
     </message>
     <message>
         <location line="+45"/>
-        <source>Modify configuration options for YBCoin</source>
+        <source>Modify configuration options for UTCoin</source>
         <translation>设置选项</translation>
     </message>
     <message>
@@ -463,8 +463,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-186"/>
-        <source>YBCoin</source>
-        <translation>YBCoin</translation>
+        <source>UTCoin</source>
+        <translation>UTCoin</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -473,8 +473,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+168"/>
-        <source>&amp;About YBCoin</source>
-        <translation>&amp;关于 YBCoin </translation>
+        <source>&amp;About UTCoin</source>
+        <translation>&amp;关于 UTCoin </translation>
     </message>
     <message>
         <location line="+9"/>
@@ -515,13 +515,13 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+0"/>
         <location line="+60"/>
-        <source>YBCoin client</source>
-        <translation> YBCoin 客户端</translation>
+        <source>UTCoin client</source>
+        <translation> UTCoin 客户端</translation>
     </message>
     <message numerus="yes">
         <location line="+69"/>
-        <source>%n active connection(s) to YBCoin network</source>
-        <translation><numerusform>%n 个到 YBCoin 币网络的活动连接</numerusform></translation>
+        <source>%n active connection(s) to UTCoin network</source>
+        <translation><numerusform>%n 个到 UTCoin 币网络的活动连接</numerusform></translation>
     </message>
     <message>
         <location line="+40"/>
@@ -605,8 +605,8 @@ Address: %4
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid YBCoin address or malformed URI parameters.</source>
-        <translation>URI不能解析！这可能是由于一个的无效YBCoin地址或畸形URI参数。</translation>
+        <source>URI can not be parsed! This can be caused by an invalid UTCoin address or malformed URI parameters.</source>
+        <translation>URI不能解析！这可能是由于一个的无效UTCoin地址或畸形URI参数。</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -640,7 +640,7 @@ Address: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+109"/>
-        <source>A fatal error occurred. YBCoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. UTCoin can no longer continue safely and will quit.</source>
         <translation>发生致命错误. 比特币客户端的安全存在问题，将退出.</translation>
     </message>
 </context>
@@ -706,7 +706,7 @@ Address: %4
     </message>
     <message>
         <location line="+5"/>
-        <source>The entered address &quot;%1&quot; is not a valid YBCoin address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid UTCoin address.</source>
         <translation>您输入的 &quot;%1&quot; 不是合法的比特币地址.</translation>
     </message>
     <message>
@@ -725,8 +725,8 @@ Address: %4
     <message>
         <location filename="../guiutil.cpp" line="+419"/>
         <location line="+12"/>
-        <source>YBCoin-Qt</source>
-        <translation>YBCoin-Qt</translation>
+        <source>UTCoin-Qt</source>
+        <translation>UTCoin-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -788,12 +788,12 @@ Address: %4
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start YBCoin after logging in to the system.</source>
+        <source>Automatically start UTCoin after logging in to the system.</source>
         <translation>系统启动后自动运行比特币客户端软件</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start YBCoin on system login</source>
+        <source>&amp;Start UTCoin on system login</source>
         <translation>启动时&amp;运行</translation>
     </message>
     <message>
@@ -813,8 +813,8 @@ Address: %4
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the YBCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自动打开YBCoin的客户端使用的端口。这只有当你的路由器支持UPnP并启用。</translation>
+        <source>Automatically open the UTCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>自动打开UTCoin的客户端使用的端口。这只有当你的路由器支持UPnP并启用。</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -823,7 +823,7 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the YBCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <source>Connect to the UTCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
         <translation>通过 SOCKS proxy 连接网络(例如：通过 Tor 连接网络).</translation>
     </message>
     <message>
@@ -904,7 +904,7 @@ Address: %4
     <message>
         <location line="+11"/>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp; YBCoin 金额单位:</translation>
+        <translation>&amp; UTCoin 金额单位:</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -913,8 +913,8 @@ Address: %4
     </message>
     <message>
         <location line="+9"/>
-        <source>Whether to show YBCoin addresses in the transaction list or not.</source>
-        <translation>是否在交易清单中显示 YBCoin 地址</translation>
+        <source>Whether to show UTCoin addresses in the transaction list or not.</source>
+        <translation>是否在交易清单中显示 UTCoin 地址</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -950,7 +950,7 @@ Address: %4
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting YBCoin.</source>
+        <source>This setting will take effect after restarting UTCoin.</source>
         <translation>需要重启客户端软件才能生效。</translation>
     </message>
     <message>
@@ -969,7 +969,7 @@ Address: %4
     <message>
         <location line="+33"/>
         <location line="+183"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the YBCoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the UTCoin network after a connection is established, but this process has not completed yet.</source>
         <translation>现在显示的消息可能是过期的. 在连接上比特币网络节点后，您的钱包将自动与网络同步，但是这个过程还没有完成.</translation>
     </message>
     <message>
@@ -1151,7 +1151,7 @@ Address: %4
     <message>
         <location line="+23"/>
         <source>On testnet</source>
-        <translation>当前为 YBCoin 测试网络</translation>
+        <translation>当前为 UTCoin 测试网络</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -1185,8 +1185,8 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the YBCoin-Qt help message to get a list with possible YBCoin command-line options.</source>
-        <translation>YBCoin-Qt 帮助信息中包含 YBCoin 支持的命令行选项</translation>
+        <source>Show the UTCoin-Qt help message to get a list with possible UTCoin command-line options.</source>
+        <translation>UTCoin-Qt 帮助信息中包含 UTCoin 支持的命令行选项</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1205,13 +1205,13 @@ Address: %4
     </message>
     <message>
         <location line="-104"/>
-        <source>YBCoin - Debug window</source>
+        <source>UTCoin - Debug window</source>
         <translation>调试窗口</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>YBCoin Core</source>
-        <translation>YBCoin内核</translation>
+        <source>UTCoin Core</source>
+        <translation>UTCoin内核</translation>
     </message>
     <message>
         <location line="+279"/>
@@ -1220,8 +1220,8 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Open the YBCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>从当前文件夹打开YBCoin调试日志文件，对于大日志文件，这可能会花费几秒钟。</translation>
+        <source>Open the UTCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>从当前文件夹打开UTCoin调试日志文件，对于大日志文件，这可能会花费几秒钟。</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1230,7 +1230,7 @@ Address: %4
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-33"/>
-        <source>Welcome to the YBCoin RPC console.</source>
+        <source>Welcome to the UTCoin RPC console.</source>
         <translation>欢迎来到 RPC 控制台.</translation>
     </message>
     <message>
@@ -1285,8 +1285,8 @@ Address: %4
     </message>
     <message>
         <location line="+10"/>
-        <source>123.456 YBC</source>
-        <translation>123.456 YBC</translation>
+        <source>123.456 UTC</source>
+        <translation>123.456 UTC</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -1414,8 +1414,8 @@ Address: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a YBCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
-        <translation>请输入YBCoin地址 (例如: 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</translation>
+        <source>Enter a UTCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
+        <translation>请输入UTCoin地址 (例如: 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</translation>
     </message>
 </context>
 <context>
@@ -1475,8 +1475,8 @@ Address: %4
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this YBCoin address</source>
-        <translation>注册信息证明你拥有这个YBCoin地址</translation>
+        <source>Sign the message to prove you own this UTCoin address</source>
+        <translation>注册信息证明你拥有这个UTCoin地址</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -1507,8 +1507,8 @@ Address: %4
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified YBCoin address</source>
-        <translation>核实这个消息以确保它在YBCoin的地址中签名验证过</translation>
+        <source>Verify the message to ensure it was signed with the specified UTCoin address</source>
+        <translation>核实这个消息以确保它在UTCoin的地址中签名验证过</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -1518,7 +1518,7 @@ Address: %4
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a YBCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
+        <source>Enter a UTCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
         <translation>请输入比特币地址 (例如: 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</translation>
     </message>
     <message>
@@ -1528,8 +1528,8 @@ Address: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter YBCoin signature</source>
-        <translation>输入 YBCoin 签名</translation>
+        <source>Enter UTCoin signature</source>
+        <translation>输入 UTCoin 签名</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -2084,8 +2084,8 @@ Address: %4
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+82"/>
-        <source>YBCoin version</source>
-        <translation>YBCoin 版本</translation>
+        <source>UTCoin version</source>
+        <translation>UTCoin 版本</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -2114,13 +2114,13 @@ Address: %4
     </message>
     <message>
         <location line="+23"/>
-        <source>Specify configuration file (default: YBCoin.conf)</source>
-        <translation>指定配置文件 (默认: YBCoin.conf)</translation>
+        <source>Specify configuration file (default: UTCoin.conf)</source>
+        <translation>指定配置文件 (默认: UTCoin.conf)</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Specify pid file (default: YBCoind.pid)</source>
-        <translation>指定配置文件 (默认为 YBCoind.pid) </translation>
+        <source>Specify pid file (default: UTCoind.pid)</source>
+        <translation>指定配置文件 (默认为 UTCoind.pid) </translation>
     </message>
     <message>
         <location line="-47"/>
@@ -2274,8 +2274,8 @@ Address: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong YBCoin will not work properly.</source>
-        <translation>警告: 请确认你电脑的日期和时间正确! 如果电脑始终不正确，YBCoin就不能正常工作。</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong UTCoin will not work properly.</source>
+        <translation>警告: 请确认你电脑的日期和时间正确! 如果电脑始终不正确，UTCoin就不能正常工作。</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2509,13 +2509,13 @@ Address: %4
     </message>
     <message>
         <location line="-131"/>
-        <source>Cannot obtain a lock on data directory %s.  YBCoin is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s.  UTCoin is probably already running.</source>
         <translation>无法给数据目录 %s 加锁。比特币进程可能已在运行。</translation>
     </message>
     <message>
         <location line="+57"/>
-        <source>YBCoin</source>
-        <translation>YBCoin</translation>
+        <source>UTCoin</source>
+        <translation>UTCoin</translation>
     </message>
     <message>
         <location line="+77"/>
@@ -2549,12 +2549,12 @@ Address: %4
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of YBCoin</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of UTCoin</source>
         <translation>wallet.dat钱包文件加载错误：请升级到最新Bitcoin客户端</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>Wallet needed to be rewritten: restart YBCoin to complete</source>
+        <source>Wallet needed to be rewritten: restart UTCoin to complete</source>
         <translation>钱包文件需要重写：请退出并重新启动Bitcoin客户端</translation>
     </message>
     <message>
@@ -2624,7 +2624,7 @@ Address: %4
     </message>
     <message>
         <location line="-25"/>
-        <source>Unable to bind to %s on this computer. YBCoin is probably already running.</source>
+        <source>Unable to bind to %s on this computer. UTCoin is probably already running.</source>
         <translation>无法在本机绑定 %s 端口 . 比特币客户端软件可能已经在运行.</translation>
     </message>
     <message>

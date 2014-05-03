@@ -1516,8 +1516,8 @@ Address: %4
         <translation>123.456 BTC</translation>
     </message>
     <message>
-        <source>123.456 YBC</source>
-        <translation type="obsolete">123.456 YBC</translation>
+        <source>123.456 UTC</source>
+        <translation type="obsolete">123.456 UTC</translation>
     </message>
     <message>
         <location line="+31"/>
