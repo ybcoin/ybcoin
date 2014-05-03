@@ -25,23 +25,21 @@ class CInv;
 class CRequestTracker;
 class CNode;
 
-static const int nConsecutiveStakeSwitchHeight = 370000;
+static const int nConsecutiveStakeSwitchHeight = 2;
 static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
 static const unsigned int MAX_INV_SZ = 50000;
-static const int64 MIN_TX_FEE = CENT / 100;
-static const int64 MIN_RELAY_TX_FEE = CENT / 100;
-static const int64 MAX_MONEY = 200000000 * COIN;
-static const int64 MAX_MINT_PROOF_OF_WORK = 10 * COIN;
-static const int64 MIN_MINT_PROOF_OF_WORK = 2 * COIN;
-
+static const int64 MIN_TX_FEE = .001 * CENT;
+static const int64 MIN_RELAY_TX_FEE = .001 * CENT;
+static const int64 MAX_MONEY = 100000000 * COIN;
+static const int64 MAX_MINT_PROOF_OF_WORK = 50 * COIN;
 static const int64 MIN_TXOUT_AMOUNT = MIN_TX_FEE;
-
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
 static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
+
 
 #ifdef USE_UPNP
 static const int fHaveUPnP = true;
@@ -49,8 +47,8 @@ static const int fHaveUPnP = true;
 static const int fHaveUPnP = false;
 #endif
 
-static const uint256 hashGenesisBlockOfficial("0xd1e7311b51a8b815024a65ec56a5d1d953be844d556c6c08d8fc2b8e1d4edc2b");
-static const uint256 hashGenesisBlockTestNet("0xa77f82811b00d47496431868dc270b92961bae7d2612f79447b568b55039d251");
+static const uint256 hashGenesisBlockOfficial("0x00000957baeb013a79e5d1fa0b8f69ab2e926ea86d392f6a1733eb4054945aee");
+static const uint256 hashGenesisBlockTestNet("0x00000957baeb013a79e5d1fa0b8f69ab2e926ea86d392f6a1733eb4054945aee");
 
 static const int64 nMaxClockDrift = 2 * 60 * 60;        // two hours
 
