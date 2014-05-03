@@ -22,7 +22,7 @@ Setup
 After completing windows setup then run windows command line (cmd)
   cd daemon
   novacoind
-You would need to create a configuration file ybcoin.conf in the default
+You would need to create a configuration file ultracoin.conf in the default
 wallet directory. Grant access to novacoind.exe in anti-virus and firewall
 applications if necessary.
 

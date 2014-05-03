@@ -1,4 +1,4 @@
-// Copyright (c) 2013 YbCoin Developers
+// Copyright (c) 2013 UltraCoin Developers
 
 #include <string.h>
 #include "pbkdf2.h"

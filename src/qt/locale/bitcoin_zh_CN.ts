@@ -6,22 +6,22 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About YbCoin</source>
-        <translation>关于 YbCoin </translation>
+        <source>About UltraCoin</source>
+        <translation>关于 UltraCoin </translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;YbCoin&lt;/b&gt; version</source>
-        <translation>&lt;b&gt; YbCoin &lt;/b&gt; 版本</translation>
+        <source>&lt;b&gt;UltraCoin&lt;/b&gt; version</source>
+        <translation>&lt;b&gt; UltraCoin &lt;/b&gt; 版本</translation>
     </message>
     <message>
         <location line="+41"/>
-        <source>Copyright ? 2013 The YbCoin developers</source>
+        <source>Copyright ? 2013 The UltraCoin developers</source>
         <translation></translation>
     </message>
     <message>
-        <source>Copyright © 2013 The YbCoin developers</source>
-        <translation type="obsolete">Copyright © 2013 The YbCoin developers</translation>
+        <source>Copyright © 2013 The UltraCoin developers</source>
+        <translation type="obsolete">Copyright © 2013 The UltraCoin developers</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -31,7 +31,7 @@ This is experimental software.
 Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.</source>
-        <translation>版权归 YbCoin 开发者所有  © 2013
+        <translation>版权归 UltraCoin 开发者所有  © 2013
 
 这是一个实验性软件。
 
@@ -49,9 +49,9 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+6"/>
-        <source>These are your YbCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep 
+        <source>These are your UltraCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep 
 track of who is paying you.</source>
-        <translation>这些是你接收支付的 YbCoin 地址。当支付时你可以给出不同的地址，以便追踪不同的支付者。</translation>
+        <translation>这些是你接收支付的 UltraCoin 地址。当支付时你可以给出不同的地址，以便追踪不同的支付者。</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -70,7 +70,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+25"/>
-        <source>Sign a message to prove you own a YbCoin address</source>
+        <source>Sign a message to prove you own a UltraCoin address</source>
         <translation>发送签名消息以证明您是该元宝币地址的拥有者</translation>
     </message>
     <message>
@@ -79,8 +79,8 @@ track of who is paying you.</source>
         <translation>&amp;新建地址</translation>
     </message>
     <message>
-        <source>These are your YbCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation type="obsolete">这些是你接收支付的 YbCoin 地址。当支付时你可以给出不同的地址，以便追踪不同的支付者。</translation>
+        <source>These are your UltraCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation type="obsolete">这些是你接收支付的 UltraCoin 地址。当支付时你可以给出不同的地址，以便追踪不同的支付者。</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -99,8 +99,8 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+11"/>
-        <source>Verify a message to ensure it was signed with a specified YbCoin address</source>
-        <translation>验证这个消息以确保它已经与一个YbCoin地址签名</translation>
+        <source>Verify a message to ensure it was signed with a specified UltraCoin address</source>
+        <translation>验证这个消息以确保它已经与一个UltraCoin地址签名</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -246,7 +246,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+11"/>
-        <source>YbCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <source>UltraCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
         <translation>将关闭软件以完成加密过程。 请您谨记：钱包加密并不是万能的，电脑中毒，您的元宝币还是有可能丢失。</translation>
     </message>
     <message>
@@ -327,8 +327,8 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="-123"/>
-        <source>YbCoin</source>
-        <translation>YbCoin</translation>
+        <source>UltraCoin</source>
+        <translation>UltraCoin</translation>
     </message>
     <message>
         <location line="+124"/>
@@ -347,8 +347,8 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+5"/>
-        <source>Send coins to a YbCoin address</source>
-        <translation>向一个 YbCoin 地址发送 YbCoin</translation>
+        <source>Send coins to a UltraCoin address</source>
+        <translation>向一个 UltraCoin 地址发送 UltraCoin</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -397,8 +397,8 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Show information about YbCoin</source>
-        <translation>显示 YbCoin 的相关信息</translation>
+        <source>Show information about UltraCoin</source>
+        <translation>显示 UltraCoin 的相关信息</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -417,7 +417,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Modify configuration options for YbCoin</source>
+        <source>Modify configuration options for UltraCoin</source>
         <translation>设置选项</translation>
     </message>
     <message>
@@ -438,15 +438,15 @@ track of who is paying you.</source>
     <message>
         <location line="+87"/>
         <location line="+63"/>
-        <source>YbCoin client</source>
-        <translation>YbCoin 客户端</translation>
+        <source>UltraCoin client</source>
+        <translation>UltraCoin 客户端</translation>
     </message>
     <message numerus="yes">
         <location line="+69"/>
-        <source>%n active connection(s) to YbCoin network</source>
+        <source>%n active connection(s) to UltraCoin network</source>
         <translation>
             <numerusform>
-                %n 个到 YbCoin 网络的活动连接
+                %n 个到 UltraCoin 网络的活动连接
             </numerusform>
         </translation>
     </message>
@@ -479,8 +479,8 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="-11"/>
-        <source>&amp;About YbCoin</source>
-        <translation>关于 YbCoin</translation>
+        <source>&amp;About UltraCoin</source>
+        <translation>关于 UltraCoin</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -598,12 +598,12 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+16"/>
-        <source>Mining YbCoins at %1 hashes per second</source>
+        <source>Mining UltraCoins at %1 hashes per second</source>
         <translation>正在以 %1 hashes/s 挖矿</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>Not mining YbCoins</source>
+        <source>Not mining UltraCoins</source>
         <translation>没在挖矿</translation>
     </message>
     <message>
@@ -648,8 +648,8 @@ Address: %4
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid YbCoin address or malformed URI parameters.</source>
-        <translation>URI不能解析！这可能是由于一个的无效YbCoin地址或畸形URI参数。</translation>
+        <source>URI can not be parsed! This can be caused by an invalid UltraCoin address or malformed URI parameters.</source>
+        <translation>URI不能解析！这可能是由于一个的无效UltraCoin地址或畸形URI参数。</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -693,7 +693,7 @@ Address: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+109"/>
-        <source>A fatal error occurred. YbCoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. UltraCoin can no longer continue safely and will quit.</source>
         <translation>发生致命错误. 元宝币客户端的安全存在问题，将退出.</translation>
     </message>
 </context>
@@ -759,7 +759,7 @@ Address: %4
     </message>
     <message>
         <location line="+5"/>
-        <source>The entered address &quot;%1&quot; is not a valid YbCoin address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid UltraCoin address.</source>
         <translation>您输入的 &quot;%1&quot; 不是合法的元宝币地址.</translation>
     </message>
     <message>
@@ -778,8 +778,8 @@ Address: %4
     <message>
         <location filename="../guiutil.cpp" line="+419"/>
         <location line="+12"/>
-        <source>YbCoin-Qt</source>
-        <translation>YbCoin-Qt</translation>
+        <source>UltraCoin-Qt</source>
+        <translation>UltraCoin-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -836,8 +836,8 @@ Address: %4
     </message>
     <message>
         <location line="-103"/>
-        <source>pool.ybcoin.com</source>
-        <translation>pool.ybcoin.com</translation>
+        <source>pool.ultracoin.com</source>
+        <translation>pool.ultracoin.com</translation>
     </message>
     <message>
         <location line="+57"/>
@@ -937,7 +937,7 @@ Address: %4
     </message>
     <message>
         <location line="+27"/>
-        <source>Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as YbCoin-Qt.</source>
+        <source>Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as UltraCoin-Qt.</source>
         <translation>挖矿进程启动失败。</translation>
     </message>
     <message>
@@ -990,12 +990,12 @@ Address: %4
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start YbCoin after logging in to the system.</source>
+        <source>Automatically start UltraCoin after logging in to the system.</source>
         <translation>系统启动后自动运行元宝币客户端软件</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start YbCoin on system login</source>
+        <source>&amp;Start UltraCoin on system login</source>
         <translation>启动时&amp;运行</translation>
     </message>
     <message>
@@ -1015,8 +1015,8 @@ Address: %4
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the YbCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自动打开YbCoin的客户端使用的端口。这只有当你的路由器支持UPnP并启用。</translation>
+        <source>Automatically open the UltraCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>自动打开UltraCoin的客户端使用的端口。这只有当你的路由器支持UPnP并启用。</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1025,7 +1025,7 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the YbCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <source>Connect to the UltraCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
         <translation>通过 SOCKS proxy 连接网络(例如：通过 Tor 连接网络).</translation>
     </message>
     <message>
@@ -1100,13 +1100,13 @@ Address: %4
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting YbCoin.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting UltraCoin.</source>
         <translation>置语言选项。需重启客户端软件才能生效。</translation>
     </message>
     <message>
         <location line="+33"/>
-        <source>Whether to show YbCoin addresses in the transaction list or not.</source>
-        <translation>是否在交易清单中显示 YbCoin 地址</translation>
+        <source>Whether to show UltraCoin addresses in the transaction list or not.</source>
+        <translation>是否在交易清单中显示 UltraCoin 地址</translation>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will only take effect after restarting Bitcoin.</source>
@@ -1115,7 +1115,7 @@ Address: %4
     <message>
         <location line="-22"/>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp; YbCoin 金额单位:</translation>
+        <translation>&amp; UltraCoin 金额单位:</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1156,7 +1156,7 @@ Address: %4
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting YbCoin.</source>
+        <source>This setting will take effect after restarting UltraCoin.</source>
         <translation>重启客户端软件以使设置生效。</translation>
     </message>
     <message>
@@ -1175,7 +1175,7 @@ Address: %4
     <message>
         <location line="+35"/>
         <location line="+212"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the YbCoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the UltraCoin network after a connection is established, but this process has not completed yet.</source>
         <translation>现在显示的消息可能是过期的. 在连接上元宝币网络节点后，您的钱包将自动与网络同步，但是这个过程还没有完成.</translation>
     </message>
     <message>
@@ -1341,13 +1341,13 @@ Address: %4
     </message>
     <message>
         <location line="-10"/>
-        <source>YbCoin - Debug window</source>
-        <translation>YbCoin - 调试窗口</translation>
+        <source>UltraCoin - Debug window</source>
+        <translation>UltraCoin - 调试窗口</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>YbCoin Core</source>
-        <translation>YbCoin 内核</translation>
+        <source>UltraCoin Core</source>
+        <translation>UltraCoin 内核</translation>
     </message>
     <message>
         <location line="+53"/>
@@ -1372,7 +1372,7 @@ Address: %4
     <message>
         <location line="+23"/>
         <source>On testnet</source>
-        <translation>当前为 YbCoin 测试网络</translation>
+        <translation>当前为 UltraCoin 测试网络</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -1396,8 +1396,8 @@ Address: %4
     </message>
     <message>
         <location line="+49"/>
-        <source>Open the YbCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>从当前文件夹打开YbCoin调试日志文件，对于大日志文件，这可能会花费几秒钟。</translation>
+        <source>Open the UltraCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>从当前文件夹打开UltraCoin调试日志文件，对于大日志文件，这可能会花费几秒钟。</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1411,8 +1411,8 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the YbCoin-Qt help message to get a list with possible YbCoin command-line options.</source>
-        <translation>YbCoin-Qt 帮助信息中包含 YbCoin 支持的命令行选项</translation>
+        <source>Show the UltraCoin-Qt help message to get a list with possible UltraCoin command-line options.</source>
+        <translation>UltraCoin-Qt 帮助信息中包含 UltraCoin 支持的命令行选项</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1441,7 +1441,7 @@ Address: %4
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-33"/>
-        <source>Welcome to the YbCoin RPC console.</source>
+        <source>Welcome to the UltraCoin RPC console.</source>
         <translation>欢迎来到 RPC 控制台.</translation>
     </message>
     <message>
@@ -1628,13 +1628,13 @@ Address: %4
         <translation>移除此接收者</translation>
     </message>
     <message>
-        <source>Enter a YbCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
-        <translation type="obsolete">请输入YbCoin地址 (例如: 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</translation>
+        <source>Enter a UltraCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
+        <translation type="obsolete">请输入UltraCoin地址 (例如: 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</translation>
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a YbCoin address (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
-        <translation>请输入YbCoin地址 (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
+        <source>Enter a UltraCoin address (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <translation>请输入UltraCoin地址 (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
     </message>
 </context>
 <context>
@@ -1698,8 +1698,8 @@ Address: %4
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this YbCoin address</source>
-        <translation>注册信息证明你拥有这个YbCoin地址</translation>
+        <source>Sign the message to prove you own this UltraCoin address</source>
+        <translation>注册信息证明你拥有这个UltraCoin地址</translation>
     </message>
     <message>
         <location line="+106"/>
@@ -1708,8 +1708,8 @@ Address: %4
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified YbCoin address</source>
-        <translation>核实这个消息以确保它在YbCoin的地址中签名验证过</translation>
+        <source>Verify the message to ensure it was signed with the specified UltraCoin address</source>
+        <translation>核实这个消息以确保它在UltraCoin的地址中签名验证过</translation>
     </message>
     <message>
         <location line="-129"/>
@@ -1743,7 +1743,7 @@ Address: %4
         <translation>R清空所有验证消息栏</translation>
     </message>
     <message>
-        <source>Enter a YbCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
+        <source>Enter a UltraCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
         <translation type="obsolete">请输入元宝币地址 (例如: 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</translation>
     </message>
     <message>
@@ -1753,14 +1753,14 @@ Address: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter YbCoin signature</source>
-        <translation>输入 YbCoin 签名</translation>
+        <source>Enter UltraCoin signature</source>
+        <translation>输入 UltraCoin 签名</translation>
     </message>
     <message>
         <location line="-4"/>
         <location line="+3"/>
-        <source>Enter a YbCoin address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</source>
-        <translation>输入一个 YbCoin 地址 (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</translation>
+        <source>Enter a UltraCoin address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</source>
+        <translation>输入一个 UltraCoin 地址 (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</translation>
     </message>
     <message>
         <location line="+83"/>
@@ -2329,8 +2329,8 @@ Address: %4
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+127"/>
-        <source>YbCoin version</source>
-        <translation>YbCoin 版本</translation>
+        <source>UltraCoin version</source>
+        <translation>UltraCoin 版本</translation>
     </message>
     <message>
         <location line="+39"/>
@@ -2357,12 +2357,12 @@ Address: %4
         <translation>选项：</translation>
     </message>
     <message>
-        <source>Specify configuration file (default: YbCoin.conf)</source>
-        <translation type="obsolete">指定配置文件 (默认: YbCoin.conf)</translation>
+        <source>Specify configuration file (default: UltraCoin.conf)</source>
+        <translation type="obsolete">指定配置文件 (默认: UltraCoin.conf)</translation>
     </message>
     <message>
-        <source>Specify pid file (default: YbCoind.pid)</source>
-        <translation type="obsolete">指定配置文件 (默认为 YbCoind.pid) </translation>
+        <source>Specify pid file (default: UltraCoind.pid)</source>
+        <translation type="obsolete">指定配置文件 (默认为 UltraCoind.pid) </translation>
     </message>
     <message>
         <location line="-25"/>
@@ -2431,8 +2431,8 @@ Address: %4
     </message>
     <message>
         <location line="+5"/>
-        <source>Cannot obtain a lock on data directory %s.  YbCoin is probably already running.</source>
-        <translation>获取锁文件失败 %s。YbCoin可能正在运行</translation>
+        <source>Cannot obtain a lock on data directory %s.  UltraCoin is probably already running.</source>
+        <translation>获取锁文件失败 %s。UltraCoin可能正在运行</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2461,13 +2461,13 @@ Address: %4
     </message>
     <message>
         <location line="+8"/>
-        <source>Unable to bind to %s on this computer. YbCoin is probably already running.</source>
-        <translation>绑定到 %s 失败。 YbCoin可能已经在运行。</translation>
+        <source>Unable to bind to %s on this computer. UltraCoin is probably already running.</source>
+        <translation>绑定到 %s 失败。 UltraCoin可能已经在运行。</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong YbCoin will not work properly.</source>
-        <translation>警告：请检查你的电脑日期和时间是否正确！如果不正确，YbCoin将不能正常工作。</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong UltraCoin will not work properly.</source>
+        <translation>警告：请检查你的电脑日期和时间是否正确！如果不正确，UltraCoin将不能正常工作。</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -2565,8 +2565,8 @@ Address: %4
     </message>
     <message>
         <location line="+6"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of YbCoin</source>
-        <translation>加载 wallet.dat 端口失败：钱包需要更新YbCoin版本</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of UltraCoin</source>
+        <translation>加载 wallet.dat 端口失败：钱包需要更新UltraCoin版本</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -2605,8 +2605,8 @@ Address: %4
     </message>
     <message>
         <location line="+2"/>
-        <source>YbCoin</source>
-        <translation>YbCoin</translation>
+        <source>UltraCoin</source>
+        <translation>UltraCoin</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2640,8 +2640,8 @@ Address: %4
     </message>
     <message>
         <location line="+1"/>
-        <source>Send command to -server or ybcoind</source>
-        <translation>向 -server 或 ybcoind发送指令</translation>
+        <source>Send command to -server or ultracoind</source>
+        <translation>向 -server 或 ultracoind发送指令</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2670,8 +2670,8 @@ Address: %4
     </message>
     <message>
         <location line="+1"/>
-        <source>Specify configuration file (default: ybcoin.conf)</source>
-        <translation>指定配置文件 (默认：ybcoin.conf)</translation>
+        <source>Specify configuration file (default: ultracoin.conf)</source>
+        <translation>指定配置文件 (默认：ultracoin.conf)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2680,8 +2680,8 @@ Address: %4
     </message>
     <message>
         <location line="+2"/>
-        <source>Specify pid file (default: ybcoind.pid)</source>
-        <translation>指定 pid 文件 (默认: ybcoind.pid)</translation>
+        <source>Specify pid file (default: ultracoind.pid)</source>
+        <translation>指定 pid 文件 (默认: ultracoind.pid)</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -2716,8 +2716,8 @@ Address: %4
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart YbCoin to complete</source>
-        <translation>钱包需要重新被写入：重启YbCoin以完成操作</translation>
+        <source>Wallet needed to be rewritten: restart UltraCoin to complete</source>
+        <translation>钱包需要重新被写入：重启UltraCoin以完成操作</translation>
     </message>
     <message>
         <location line="+1"/>

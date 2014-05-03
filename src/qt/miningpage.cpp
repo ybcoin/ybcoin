@@ -231,7 +231,7 @@ void MiningPage::minerError(QProcess::ProcessError error)
 {
     if (error == QProcess::FailedToStart)
     {
-        reportToList(tr("Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as YbCoin-Qt."), ERROR, NULL);
+        reportToList(tr("Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as UltraCoin-Qt."), ERROR, NULL);
     }
 }
 
@@ -384,7 +384,7 @@ ClientModel::MiningType MiningPage::getMiningType()
 
 void MiningPage::serverChanged(int index)
 {
-    if (index == 0){  // pool.ybcoin.com
+    if (index == 0){  // pool.ultracoin.com
         ui->portLine->setText("8337");
     }
     else {//others

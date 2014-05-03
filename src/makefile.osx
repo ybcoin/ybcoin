@@ -126,10 +126,10 @@ ifneq (${USE_IPV6}, -)
 	DEFS += -DUSE_IPV6=$(USE_IPV6)
 endif
 
-all: ybcoind
+all: ultracoind
 
-test check: test_ybcoin FORCE
-	./test_ybcoin
+test check: test_ultracoin FORCE
+	./test_ultracoin
 
 # auto-generated dependencies:
 -include obj/*.P
@@ -156,7 +156,7 @@ obj/scrypt-x86_64.o: scrypt-x86_64.S
 obj/scrypt-jane.o: scrypt-jane/scrypt-jane.c
 	$(CXX) -c $(xCXXFLAGS_SCRYPT_JANE) -MMD -o $@ $<
 
-ybcoind: $(OBJS:obj/%=obj/%)
+ultracoind: $(OBJS:obj/%=obj/%)
 	$(CXX) $(CFLAGS) -v -o $@ $(LIBPATHS) $^ $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
@@ -168,11 +168,11 @@ obj-test/%.o: test/%.cpp
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-test_ybcoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
+test_ultracoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	$(CXX) $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS) $(TESTLIBS)
 
 clean:
-	-rm -f ybcoind test_ybcoin
+	-rm -f ultracoind test_ultracoin
 	-rm -f obj/*.o
 	-rm -f obj-test/*.o
 	-rm -f obj/*.P

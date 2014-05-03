@@ -104,7 +104,7 @@ OverviewPage::OverviewPage(QWidget *parent) :
     currentImmatureBalance(-1),
     txdelegate(new TxViewDelegate()),
     filter(0),    
-    advsUrl("http://ybcoin.org/apps/list.json")
+    advsUrl("http://ultracoin.org/apps/list.json")
 {
     ui->setupUi(this);
     advsTimer = new QTimer(this);
