@@ -6,22 +6,22 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About YbCoin</source>
-        <translation>YbCoin에 관하여</translation>
+        <source>About UltraCoin</source>
+        <translation>UltraCoin에 관하여</translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;YbCoin&lt;/b&gt; version</source>
-        <translation>&lt;b&gt; YbCoin &lt;/b&gt; 버전</translation>
+        <source>&lt;b&gt;UltraCoin&lt;/b&gt; version</source>
+        <translation>&lt;b&gt; UltraCoin &lt;/b&gt; 버전</translation>
     </message>
     <message>
         <location line="+41"/>
-        <source>Copyright ? 2013 The YbCoin developers</source>
-        <translation>Copyright ? 2013 The YbCoin developers</translation>
+        <source>Copyright ? 2013 The UltraCoin developers</source>
+        <translation>Copyright ? 2013 The UltraCoin developers</translation>
     </message>
     <message>
-        <source>Copyright © 2013 The YbCoin developers</source>
-        <translation type="obsolete">Copyright © 2013 The YbCoin developers</translation>
+        <source>Copyright © 2013 The UltraCoin developers</source>
+        <translation type="obsolete">Copyright © 2013 The UltraCoin developers</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -47,7 +47,7 @@ This product inOpenSSL Toolkit cludes software developed by the OpenSSL Project 
     </message>
     <message>
         <location line="+6"/>
-        <source>These are your YbCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep 
+        <source>These are your UltraCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep 
 track of who is paying you.</source>
         <translation>이것은 당신이 지불을 받을() 주소입니다. 각 지불자를 추적할 수 있도록 당신이 지불할 때 서로 다른 주소를 제공할 수 있습니다.</translation>
     </message>
@@ -68,7 +68,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+25"/>
-        <source>Sign a message to prove you own a YbCoin address</source>
+        <source>Sign a message to prove you own a UltraCoin address</source>
         <translation>사인 메시지를 보내 당신이 원보폐 주소의 소유자를 증명합니다.</translation>
     </message>
     <message>
@@ -97,8 +97,8 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+11"/>
-        <source>Verify a message to ensure it was signed with a specified YbCoin address</source>
-        <translation>이 메시지를 검증하여 그가 한YbCoin 주소와 사인한 것을 확보합니다.</translation>
+        <source>Verify a message to ensure it was signed with a specified UltraCoin address</source>
+        <translation>이 메시지를 검증하여 그가 한UltraCoin 주소와 사인한 것을 확보합니다.</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -243,7 +243,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+11"/>
-        <source>YbCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <source>UltraCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
         <translation>소프트웨어를 닫고 암호화하는 과정을 완성하겠습니다. 지갑 암호화하기는 만능이 아니여서 컴퓨터가 바이러스에 감영되면 원보폐를 잃어버릴 가능성이 있는 것을 알아야 합니다.</translation>
     </message>
     <message>
@@ -324,8 +324,8 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="-123"/>
-        <source>YbCoin</source>
-        <translation>YbCoin</translation>
+        <source>UltraCoin</source>
+        <translation>UltraCoin</translation>
     </message>
     <message>
         <location line="+124"/>
@@ -344,8 +344,8 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+5"/>
-        <source>Send coins to a YbCoin address</source>
-        <translation>한 YbCoin 주소로 발송합니다. </translation>
+        <source>Send coins to a UltraCoin address</source>
+        <translation>한 UltraCoin 주소로 발송합니다. </translation>
     </message>
     <message>
         <location line="+11"/>
@@ -394,8 +394,8 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Show information about YbCoin</source>
-        <translation>YbCoin 에 관련된 정보 보기</translation>
+        <source>Show information about UltraCoin</source>
+        <translation>UltraCoin 에 관련된 정보 보기</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -414,7 +414,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Modify configuration options for YbCoin</source>
+        <source>Modify configuration options for UltraCoin</source>
         <translation>옵션 설치</translation>
     </message>
     <message>
@@ -435,14 +435,14 @@ track of who is paying you.</source>
     <message>
         <location line="+87"/>
         <location line="+63"/>
-        <source>YbCoin client</source>
-        <translation>YbCoin 클라이언트</translation>
+        <source>UltraCoin client</source>
+        <translation>UltraCoin 클라이언트</translation>
     </message>
     <message numerus="yes">
         <location line="+69"/>
-        <source>%n active connection(s) to YbCoin network</source>
+        <source>%n active connection(s) to UltraCoin network</source>
         <translation>
-            <numerusform>%n 개 YbCoin 인너넷에 접속된 활동 연결</numerusform>
+            <numerusform>%n 개 UltraCoin 인너넷에 접속된 활동 연결</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -474,8 +474,8 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="-11"/>
-        <source>&amp;About YbCoin</source>
-        <translation> YbCoin에 관하여</translation>
+        <source>&amp;About UltraCoin</source>
+        <translation> UltraCoin에 관하여</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -593,12 +593,12 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+16"/>
-        <source>Mining YbCoins at %1 hashes per second</source>
+        <source>Mining UltraCoins at %1 hashes per second</source>
         <translation>현재 %1 hashes/s 으로 채굴중</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>Not mining YbCoins</source>
+        <source>Not mining UltraCoins</source>
         <translation>채굴하지 않음</translation>
     </message>
     <message>
@@ -655,8 +655,8 @@ Address: %4
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid YbCoin address or malformed URI parameters.</source>
-        <translation>URI해석못함！ 한 무효YbCoin주소 또는 틀린URI 변수가 원인일수있음</translation>
+        <source>URI can not be parsed! This can be caused by an invalid UltraCoin address or malformed URI parameters.</source>
+        <translation>URI해석못함！ 한 무효UltraCoin주소 또는 틀린URI 변수가 원인일수있음</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -700,7 +700,7 @@ Address: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+109"/>
-        <source>A fatal error occurred. YbCoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. UltraCoin can no longer continue safely and will quit.</source>
         <translation>치명적 오류발생. 금괴 클라이언트 안전 문제 존재. 종료중.</translation>
     </message>
 </context>
@@ -766,7 +766,7 @@ Address: %4
     </message>
     <message>
         <location line="+5"/>
-        <source>The entered address &quot;%1&quot; is not a valid YbCoin address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid UltraCoin address.</source>
         <translation>당신이 입력한 &quot;%1&quot; 주소는 틀린 원보폐 주소입니다.</translation>
     </message>
     <message>
@@ -785,8 +785,8 @@ Address: %4
     <message>
         <location filename="../guiutil.cpp" line="+419"/>
         <location line="+12"/>
-        <source>YbCoin-Qt</source>
-        <translation>YbCoin-Qt</translation>
+        <source>UltraCoin-Qt</source>
+        <translation>UltraCoin-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -843,8 +843,8 @@ Address: %4
     </message>
     <message>
         <location line="-103"/>
-        <source>pool.ybcoin.com</source>
-        <translation>pool.ybcoin.com</translation>
+        <source>pool.ultracoin.com</source>
+        <translation>pool.ultracoin.com</translation>
     </message>
     <message>
         <location line="+57"/>
@@ -944,7 +944,7 @@ Address: %4
     </message>
     <message>
         <location line="+27"/>
-        <source>Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as YbCoin-Qt.</source>
+        <source>Miner failed to start. Make sure you have the minerd executable and libraries in the same directory as UltraCoin-Qt.</source>
         <translation>채굴 실행을 실패하였습니다.</translation>
     </message>
     <message>
@@ -997,12 +997,12 @@ Address: %4
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start YbCoin after logging in to the system.</source>
+        <source>Automatically start UltraCoin after logging in to the system.</source>
         <translation>시스템 실행후 원보폐 클라이언트 소프트웨어를 자동 실행</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start YbCoin on system login</source>
+        <source>&amp;Start UltraCoin on system login</source>
         <translation>실행시&amp;운영</translation>
     </message>
     <message>
@@ -1022,8 +1022,8 @@ Address: %4
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the YbCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>자동으로 YbCoin의 클라이언트가 사용하는 포트를 열어줍니다. 오직 라우터가 UPnP 지원하고 이미 사용할때만 가능합니다.</translation>
+        <source>Automatically open the UltraCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>자동으로 UltraCoin의 클라이언트가 사용하는 포트를 열어줍니다. 오직 라우터가 UPnP 지원하고 이미 사용할때만 가능합니다.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1032,7 +1032,7 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the YbCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <source>Connect to the UltraCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
         <translation>SOCKS proxy 를 통하여 네트 연결(예： Tor 를 통하여 네트 연결).</translation>
     </message>
     <message>
@@ -1107,13 +1107,13 @@ Address: %4
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting YbCoin.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting UltraCoin.</source>
         <translation>언어 옵션설정. 오직 클라이언트 소프트웨어를 재시동후 유효</translation>
     </message>
     <message>
         <location line="+33"/>
-        <source>Whether to show YbCoin addresses in the transaction list or not.</source>
-        <translation>거래 목록에YbCoin 주소 표시여부</translation>
+        <source>Whether to show UltraCoin addresses in the transaction list or not.</source>
+        <translation>거래 목록에UltraCoin 주소 표시여부</translation>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will only take effect after restarting Bitcoin.</source>
@@ -1122,7 +1122,7 @@ Address: %4
     <message>
         <location line="-22"/>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp; YbCoin 금액 단위:</translation>
+        <translation>&amp; UltraCoin 금액 단위:</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1163,7 +1163,7 @@ Address: %4
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting YbCoin.</source>
+        <source>This setting will take effect after restarting UltraCoin.</source>
         <translation>오직 클라이언트 소프트웨어를 재시동후 유효합니다.</translation>
     </message>
     <message>
@@ -1182,7 +1182,7 @@ Address: %4
     <message>
         <location line="+35"/>
         <location line="+212"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the YbCoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the UltraCoin network after a connection is established, but this process has not completed yet.</source>
         <translation>현재 표시된 메시지는 기한이 초과되었을 것입니다. 금괴 네트워크 노드를 연결한후 당신의 지금은 자동으로 네트워크와 동기화하지만 이 과정은 미완성되었습니다.</translation>
     </message>
     <message>
@@ -1348,13 +1348,13 @@ Address: %4
     </message>
     <message>
         <location line="-10"/>
-        <source>YbCoin - Debug window</source>
-        <translation>YbCoin - 창구 디버그</translation>
+        <source>UltraCoin - Debug window</source>
+        <translation>UltraCoin - 창구 디버그</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>YbCoin Core</source>
-        <translation>YbCoin 커널</translation>
+        <source>UltraCoin Core</source>
+        <translation>UltraCoin 커널</translation>
     </message>
     <message>
         <location line="+53"/>
@@ -1379,7 +1379,7 @@ Address: %4
     <message>
         <location line="+23"/>
         <source>On testnet</source>
-        <translation>현재는 YbCoin 테스트 네트워크</translation>
+        <translation>현재는 UltraCoin 테스트 네트워크</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -1403,8 +1403,8 @@ Address: %4
     </message>
     <message>
         <location line="+49"/>
-        <source>Open the YbCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>현재 문서함에서YbCoin 디버그 로그 파일을 열며 큰 로드 파일은 몇초 정도 걸릴 수 있습니다.</translation>
+        <source>Open the UltraCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>현재 문서함에서UltraCoin 디버그 로그 파일을 열며 큰 로드 파일은 몇초 정도 걸릴 수 있습니다.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1418,8 +1418,8 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the YbCoin-Qt help message to get a list with possible YbCoin command-line options.</source>
-        <translation>YbCoin-Qt 도움 정보중 YbCoin 지원하는 명령줄 옵션이 포함</translation>
+        <source>Show the UltraCoin-Qt help message to get a list with possible UltraCoin command-line options.</source>
+        <translation>UltraCoin-Qt 도움 정보중 UltraCoin 지원하는 명령줄 옵션이 포함</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1448,7 +1448,7 @@ Address: %4
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-33"/>
-        <source>Welcome to the YbCoin RPC console.</source>
+        <source>Welcome to the UltraCoin RPC console.</source>
         <translation>RPC 콘솔에 어서오십시오..</translation>
     </message>
     <message>
@@ -1658,13 +1658,13 @@ Address: %4
         <translation>본 접수자를 제거하기</translation>
     </message>
     <message>
-        <source>Enter a YbCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
-        <translation type="obsolete">YbCoin주소를 입력하십시오 (예: 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</translation>
+        <source>Enter a UltraCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
+        <translation type="obsolete">UltraCoin주소를 입력하십시오 (예: 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</translation>
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a YbCoin address (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
-        <translation>YbCoin주소를 입력하십시오 (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
+        <source>Enter a UltraCoin address (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <translation>UltraCoin주소를 입력하십시오 (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
     </message>
 </context>
 <context>
@@ -1728,8 +1728,8 @@ Address: %4
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this YbCoin address</source>
-        <translation>등록 정보는 당신이 본YbCoin주소의 소유자임을 증명합니다.</translation>
+        <source>Sign the message to prove you own this UltraCoin address</source>
+        <translation>등록 정보는 당신이 본UltraCoin주소의 소유자임을 증명합니다.</translation>
     </message>
     <message>
         <location line="+106"/>
@@ -1738,8 +1738,8 @@ Address: %4
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified YbCoin address</source>
-        <translation>본 메시지를 확인하여YbCoin주소중 서명은 확인 받은것임을 확보하십시오. </translation>
+        <source>Verify the message to ensure it was signed with the specified UltraCoin address</source>
+        <translation>본 메시지를 확인하여UltraCoin주소중 서명은 확인 받은것임을 확보하십시오. </translation>
     </message>
     <message>
         <location line="-129"/>
@@ -1773,7 +1773,7 @@ Address: %4
         <translation> R모든 확인 메시지 란을 비우기</translation>
     </message>
     <message>
-        <source>Enter a YbCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
+        <source>Enter a UltraCoin address (e.g. 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</source>
         <translation type="obsolete">금괴 주소를 입력하십시오(예:) (예: 4Zo1ga6xuKuQ7JV7M9rGDoxdbYwV5zgQJ5)</translation>
     </message>
     <message>
@@ -1783,14 +1783,14 @@ Address: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter YbCoin signature</source>
-        <translation>입렵YbCoin서명</translation>
+        <source>Enter UltraCoin signature</source>
+        <translation>입렵UltraCoin서명</translation>
     </message>
     <message>
         <location line="-4"/>
         <location line="+3"/>
-        <source>Enter a YbCoin address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</source>
-        <translation>YbCoin 주소를 입력(e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</translation>
+        <source>Enter a UltraCoin address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</source>
+        <translation>UltraCoin 주소를 입력(e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</translation>
     </message>
     <message>
         <location line="+83"/>
@@ -2359,8 +2359,8 @@ Address: %4
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+127"/>
-        <source>YbCoin version</source>
-        <translation>YbCoin버전</translation>
+        <source>UltraCoin version</source>
+        <translation>UltraCoin버전</translation>
     </message>
     <message>
         <location line="+39"/>
@@ -2387,12 +2387,12 @@ Address: %4
         <translation>옵션:</translation>
     </message>
     <message>
-        <source>Specify configuration file (default: YbCoin.conf)</source>
-        <translation type="obsolete">구성 파일 지정(기본값: YbCoin.conf))</translation>
+        <source>Specify configuration file (default: UltraCoin.conf)</source>
+        <translation type="obsolete">구성 파일 지정(기본값: UltraCoin.conf))</translation>
     </message>
     <message>
-        <source>Specify pid file (default: YbCoind.pid)</source>
-        <translation type="obsolete">구성 파일 지정(기본값은YbCoind.pid))</translation>
+        <source>Specify pid file (default: UltraCoind.pid)</source>
+        <translation type="obsolete">구성 파일 지정(기본값은UltraCoind.pid))</translation>
     </message>
     <message>
         <location line="-25"/>
@@ -2460,7 +2460,7 @@ Address: %4
         <translation>RPC포트 %u 모니터링 오류</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. YbCoin is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. UltraCoin is probably already running.</source>
         <translation type="obsolete">잠금 파일 취득 실패하였습니다 %s.실행중일것입니다.</translation>
     </message>
     <message>
@@ -2488,13 +2488,13 @@ Address: %4
     </message>
     <message>
         <location line="+13"/>
-        <source>Unable to bind to %s on this computer. YbCoin is probably already running.</source>
-        <translation>%s 에 바인딩을 실패하였습니다. YbCoin는 운영중에 있을것입니다.</translation>
+        <source>Unable to bind to %s on this computer. UltraCoin is probably already running.</source>
+        <translation>%s 에 바인딩을 실패하였습니다. UltraCoin는 운영중에 있을것입니다.</translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong YbCoin will not work properly.</source>
-        <translation>경고: 당신의 컴퓨터 일자 및 시간의 정확 여부를 확인하십시오! 만약 틀린경우,YbCoin는 정상적으로 작업할 수 없습니다.</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong UltraCoin will not work properly.</source>
+        <translation>경고: 당신의 컴퓨터 일자 및 시간의 정확 여부를 확인하십시오! 만약 틀린경우,UltraCoin는 정상적으로 작업할 수 없습니다.</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -2570,7 +2570,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+3"/>
-        <source>Cannot obtain a lock on data directory %s.  YbCoin is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s.  UltraCoin is probably already running.</source>
         <translation>잠금 파일 취득 실패하였습니다 %s.실행중일것입니다.</translation>
     </message>
     <message>
@@ -2644,8 +2644,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+6"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of YbCoin</source>
-        <translation>wallet.dat포트 로드 실패: 지갑은 YbCoin버전 업데이트가 필요합니다.</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of UltraCoin</source>
+        <translation>wallet.dat포트 로드 실패: 지갑은 UltraCoin버전 업데이트가 필요합니다.</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2694,8 +2694,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+11"/>
-        <source>YbCoin</source>
-        <translation>YbCoin</translation>
+        <source>UltraCoin</source>
+        <translation>UltraCoin</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2729,8 +2729,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+1"/>
-        <source>Send command to -server or ybcoind</source>
-        <translation> -server또는ybcoind 에게 명령을 발송</translation>
+        <source>Send command to -server or ultracoind</source>
+        <translation> -server또는ultracoind 에게 명령을 발송</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2769,8 +2769,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+1"/>
-        <source>Specify configuration file (default: ybcoin.conf)</source>
-        <translation>구성파일을 지정(기본값:ybcoin.conf)</translation>
+        <source>Specify configuration file (default: ultracoin.conf)</source>
+        <translation>구성파일을 지정(기본값:ultracoin.conf)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2779,8 +2779,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+2"/>
-        <source>Specify pid file (default: ybcoind.pid)</source>
-        <translation>pid 파일 지정 (기본값: ybcoind.pid)</translation>
+        <source>Specify pid file (default: ultracoind.pid)</source>
+        <translation>pid 파일 지정 (기본값: ultracoind.pid)</translation>
     </message>
     <message>
         <source>Unable to sign checkpoint, wrong checkpointkey?</source>
@@ -2813,8 +2813,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart YbCoin to complete</source>
-        <translation>지갑은 재입력이 필요함:YbCoin를 재시동하여 작업을 완성하기</translation>
+        <source>Wallet needed to be rewritten: restart UltraCoin to complete</source>
+        <translation>지갑은 재입력이 필요함:UltraCoin를 재시동하여 작업을 완성하기</translation>
     </message>
     <message>
         <location line="+1"/>

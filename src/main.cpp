@@ -71,7 +71,7 @@ map<uint256, map<uint256, CDataStream*> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "YbCoin Signed Message:\n";
+const string strMessageMagic = "UltraCoin Signed Message:\n";
 
 double dHashesPerSec;
 int64 nHPSTimerStart;
@@ -975,7 +975,7 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan)
     return pblockOrphan->hashPrevBlock;
 }
 
-// ybcoin: increasing Nfactor gradually
+// ultracoin: increasing Nfactor gradually
 const unsigned char minNfactor = 4;
 const unsigned char maxNfactor = 30;
 
@@ -1019,7 +1019,7 @@ int64 GetProofOfWorkReward(unsigned int nBits, int nHeight)
     CBigNum bnTargetLimit = bnProofOfWorkLimit;
     bnTargetLimit.SetCompact(bnTargetLimit.GetCompact());
 
-    // YbCoin: subsidy is cut in half every 64x multiply of PoW difficulty
+    // UltraCoin: subsidy is cut in half every 64x multiply of PoW difficulty
     // A reasonably continuous curve is used to avoid shock to market
     // (nSubsidyLimit / nSubsidy) ** 6 == bnProofOfWorkLimit / bnTarget
     //
@@ -1564,8 +1564,8 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
     // Now that the whole chain is irreversibly beyond that time it is applied to all blocks except the
     // two in the chain that violate it. This prevents exploiting the issue against nodes in their
     // initial block download.
-    bool fEnforceBIP30 = true; // Always active in YbCoin
-    bool fStrictPayToScriptHash = true; // Always active in YbCoin
+    bool fEnforceBIP30 = true; // Always active in UltraCoin
+    bool fStrictPayToScriptHash = true; // Always active in UltraCoin
 
     //// issue here: it doesn't know the version
     unsigned int nTxPos;
@@ -2527,7 +2527,7 @@ bool CheckDiskSpace(uint64 nAdditionalBytes)
         string strMessage = _("Warning: Disk space is low!");
         strMiscWarning = strMessage;
         printf("*** %s\n", strMessage.c_str());
-        uiInterface.ThreadSafeMessageBox(strMessage, "YbCoin", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+        uiInterface.ThreadSafeMessageBox(strMessage, "UltraCoin", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
         StartShutdown();
         return false;
     }

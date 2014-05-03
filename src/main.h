@@ -125,7 +125,7 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan);
 const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfStake);
 void BitcoinMiner(CWallet *pwallet, bool fProofOfStake);
 void ResendWalletTransactions();
-// ybcoin: calculate Nfactor using timestamp
+// ultracoin: calculate Nfactor using timestamp
 unsigned char GetNfactor(int64 nTimestamp);
 
 
@@ -989,7 +989,7 @@ public:
     // ppcoin: entropy bit for stake modifier if chosen by modifier
     unsigned int GetStakeEntropyBit(unsigned int nHeight) const
     {
-        // Protocol switch to support p2pool at ybcoin block #9689
+        // Protocol switch to support p2pool at ultracoin block #9689
         //if (nHeight >= 9689)
         {
             // Take last bit of block hash as entropy bit
@@ -998,7 +998,7 @@ public:
                 printf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, GetHash().ToString().c_str(), nEntropyBit);
             return nEntropyBit;
         }
-        /*// Before ybcoin block #9689 - old protocol
+        /*// Before ultracoin block #9689 - old protocol
         uint160 hashSig = Hash160(vchBlockSig);
         if (fDebug && GetBoolArg("-printstakemodifier"))
             printf("GetStakeEntropyBit: hashSig=%s", hashSig.ToString().c_str());

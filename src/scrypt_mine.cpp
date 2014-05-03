@@ -50,7 +50,7 @@ extern uint32_t nTransactionsUpdated;
 #if defined(__x86_64__)
 
 //#define SCRYPT_3WAY
-// ybcoin: using scrypt-jane instead
+// ultracoin: using scrypt-jane instead
 
 #define SCRYPT_BUFFER_SIZE (3 * 131072 + 63)
 
