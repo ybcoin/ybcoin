@@ -1601,7 +1601,7 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
 
     // ppcoin: track money supply and mint amount info
     pindex->nMint = nValueOut - nValueIn + nFees;
-    if(IsProofOfWork() && pindex->nMint > GetProofOfWorkReward(pindex->nBits,pindex->nHeight)){
+    if(IsProofOfWork() && pindex->nMint > GetProofOfWorkReward(pindex->nHeight, prevHash)){
         return DoS(100, error("ConnectBlock() : coinbase pays too much (actual=%"PRI64d" vs limit=%"PRI64d")", pindex->nMint, GetProofOfWorkReward(pindex->nBits,pindex->nHeight)));
     }
     pindex->nMoneySupply = (pindex->pprev? pindex->pprev->nMoneySupply : 0) + nValueOut - nValueIn;
