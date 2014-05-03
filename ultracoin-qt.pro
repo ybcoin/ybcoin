@@ -1,6 +1,6 @@
 QT += core gui network
 TEMPLATE = app
-TARGET = ybcoin-qt
+TARGET = ultracoin-qt
 VERSION = 0.4.2
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE SCRYPT_CHACHA SCRYPT_KECCAK512 #CPU_X86_FORCE_INTRINSICS __MINGW64__ BOOST_USE_WINDOWS_H
@@ -380,7 +380,7 @@ macx:OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm
 macx:LIBS += -framework Foundation -framework ApplicationServices -framework AppKit
 macx:DEFINES += MAC_OSX MSG_NOSIGNAL=0
 macx:ICON = src/qt/res/icons/bitcoin.icns
-macx:TARGET = "YbCoin-Qt"
+macx:TARGET = "UltraCoin-Qt"
 macx:QMAKE_CFLAGS_THREAD += -pthread
 macx:QMAKE_LFLAGS_THREAD += -pthread
 macx:QMAKE_CXXFLAGS_THREAD += -pthread

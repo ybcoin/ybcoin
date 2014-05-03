@@ -1,6 +1,6 @@
-YbCoin official development tree
+UltraCoin official development tree
 
-YbCoin - a hybrid scrypt PoW + PoS based cryptocurrency, forked from yacoin
+UltraCoin - a hybrid scrypt PoW + PoS based cryptocurrency, forked from yacoin
 
 * Uses the scrypt + chacha20/8 (N,1,1) hashing algorithm.
 * N increases over time to increase memory requirements.
@@ -8,7 +8,7 @@ YbCoin - a hybrid scrypt PoW + PoS based cryptocurrency, forked from yacoin
 * Maximum PoW reward is 10 coins
 
 the offical website is located at:
-http://www.ybcoin.org/
+http://www.ultracoin.org/
 
 Development process
 ===========================
@@ -23,7 +23,7 @@ or are controversial.
 
 The master branch is regularly built and tested, but is not guaranteed
 to be completely stable. Tags are regularly created to indicate new
-official, stable release versions of YbCoin.
+official, stable release versions of UltraCoin.
 
 Feature branches are created when there are major new features being
 worked on by several people.

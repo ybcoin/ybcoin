@@ -1,4 +1,4 @@
-// Copyright (c) 2013 YbCoin Developers
+// Copyright (c) 2013 UltraCoin Developers
 
 #ifndef PBKDF2_H
 #define PBKDF2_H

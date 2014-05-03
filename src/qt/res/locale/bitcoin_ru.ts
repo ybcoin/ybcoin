@@ -2157,13 +2157,13 @@ Address: %4
     </message>
     <message>
         <location line="+23"/>
-        <source>Specify configuration file (default: ybcoin.conf)</source>
-        <translation>Указать конфигурационный файл (по умолчанию: ybcoin.conf)</translation>
+        <source>Specify configuration file (default: ultracoin.conf)</source>
+        <translation>Указать конфигурационный файл (по умолчанию: ultracoin.conf)</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Specify pid file (default: ybcoind.pid)</source>
-        <translation>Указать pid-файл (по умолчанию: ybcoin.pid)</translation>
+        <source>Specify pid file (default: ultracoind.pid)</source>
+        <translation>Указать pid-файл (по умолчанию: ultracoin.pid)</translation>
     </message>
     <message>
         <location line="-47"/>
