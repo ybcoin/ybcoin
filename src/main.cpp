@@ -1598,7 +1598,12 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
 
         mapQueuedChanges[hashTx] = CTxIndex(posThisTx, tx.vout.size());
     }
-
+          uint256 prevHash = 0;
+        if(pindex->pprev)
+        {
+                prevHash = pindex->pprev->GetBlockHash();
+                // printf("==> Got prevHash = %s\n", prevHash.ToString().c_str());
+        }
     // ppcoin: track money supply and mint amount info
     pindex->nMint = nValueOut - nValueIn + nFees;
     if(IsProofOfWork() && pindex->nMint > GetProofOfWorkReward(pindex->nHeight, prevHash)){
