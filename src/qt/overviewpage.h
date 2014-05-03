@@ -60,6 +60,7 @@ private:
 private:
     void clearAdvs();
 private slots:
+    void on_checkBox_stateChanged(int ckState);
     void updateDisplayUnit();
     void handleTransactionClicked(const QModelIndex &index);
     void handleLoadAdvsFinished(QNetworkReply* reply);
