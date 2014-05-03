@@ -2456,7 +2456,7 @@ Address: %4
     </message>
     <message>
         <location line="+5"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8344 or testnet: 18344)</source>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 44101 or testnet: 44201)</source>
         <translation>JSON-RPC连接监听&lt;端口&gt; (默认为 8332)</translation>
     </message>
     <message>

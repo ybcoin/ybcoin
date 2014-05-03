@@ -2482,9 +2482,9 @@ Address: %4
         <translation>오류: 잠그지않은 지갑은 마인딩만 가능하며 거래를 구성할수없습니다.</translation>
     </message>
     <message>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8344 or testnet: 18344)
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 44101 or testnet: 44201)
 			</source>
-        <translation type="obsolete">JSON-RPC연결 모니터링 &lt;포트&gt; (기본값은 8332 혹은 testnet: 18344)</translation>
+        <translation type="obsolete">JSON-RPC연결 모니터링 &lt;포트&gt; (기본값은 8332 혹은 testnet: 44201)</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -2590,8 +2590,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location line="+8"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8344 or testnet: 18344)</source>
-        <translation>JSON-RPC연결 모니터링 &lt;포트&gt; (기본값은 8332 혹은 testnet: 18344)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 44101 or testnet: 44201)</source>
+        <translation>JSON-RPC연결 모니터링 &lt;포트&gt; (기본값은 8332 혹은 testnet: 44201)</translation>
     </message>
     <message>
         <location line="+5"/>
