@@ -127,7 +127,7 @@ OverviewPage::OverviewPage(QWidget *parent) :
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
     // This should be bool->bool or int->int, but it works so....
-     connect(ui->checkBox, SIGNAL(clicked(bool)), this, SLOT(on_checkBox_stateChanged(int)));
+    connect(ui->checkBox, SIGNAL(toggled(bool)), this, SLOT(checkBox_toggled(bool)));
     advsTimer->start(6*1000);
 }
 
@@ -218,10 +218,10 @@ void OverviewPage::showOutOfSyncWarning(bool fShow)
     ui->labelWalletStatus->setVisible(fShow);
     ui->labelTransactionsStatus->setVisible(fShow);
 }
-void OverviewPage::on_checkBox_stateChanged(int ckState)
+void OverviewPage::checkBox_toggled(bool checked)
  {
  
-     if ((ckState == Qt::Unchecked) && (fWalletUnlockMintOnly))
+     if ((!checked) && (fWalletUnlockMintOnly))
    {
  
          fWalletUnlockMintOnly = false;
@@ -230,7 +230,7 @@ void OverviewPage::on_checkBox_stateChanged(int ckState)
  
    }
  
-       if (ckState == Qt::Checked)
+       if (checked)
      {
  
                  WalletModel::UnlockContextStake ctx(model->requestUnlockStake());
