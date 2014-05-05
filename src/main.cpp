@@ -2142,6 +2142,14 @@ bool CBlock::AcceptBlock()
         return DoS(10, error("AcceptBlock() : prev block not found"));
     CBlockIndex* pindexPrev = (*mi).second;
     int nHeight = pindexPrev->nHeight+1;
+    
+    // block proof of work after POW Cutoff Height
+    if (IsProofOfWork() && nHeight > POW_CUTOFF_HEIGHT)
+    return DoS(100, error("AcceptBlock() : No proof-of-work allowed anymore (height = %d)", nHeight));
+     
+    //block proof of stake before POS Start Height
+    if (IsProofOfStake() && nHeight < POS_START_HEIGHT)
+    return DoS(100, error("AcceptBlock() : No proof-of-stake not yet allowed (height = %d)", nHeight));
 
     // Check proof-of-work or proof-of-stake
     if (nBits != GetNextTargetRequired(pindexPrev, IsProofOfStake()))
