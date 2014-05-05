@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>573</width>
-    <height>342</height>
+    <height>425</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -240,6 +240,16 @@
          </property>
         </spacer>
        </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="../bitcoin.qrc">:/icons/res/icons/ultracoin-256.png</pixmap>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
@@ -368,6 +378,8 @@
   </layout>
   <zorder></zorder>
  </widget>
- <resources/>
+ <resources>
+ <include location="../bitcoin.qrc"/>
+ </resources>
  <connections/>
 </ui>
