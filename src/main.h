@@ -10,7 +10,6 @@
 #include "net.h"
 #include "script.h"
 #include "scrypt_mine.h"
-
 #include <list>
 
 class CWallet;
@@ -19,22 +18,22 @@ class CBlockIndex;
 class CKeyItem;
 class CReserveKey;
 class COutPoint;
-
 class CAddress;
 class CInv;
 class CRequestTracker;
 class CNode;
-
+define POW_CUTOFF_HEIGHT 30001000; // define last POW Block
+define POS_START_HEIGHT 30000000; // add POS Switch Start Block
 static const int nConsecutiveStakeSwitchHeight = 50000000;// We want POS to be continuous after POS only implementation
 static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
-static const unsigned int MAX_INV_SZ = 50000;
-static const int64 MIN_TX_FEE = .001 * CENT;
-static const int64 MIN_RELAY_TX_FEE = .001 * CENT;
-static const int64 MAX_MONEY = 100000000 * COIN;
-static const int64 MAX_MINT_PROOF_OF_WORK = 50 * COIN;
+static const unsigned int MAX_INV_SZ = 50000; 
+static const int64 MIN_TX_FEE = .001 * CENT; // Minimum Transaction Fee
+static const int64 MIN_RELAY_TX_FEE = .001 * CENT; // Minimum Transaction Relay Fee
+static const int64 MAX_MONEY = 100000000 * COIN; //Max Money Supply
+static const int64 MAX_MINT_PROOF_OF_WORK = 50 * COIN; // Max Mint POW
 static const int64 MIN_TXOUT_AMOUNT = MIN_TX_FEE;
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
@@ -47,14 +46,12 @@ static const int fHaveUPnP = true;
 static const int fHaveUPnP = false;
 #endif
 
-static const uint256 hashGenesisBlockOfficial("0x00000957baeb013a79e5d1fa0b8f69ab2e926ea86d392f6a1733eb4054945aee");
-static const uint256 hashGenesisBlockTestNet("0x00000957baeb013a79e5d1fa0b8f69ab2e926ea86d392f6a1733eb4054945aee");
+static const uint256 hashGenesisBlockOfficial("0x00000957baeb013a79e5d1fa0b8f69ab2e926ea86d392f6a1733eb4054945aee"); // Hash Genesis Block
+static const uint256 hashGenesisBlockTestNet("0x00000957baeb013a79e5d1fa0b8f69ab2e926ea86d392f6a1733eb4054945aee"); // Hash Testnet Block
 
 static const int64 nMaxClockDrift = 2 * 60 * 60;        // two hours
 
 extern CScript COINBASE_FLAGS;
-
-
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;
 extern std::set<std::pair<COutPoint, unsigned int> > setStakeSeen;
@@ -127,11 +124,6 @@ void ResendWalletTransactions();
 unsigned char GetNfactor(int64 nTimestamp);
 
 
-
-
-
-
-
 bool GetWalletFile(CWallet* pwallet, std::string &strWalletFileOut);
 
 /** Position on disk for a particular transaction. */
@@ -186,7 +178,6 @@ public:
 };
 
 
-
 /** An inpoint - a combination of a transaction and an index n into its vin */
 class CInPoint
 {
@@ -199,7 +190,6 @@ public:
     void SetNull() { ptx = NULL; n = (unsigned int) -1; }
     bool IsNull() const { return (ptx == NULL && n == (unsigned int) -1); }
 };
-
 
 
 /** An outpoint - a combination of a transaction hash and an index n into its vout */
@@ -240,8 +230,6 @@ public:
         printf("%s\n", ToString().c_str());
     }
 };
-
-
 
 
 /** An input of a transaction.  It contains the location of the previous
@@ -323,8 +311,6 @@ public:
         printf("%s\n", ToString().c_str());
     }
 };
-
-
 
 
 /** An output of a transaction.  It contains the public key that the next input
@@ -411,8 +397,6 @@ public:
 };
 
 
-
-
 enum GetMinFee_mode
 {
     GMF_BLOCK,
@@ -421,6 +405,7 @@ enum GetMinFee_mode
 };
 
 typedef std::map<uint256, std::pair<CTxIndex, CTransaction> > MapPrevTx;
+
 
 /** The basic transaction that is broadcasted on the network and contained in
  * blocks.  A transaction can contain multiple inputs and outputs.
@@ -706,9 +691,6 @@ protected:
 };
 
 
-
-
-
 /** A transaction with a merkle branch linking it to the block chain. */
 class CMerkleTx : public CTransaction
 {
@@ -738,7 +720,6 @@ public:
         fMerkleVerified = false;
     }
 
-
     IMPLEMENT_SERIALIZE
     (
         nSerSize += SerReadWrite(s, *(CTransaction*)this, nType, nVersion, ser_action);
@@ -748,7 +729,6 @@ public:
         READWRITE(nIndex);
     )
 
-
     int SetMerkleBranch(const CBlock* pblock=NULL);
     int GetDepthInMainChain(CBlockIndex* &pindexRet) const;
     int GetDepthInMainChain() const { CBlockIndex *pindexRet; return GetDepthInMainChain(pindexRet); }
@@ -757,8 +737,6 @@ public:
     bool AcceptToMemoryPool(CTxDB& txdb, bool fCheckInputs=true);
     bool AcceptToMemoryPool();
 };
-
-
 
 
 /**  A txdb record that contains the disk location of a transaction and the
@@ -1172,10 +1150,6 @@ public:
 private:
     bool SetBestChainInner(CTxDB& txdb, CBlockIndex *pindexNew);
 };
-
-
-
-
 
 
 /** The block chain is a tree shaped structure starting with the
