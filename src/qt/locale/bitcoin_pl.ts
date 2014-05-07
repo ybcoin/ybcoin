@@ -6,18 +6,18 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About QQC</source>
-        <translation>About QQC</translation>
+        <source>About UTC</source>
+        <translation>About UTC</translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;QQC&lt;/b&gt; version</source>
-        <translation>&lt;b&gt;QQC&lt;/b&gt; version</translation>
+        <source>&lt;b&gt;UTC&lt;/b&gt; version</source>
+        <translation>&lt;b&gt;UTC&lt;/b&gt; version</translation>
     </message>
     <message>
         <location line="+41"/>
-        <source>Copyright © 2009-2012 The QQC developers</source>
-        <translation>Copyright © 2009-2012 The QQC developers</translation>
+        <source>Copyright © 2009-2012 The UTC developers</source>
+        <translation>Copyright © 2009-2012 The UTC developers</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -64,8 +64,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-46"/>
-        <source>These are your QQC addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>Tutaj znajdują się twoje adresy QQC do odbioru płatności. Możesz nadać oddzielne adresy dla każdego z wysyłających monety, żeby śledzić oddzielnie ich opłaty.</translation>
+        <source>These are your UTC addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation>Tutaj znajdują się twoje adresy UTC do odbioru płatności. Możesz nadać oddzielne adresy dla każdego z wysyłających monety, żeby śledzić oddzielnie ich opłaty.</translation>
     </message>
     <message>
         <location line="+60"/>
@@ -79,7 +79,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+11"/>
-        <source>Sign a message to prove you own a QQC address</source>
+        <source>Sign a message to prove you own a UTC address</source>
         <translation>Podpisz wiadomość aby dowieść, że ten adres jest twój</translation>
     </message>
     <message>
@@ -94,8 +94,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-14"/>
-        <source>Verify a message to ensure it was signed with a specified QQC address</source>
-        <translation>Sprawdzenia wiadomości, aby zapewnić, że została podpisana z określonego adresu QQC</translation>
+        <source>Verify a message to ensure it was signed with a specified UTC address</source>
+        <translation>Sprawdzenia wiadomości, aby zapewnić, że została podpisana z określonego adresu UTC</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -253,8 +253,8 @@ Czy na pewno chcesz zaszyfrować swój portfel?</translation>
     </message>
     <message>
         <location line="-56"/>
-        <source>QQC will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation>QQC zamknie się teraz, aby zakończyć proces szyfrowania. Pamiętaj, że szyfrowanie portfela nie może w pełni chronić monety przed kradzieżą przez malware zainfekowaniu komputera.</translation>
+        <source>UTC will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <translation>UTC zamknie się teraz, aby zakończyć proces szyfrowania. Pamiętaj, że szyfrowanie portfela nie może w pełni chronić monety przed kradzieżą przez malware zainfekowaniu komputera.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -367,8 +367,8 @@ Czy na pewno chcesz zaszyfrować swój portfel?</translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>Show information about QQC</source>
-        <translation>Pokaż informację o QQC</translation>
+        <source>Show information about UTC</source>
+        <translation>Pokaż informację o UTC</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -420,13 +420,13 @@ Czy na pewno chcesz zaszyfrować swój portfel?</translation>
     </message>
     <message>
         <location line="-58"/>
-        <source>Send coins to a QQC address</source>
-        <translation>Wyślij monety na adres QQC</translation>
+        <source>Send coins to a UTC address</source>
+        <translation>Wyślij monety na adres UTC</translation>
     </message>
     <message>
         <location line="+45"/>
-        <source>Modify configuration options for QQC</source>
-        <translation>Zmienia opcje konfiguracji QQC</translation>
+        <source>Modify configuration options for UTC</source>
+        <translation>Zmienia opcje konfiguracji UTC</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -465,8 +465,8 @@ Czy na pewno chcesz zaszyfrować swój portfel?</translation>
     </message>
     <message>
         <location line="-186"/>
-        <source>QQC</source>
-        <translation>QQC</translation>
+        <source>UTC</source>
+        <translation>UTC</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -475,8 +475,8 @@ Czy na pewno chcesz zaszyfrować swój portfel?</translation>
     </message>
     <message>
         <location line="+168"/>
-        <source>&amp;About QQC</source>
-        <translation>&amp;O QQC</translation>
+        <source>&amp;About UTC</source>
+        <translation>&amp;O UTC</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -517,15 +517,15 @@ Czy na pewno chcesz zaszyfrować swój portfel?</translation>
     <message>
         <location line="+0"/>
         <location line="+60"/>
-        <source>QQC client</source>
-        <translation>QQC client</translation>
+        <source>UTC client</source>
+        <translation>UTC client</translation>
     </message>
     <message numerus="yes">
         <location line="+69"/>
-        <source>%n active connection(s) to QQC network</source>
+        <source>%n active connection(s) to UTC network</source>
         <translation>
-            <numerusform>%n aktywne połączenie do sieci QQC</numerusform>
-            <numerusform>%n aktywne połączenie do sieci QQC</numerusform>
+            <numerusform>%n aktywne połączenie do sieci UTC</numerusform>
+            <numerusform>%n aktywne połączenie do sieci UTC</numerusform>
         </translation>
     </message>
     <message>
@@ -622,8 +622,8 @@ Adres: %4
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid QQC address or malformed URI parameters.</source>
-        <translation>URI nie może być analizowany! Może to być spowodowane nieprawidłowym adresem QQC lub zniekształconych parametrów URI.</translation>
+        <source>URI can not be parsed! This can be caused by an invalid UTC address or malformed URI parameters.</source>
+        <translation>URI nie może być analizowany! Może to być spowodowane nieprawidłowym adresem UTC lub zniekształconych parametrów URI.</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -657,8 +657,8 @@ Adres: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+109"/>
-        <source>A fatal error occurred. QQC can no longer continue safely and will quit.</source>
-        <translation>Wystąpił błąd krytyczny. QQC nie może dłużej kontynuować bezpiecznie i wyjdzie.</translation>
+        <source>A fatal error occurred. UTC can no longer continue safely and will quit.</source>
+        <translation>Wystąpił błąd krytyczny. UTC nie może dłużej kontynuować bezpiecznie i wyjdzie.</translation>
     </message>
 </context>
 <context>
@@ -723,8 +723,8 @@ Adres: %4
     </message>
     <message>
         <location line="+5"/>
-        <source>The entered address &quot;%1&quot; is not a valid QQC address.</source>
-        <translation>Wprowadzony adres &quot;%1&quot; nie jest prawidłowym adresem QQC.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid UTC address.</source>
+        <translation>Wprowadzony adres &quot;%1&quot; nie jest prawidłowym adresem UTC.</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -742,8 +742,8 @@ Adres: %4
     <message>
         <location filename="../guiutil.cpp" line="+419"/>
         <location line="+12"/>
-        <source>QQC-Qt</source>
-        <translation>QQC-Qt</translation>
+        <source>UTC-Qt</source>
+        <translation>UTC-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -805,13 +805,13 @@ Adres: %4
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start QQC after logging in to the system.</source>
-        <translation>Automatyczne uruchamia QQC po włączeniu komputera</translation>
+        <source>Automatically start UTC after logging in to the system.</source>
+        <translation>Automatyczne uruchamia UTC po włączeniu komputera</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start QQC on system login</source>
-        <translation>Zacznij QQC przy logowaniu systemu</translation>
+        <source>&amp;Start UTC on system login</source>
+        <translation>Zacznij UTC przy logowaniu systemu</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -830,8 +830,8 @@ Adres: %4
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the QQC client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatycznie otwiera port klienta QQC na routerze. Ta opcja dzieła tylko jeśli twój router wspiera UPnP i jest ono włączone.</translation>
+        <source>Automatically open the UTC client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatycznie otwiera port klienta UTC na routerze. Ta opcja dzieła tylko jeśli twój router wspiera UPnP i jest ono włączone.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -840,8 +840,8 @@ Adres: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the QQC network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation>Łączy się z siecią QQC przez proxy SOCKS4 (np. kiedy łączysz się przez Tor).</translation>
+        <source>Connect to the UTC network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <translation>Łączy się z siecią UTC przez proxy SOCKS4 (np. kiedy łączysz się przez Tor).</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -915,8 +915,8 @@ Adres: %4
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting QQC.</source>
-        <translation>Język interfejsu użytkownika można tu ustawić. Ustawienie zacznie obowiązywać po ponownym uruchomieniu QQC.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting UTC.</source>
+        <translation>Język interfejsu użytkownika można tu ustawić. Ustawienie zacznie obowiązywać po ponownym uruchomieniu UTC.</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -930,8 +930,8 @@ Adres: %4
     </message>
     <message>
         <location line="+9"/>
-        <source>Whether to show QQC addresses in the transaction list or not.</source>
-        <translation>Czy pokazać adresy QQC w wykazie transakcji, czy też nie.</translation>
+        <source>Whether to show UTC addresses in the transaction list or not.</source>
+        <translation>Czy pokazać adresy UTC w wykazie transakcji, czy też nie.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -967,8 +967,8 @@ Adres: %4
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting QQC.</source>
-        <translation>Ustawienie zacznie obowiązywać po ponownym uruchomieniu QQC.</translation>
+        <source>This setting will take effect after restarting UTC.</source>
+        <translation>Ustawienie zacznie obowiązywać po ponownym uruchomieniu UTC.</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -986,8 +986,8 @@ Adres: %4
     <message>
         <location line="+33"/>
         <location line="+183"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the QQC network after a connection is established, but this process has not completed yet.</source>
-        <translation>Wyświetlane informacje mogą być nieaktualne. Twój portfel automatycznie synchronizuje się z siecią QQC po nawiązaniu połączenia, ale proces ten nie został jeszcze zakończony.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the UTC network after a connection is established, but this process has not completed yet.</source>
+        <translation>Wyświetlane informacje mogą być nieaktualne. Twój portfel automatycznie synchronizuje się z siecią UTC po nawiązaniu połączenia, ale proces ten nie został jeszcze zakończony.</translation>
     </message>
     <message>
         <location line="-141"/>
@@ -1202,8 +1202,8 @@ Adres: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the QQC-Qt help message to get a list with possible QQC command-line options.</source>
-        <translation>Pokaż komunikat pomocy QQC-Qt, aby uzyskać listę możliwych opcji QQC z wiersza poleceń.</translation>
+        <source>Show the UTC-Qt help message to get a list with possible UTC command-line options.</source>
+        <translation>Pokaż komunikat pomocy UTC-Qt, aby uzyskać listę możliwych opcji UTC z wiersza poleceń.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1222,13 +1222,13 @@ Adres: %4
     </message>
     <message>
         <location line="-104"/>
-        <source>QQC - Debug window</source>
-        <translation>QQC - Okno debugowania</translation>
+        <source>UTC - Debug window</source>
+        <translation>UTC - Okno debugowania</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>QQC Core</source>
-        <translation>QQC Core</translation>
+        <source>UTC Core</source>
+        <translation>UTC Core</translation>
     </message>
     <message>
         <location line="+279"/>
@@ -1237,8 +1237,8 @@ Adres: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Open the QQC debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Otwórz plik dziennika QQC debug z bieżącego katalogu danych. Może to zająć kilka sekund dla dużych plików dziennika.</translation>
+        <source>Open the UTC debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Otwórz plik dziennika UTC debug z bieżącego katalogu danych. Może to zająć kilka sekund dla dużych plików dziennika.</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1247,8 +1247,8 @@ Adres: %4
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-33"/>
-        <source>Welcome to the QQC RPC console.</source>
-        <translation>Zapraszamy do konsoli QQC RPC.</translation>
+        <source>Welcome to the UTC RPC console.</source>
+        <translation>Zapraszamy do konsoli UTC RPC.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1303,7 +1303,7 @@ Adres: %4
     <message>
         <location line="+10"/>
         <source>123.456 BTC</source>
-        <translation>123.456 QQC</translation>
+        <translation>123.456 UTC</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -1431,8 +1431,8 @@ Adres: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a QQC address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</source>
-        <translation>Wprowadź adres QQC (np. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</translation>
+        <source>Enter a UTC address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</source>
+        <translation>Wprowadź adres UTC (np. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</translation>
     </message>
 </context>
 <context>
@@ -1492,7 +1492,7 @@ Adres: %4
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this QQC address</source>
+        <source>Sign the message to prove you own this UTC address</source>
         <translation>Podpisz wiadomość aby dowieść, że ten adres jest twój</translation>
     </message>
     <message>
@@ -1524,8 +1524,8 @@ Adres: %4
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified QQC address</source>
-        <translation>Sprawdź, czy wiadomość w celu zapewnienia, że została podpisana z określonego adresu QQC</translation>
+        <source>Verify the message to ensure it was signed with the specified UTC address</source>
+        <translation>Sprawdź, czy wiadomość w celu zapewnienia, że została podpisana z określonego adresu UTC</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -1535,8 +1535,8 @@ Adres: %4
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a QQC address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</source>
-        <translation>Wpisz adres QQC (np. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</translation>
+        <source>Enter a UTC address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</source>
+        <translation>Wpisz adres UTC (np. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</translation>
     </message>
     <message>
         <location line="-2"/>
@@ -1545,8 +1545,8 @@ Adres: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter QQC signature</source>
-        <translation>Wprowadź QQC podpis</translation>
+        <source>Enter UTC signature</source>
+        <translation>Wprowadź UTC podpis</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -2116,8 +2116,8 @@ Adres: %4
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+82"/>
-        <source>QQC version</source>
-        <translation>Wersja QQC</translation>
+        <source>UTC version</source>
+        <translation>Wersja UTC</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -2146,13 +2146,13 @@ Adres: %4
     </message>
     <message>
         <location line="+23"/>
-        <source>Specify configuration file (default: QQC.conf)</source>
-        <translation>Wskaż plik konfiguracyjny (domyślnie: QQC.conf)</translation>
+        <source>Specify configuration file (default: UTC.conf)</source>
+        <translation>Wskaż plik konfiguracyjny (domyślnie: UTC.conf)</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Specify pid file (default: QQCd.pid)</source>
-        <translation>Wskaż plik pid (domyślnie: QQCd.pid)</translation>
+        <source>Specify pid file (default: UTCd.pid)</source>
+        <translation>Wskaż plik pid (domyślnie: UTCd.pid)</translation>
     </message>
     <message>
         <location line="-47"/>
@@ -2306,8 +2306,8 @@ Adres: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong QQC will not work properly.</source>
-        <translation>Uwaga: Proszę sprawdzić, czy data i godzina komputera&apos;s są poprawne! Jeśli zegar jest źle QQC nie będzie działać poprawnie.</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong UTC will not work properly.</source>
+        <translation>Uwaga: Proszę sprawdzić, czy data i godzina komputera&apos;s są poprawne! Jeśli zegar jest źle UTC nie będzie działać poprawnie.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2541,13 +2541,13 @@ Adres: %4
     </message>
     <message>
         <location line="-131"/>
-        <source>Cannot obtain a lock on data directory %s.  QQC is probably already running.</source>
-        <translation>Nie można zablokować folderu danych %s. QQC prawdopodobnie już działa.</translation>
+        <source>Cannot obtain a lock on data directory %s.  UTC is probably already running.</source>
+        <translation>Nie można zablokować folderu danych %s. UTC prawdopodobnie już działa.</translation>
     </message>
     <message>
         <location line="+57"/>
-        <source>QQC</source>
-        <translation>QQC</translation>
+        <source>UTC</source>
+        <translation>UTC</translation>
     </message>
     <message>
         <location line="+77"/>
@@ -2581,13 +2581,13 @@ Adres: %4
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of QQC</source>
-        <translation>Błąd ładowania wallet.dat: Portfel wymaga nowszej wersji QQC</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of UTC</source>
+        <translation>Błąd ładowania wallet.dat: Portfel wymaga nowszej wersji UTC</translation>
     </message>
     <message>
         <location line="+73"/>
-        <source>Wallet needed to be rewritten: restart QQC to complete</source>
-        <translation>Portfel wymaga przepisania: zrestartuj QQC żeby ukończyć</translation>
+        <source>Wallet needed to be rewritten: restart UTC to complete</source>
+        <translation>Portfel wymaga przepisania: zrestartuj UTC żeby ukończyć</translation>
     </message>
     <message>
         <location line="-75"/>
@@ -2656,8 +2656,8 @@ Adres: %4
     </message>
     <message>
         <location line="-25"/>
-        <source>Unable to bind to %s on this computer. QQC is probably already running.</source>
-        <translation>Nie można przywiązać portu %s na tym komputerze. QQC prawdopodobnie już działa.</translation>
+        <source>Unable to bind to %s on this computer. UTC is probably already running.</source>
+        <translation>Nie można przywiązać portu %s na tym komputerze. UTC prawdopodobnie już działa.</translation>
     </message>
     <message>
         <location line="+55"/>
