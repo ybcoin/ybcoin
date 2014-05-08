@@ -1625,12 +1625,12 @@ Address: %4
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to send the payment to  (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
-        <translation>지불주소(e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
+        <source>The address to send the payment to  (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <translation>지불주소(e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
     </message>
     <message>
-        <source>The address to send the payment to (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
-        <translation type="obsolete">지불주소(e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
+        <source>The address to send the payment to (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <translation type="obsolete">지불주소(e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1663,8 +1663,8 @@ Address: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a UltraCoin address (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
-        <translation>UltraCoin주소를 입력하십시오 (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
+        <source>Enter a UltraCoin address (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <translation>UltraCoin주소를 입력하십시오 (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
     </message>
 </context>
 <context>
@@ -1691,8 +1691,8 @@ Address: %4
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to sign the message with (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
-        <translation>서명용 금괴 주소(e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
+        <source>The address to sign the message with (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <translation>서명용 금괴 주소(e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1733,8 +1733,8 @@ Address: %4
     </message>
     <message>
         <location line="+106"/>
-        <source>The address the message was signed with (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
-        <translation>확인할 본 메시지의 주소 (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
+        <source>The address the message was signed with (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <translation>확인할 본 메시지의 주소 (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</translation>
     </message>
     <message>
         <location line="+40"/>

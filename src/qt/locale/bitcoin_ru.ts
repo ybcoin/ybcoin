@@ -1629,7 +1629,7 @@ Address: %4
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to send the payment to  (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <source>The address to send the payment to  (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1667,7 +1667,7 @@ Address: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a UltraCoin address (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <source>Enter a UltraCoin address (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1695,7 +1695,7 @@ Address: %4
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to sign the message with (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <source>The address to sign the message with (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1737,7 +1737,7 @@ Address: %4
     </message>
     <message>
         <location line="+106"/>
-        <source>The address the message was signed with (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <source>The address the message was signed with (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
