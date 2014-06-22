@@ -38,8 +38,8 @@ static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20);
 static CBigNum bnProofOfStakeLimit(~uint256(0) >> 24);
 static CBigNum bnProofOfStakeHardLimit(~uint256(0) >> 30);
 static CBigNum bnInitialHashTarget(~uint256(0) >> 32);
-unsigned int nStakeMinAge = 60 * 60 * 24 * 365; // minimum age for coin age
-unsigned int nStakeMaxAge = 60 * 60 * 24 * 730; // stake age of full weight
+unsigned int nStakeMinAge = 60 * 60 * 24 * 7; // minimum age for coin age
+unsigned int nStakeMaxAge = 60 * 60 * 24 * 35; // stake age of full weight
 unsigned int nStakeTargetSpacing = 30; //  20 second block spacing
 int64 nChainStartTime = 1388361600;
 int nCoinbaseMaturity = 50;
