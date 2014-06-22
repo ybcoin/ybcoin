@@ -1412,7 +1412,18 @@ bool CTransaction::ConnectInputs(CTxDB& txdb, MapPrevTx inputs,
         }
 
         if (IsCoinStake())
-        
+        {
+            // ppcoin: coin stake tx earns reward instead of paying fee
+            uint64 nCoinAge;
+            const CBlockIndex* pIndex0 = GetLastBlockIndex(pindexBest, false);
+            if (!GetCoinAge(txdb, nCoinAge))
+                return error("ConnectInputs() : %s unable to get coin age for coinstake", GetHash().ToString().substr(0,10).c_str());
+            int64 nStakeReward = GetValueOut() - nValueIn;
+            if (nStakeReward > GetProofOfStakeReward(nCoinAge, pIndex0->nHeight) - GetMinFee() + MIN_TX_FEE){
+                return DoS(100, error("ConnectInputs() : %s stake reward exceeded, tx: %s,\ncoin age: %"PRI64d", %"PRI64d"", GetHash().ToString().substr(0,10).c_str(),this->ToString().c_str(),nCoinAge,nStakeReward));
+            }
+        }
+        else
         {
             if (nValueIn < GetValueOut())
                 return DoS(100, error("ConnectInputs() : %s value in < value out", GetHash().ToString().substr(0,10).c_str()));
