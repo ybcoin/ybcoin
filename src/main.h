@@ -23,8 +23,8 @@ class CInv;
 class CRequestTracker;
 class CNode;
 static const int POW_CUTOFF_HEIGHT = 6001000; // define last POW Block
-static const int POS_START_HEIGHT = 6000000; // add POS Switch Start Block
-static const int nConsecutiveStakeSwitchHeight = 50000000;// We want POS to be continuous after POS only implementation
+static const int POS_START_HEIGHT = 500000; // add POS Switch Start Block
+static const int nConsecutiveStakeSwitchHeight = 449000;// We want POS to be continuous after POS only implementation
 static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
