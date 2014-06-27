@@ -246,7 +246,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../bitcoin.qrc">:/icons/res/icons/ultracoin-256.png</pixmap>
+          <pixmap resource="../bitcoin.qrc">:/icons/res/icons/ultracoin-2567.png</pixmap>
          </property>
         </widget>
        </item>

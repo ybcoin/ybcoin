@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/icons">
         <file>res/icons/ultracoin-256.png</file>
+        <file>res/icons/ultracoin-2567.png</file>
         <file alias="bitcoin">res/icons/ultracoin.png</file>
         <file alias="address-book">res/icons/address-book.png</file>
         <file alias="quit">res/icons/quit.png</file>
