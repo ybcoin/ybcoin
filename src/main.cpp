@@ -1028,9 +1028,9 @@ int64 GetProofOfWorkReward( int nHeight, uint256 prevHash)
 int64 GetProofOfStakeReward(int64 nCoinAge, int nHeight)
 {
     int64 nRewardCoinYear = 20 * CENT;  // creation amount per coin-year
-    if (nHeight > 1)
+    if (nHeight < 449000)
         nRewardCoinYear = 20 * CENT;
-    else if (nHeight > 449000)
+    else if (nHeight < 100000000)
         nRewardCoinYear = 5.2 * CENT;
 
     int64 nSubsidy = nCoinAge * 33 / (365 * 33 + 8) * nRewardCoinYear;
