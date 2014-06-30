@@ -24,11 +24,11 @@ SignVerifyMessageDialog::SignVerifyMessageDialog(QWidget *parent) :
 
 #if (QT_VERSION >= 0x040700)
     /* Do not move this to the XML file, Qt before 4.7 will choke on it */
-    ui->addressIn_SM->setPlaceholderText(tr("Enter a YbCoin address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)"));
+    ui->addressIn_SM->setPlaceholderText(tr("Enter a UltraCoin address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)"));
     ui->signatureOut_SM->setPlaceholderText(tr("Click \"Sign Message\" to generate signature"));
 
-    ui->addressIn_VM->setPlaceholderText(tr("Enter a YbCoin address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)"));
-    ui->signatureIn_VM->setPlaceholderText(tr("Enter YbCoin signature"));
+    ui->addressIn_VM->setPlaceholderText(tr("Enter a UltraCoin address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)"));
+    ui->signatureIn_VM->setPlaceholderText(tr("Enter UltraCoin signature"));
 #endif
 
     GUIUtil::setupAddressWidget(ui->addressIn_SM, this);

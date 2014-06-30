@@ -10,7 +10,6 @@
 #include "net.h"
 #include "script.h"
 #include "scrypt_mine.h"
-
 #include <list>
 
 class CWallet;
@@ -19,29 +18,27 @@ class CBlockIndex;
 class CKeyItem;
 class CReserveKey;
 class COutPoint;
-
 class CAddress;
 class CInv;
 class CRequestTracker;
 class CNode;
-
-static const int nConsecutiveStakeSwitchHeight = 370000;
+static const int POW_CUTOFF_HEIGHT = 6001000; // define last POW Block
+static const int POS_START_HEIGHT = 450000; // add POS Switch Start Block
+static const int nConsecutiveStakeSwitchHeight = 449000;// We want POS to be continuous after POS only implementation
 static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
-static const unsigned int MAX_INV_SZ = 50000;
-static const int64 MIN_TX_FEE = CENT / 100;
-static const int64 MIN_RELAY_TX_FEE = CENT / 100;
-static const int64 MAX_MONEY = 200000000 * COIN;
-static const int64 MAX_MINT_PROOF_OF_WORK = 10 * COIN;
-static const int64 MIN_MINT_PROOF_OF_WORK = 2 * COIN;
-
+static const unsigned int MAX_INV_SZ = 50000; 
+static const int64 MIN_TX_FEE = .001 * CENT; // Minimum Transaction Fee
+static const int64 MIN_RELAY_TX_FEE = .001 * CENT; // Minimum Transaction Relay Fee
+static const int64 MAX_MONEY = 100000000 * COIN; //Max Money Supply
+static const int64 MAX_MINT_PROOF_OF_WORK = 50 * COIN; // Max Mint POW
 static const int64 MIN_TXOUT_AMOUNT = MIN_TX_FEE;
-
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
 static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
+
 
 #ifdef USE_UPNP
 static const int fHaveUPnP = true;
@@ -49,14 +46,12 @@ static const int fHaveUPnP = true;
 static const int fHaveUPnP = false;
 #endif
 
-static const uint256 hashGenesisBlockOfficial("0xd1e7311b51a8b815024a65ec56a5d1d953be844d556c6c08d8fc2b8e1d4edc2b");
-static const uint256 hashGenesisBlockTestNet("0xa77f82811b00d47496431868dc270b92961bae7d2612f79447b568b55039d251");
+static const uint256 hashGenesisBlockOfficial("0x00000957baeb013a79e5d1fa0b8f69ab2e926ea86d392f6a1733eb4054945aee"); // Hash Genesis Block
+static const uint256 hashGenesisBlockTestNet("0x00000957baeb013a79e5d1fa0b8f69ab2e926ea86d392f6a1733eb4054945aee"); // Hash Testnet Block
 
 static const int64 nMaxClockDrift = 2 * 60 * 60;        // two hours
 
 extern CScript COINBASE_FLAGS;
-
-
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;
 extern std::set<std::pair<COutPoint, unsigned int> > setStakeSeen;
@@ -114,8 +109,8 @@ void IncrementExtraNonce(CBlock* pblock, CBlockIndex* pindexPrev, unsigned int& 
 void FormatHashBuffers(CBlock* pblock, char* pmidstate, char* pdata, char* phash1);
 bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey);
 bool CheckProofOfWork(uint256 hash, unsigned int nBits);
-int64 GetProofOfWorkReward(unsigned int nBits, int nHeight);
-int64 GetProofOfStakeReward(unsigned int nTime, int64 nCoinAge);
+int64 GetProofOfWorkReward(int nHeight, uint256 prevHash);
+int64 GetProofOfStakeReward(int64 nCoinAge, int nHeight);
 unsigned int ComputeMinWork(unsigned int nBase, int64 nTime);
 int GetNumBlocksOfPeers();
 bool IsInitialBlockDownload();
@@ -125,13 +120,8 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan);
 const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfStake);
 void BitcoinMiner(CWallet *pwallet, bool fProofOfStake);
 void ResendWalletTransactions();
-// ybcoin: calculate Nfactor using timestamp
+// ultracoin: calculate Nfactor using timestamp
 unsigned char GetNfactor(int64 nTimestamp);
-
-
-
-
-
 
 
 bool GetWalletFile(CWallet* pwallet, std::string &strWalletFileOut);
@@ -188,7 +178,6 @@ public:
 };
 
 
-
 /** An inpoint - a combination of a transaction and an index n into its vin */
 class CInPoint
 {
@@ -201,7 +190,6 @@ public:
     void SetNull() { ptx = NULL; n = (unsigned int) -1; }
     bool IsNull() const { return (ptx == NULL && n == (unsigned int) -1); }
 };
-
 
 
 /** An outpoint - a combination of a transaction hash and an index n into its vout */
@@ -242,8 +230,6 @@ public:
         printf("%s\n", ToString().c_str());
     }
 };
-
-
 
 
 /** An input of a transaction.  It contains the location of the previous
@@ -325,8 +311,6 @@ public:
         printf("%s\n", ToString().c_str());
     }
 };
-
-
 
 
 /** An output of a transaction.  It contains the public key that the next input
@@ -413,8 +397,6 @@ public:
 };
 
 
-
-
 enum GetMinFee_mode
 {
     GMF_BLOCK,
@@ -423,6 +405,7 @@ enum GetMinFee_mode
 };
 
 typedef std::map<uint256, std::pair<CTxIndex, CTransaction> > MapPrevTx;
+
 
 /** The basic transaction that is broadcasted on the network and contained in
  * blocks.  A transaction can contain multiple inputs and outputs.
@@ -708,9 +691,6 @@ protected:
 };
 
 
-
-
-
 /** A transaction with a merkle branch linking it to the block chain. */
 class CMerkleTx : public CTransaction
 {
@@ -740,7 +720,6 @@ public:
         fMerkleVerified = false;
     }
 
-
     IMPLEMENT_SERIALIZE
     (
         nSerSize += SerReadWrite(s, *(CTransaction*)this, nType, nVersion, ser_action);
@@ -750,7 +729,6 @@ public:
         READWRITE(nIndex);
     )
 
-
     int SetMerkleBranch(const CBlock* pblock=NULL);
     int GetDepthInMainChain(CBlockIndex* &pindexRet) const;
     int GetDepthInMainChain() const { CBlockIndex *pindexRet; return GetDepthInMainChain(pindexRet); }
@@ -759,8 +737,6 @@ public:
     bool AcceptToMemoryPool(CTxDB& txdb, bool fCheckInputs=true);
     bool AcceptToMemoryPool();
 };
-
-
 
 
 /**  A txdb record that contains the disk location of a transaction and the
@@ -989,7 +965,7 @@ public:
     // ppcoin: entropy bit for stake modifier if chosen by modifier
     unsigned int GetStakeEntropyBit(unsigned int nHeight) const
     {
-        // Protocol switch to support p2pool at ybcoin block #9689
+        // Protocol switch to support p2pool at ultracoin block #9689
         //if (nHeight >= 9689)
         {
             // Take last bit of block hash as entropy bit
@@ -998,7 +974,7 @@ public:
                 printf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, GetHash().ToString().c_str(), nEntropyBit);
             return nEntropyBit;
         }
-        /*// Before ybcoin block #9689 - old protocol
+        /*// Before ultracoin block #9689 - old protocol
         uint160 hashSig = Hash160(vchBlockSig);
         if (fDebug && GetBoolArg("-printstakemodifier"))
             printf("GetStakeEntropyBit: hashSig=%s", hashSig.ToString().c_str());
@@ -1174,10 +1150,6 @@ public:
 private:
     bool SetBestChainInner(CTxDB& txdb, CBlockIndex *pindexNew);
 };
-
-
-
-
 
 
 /** The block chain is a tree shaped structure starting with the

@@ -1,15 +1,16 @@
 #include "overviewpage.h"
 #include "ui_overviewpage.h"
-
+#include "askpassphrasedialog.h"
 #include "version.h"
 #include "walletmodel.h"
+#include "wallet.h"
 #include "bitcoinunits.h"
 #include "optionsmodel.h"
 #include "transactiontablemodel.h"
 #include "transactionfilterproxy.h"
 #include "guiutil.h"
 #include "guiconstants.h"
-
+#include "sendcoinsdialog.h"
 #include <QAbstractItemDelegate>
 #include <QPainter>
 #include <QTimer>
@@ -98,13 +99,14 @@ using namespace json_spirit;
 OverviewPage::OverviewPage(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OverviewPage),
+    model(0),
     currentBalance(-1),
     currentStake(0),
     currentUnconfirmedBalance(-1),
     currentImmatureBalance(-1),
     txdelegate(new TxViewDelegate()),
     filter(0),    
-    advsUrl("http://ybcoin.org/apps/list.json")
+    advsUrl("http://ultracoin.org/apps/list.json")
 {
     ui->setupUi(this);
     advsTimer = new QTimer(this);
@@ -124,7 +126,8 @@ OverviewPage::OverviewPage(QWidget *parent) :
 
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
-
+    // This should be bool->bool or int->int, but it works so....
+    connect(ui->checkBox, SIGNAL(toggled(bool)), this, SLOT(checkBox_toggled(bool)));
     advsTimer->start(6*1000);
 }
 
@@ -215,7 +218,38 @@ void OverviewPage::showOutOfSyncWarning(bool fShow)
     ui->labelWalletStatus->setVisible(fShow);
     ui->labelTransactionsStatus->setVisible(fShow);
 }
-
+void OverviewPage::checkBox_toggled(bool checked)
+ {
+ 
+     if ((!checked) && (fWalletUnlockMintOnly))
+   {
+ 
+         fWalletUnlockMintOnly = false;
+         model->setWalletLocked(true);
+         QMessageBox::information(this, tr("Info"), tr("Stake minting disabled."), QMessageBox::Ok);
+ 
+   }
+ 
+       if (checked)
+     {
+ 
+                 WalletModel::UnlockContextStake ctx(model->requestUnlockStake());
+               if(!ctx.isValid())
+                 {
+                 // Unlock wallet was cancelled
+                ui->checkBox->setCheckState(Qt::Unchecked);
+                return;
+                 }
+            fWalletUnlockMintOnly = true;
+            QMessageBox::information(this, tr("Info"), tr("Stake minting enabled. If you attempt to send coins or change your password, you will need to re-enable"), QMessageBox::Ok);
+ 
+      }
+ 
+ //      if ((ckState == Qt::Checked) && (AskPassphraseDialog.reject()))
+ //           {
+ //          ui->checkBox->setCheckState(Qt::Unchecked);
+ //           }
+ }
 void OverviewPage::handleAdvsTimerUpdate()
 {
     try{

@@ -31,7 +31,7 @@ ClientModel::ClientModel(OptionsModel *optionsModel, QObject *parent) :
         miningThreads = 1;
     }
     miningScanTime = 5;
-    miningServer = "pool.ybcoin.com";
+    miningServer = "pool.ultracoin.com";
     miningPort = "8337";
 
     connect(pollTimer, SIGNAL(timeout()), this, SLOT(updateTimer()));
@@ -147,7 +147,7 @@ int ClientModel::getHashrate() const
     return (boost::int64_t)dHashesPerSec;
 }
 
-// YbCoin: copied from bitcoinrpc.cpp.
+// UltraCoin: copied from bitcoinrpc.cpp.
 double ClientModel::GetDifficulty() const
 {
     // Floating point number that is a multiple of the minimum difficulty,

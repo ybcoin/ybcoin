@@ -1,6 +1,6 @@
 QT += core gui network
 TEMPLATE = app
-TARGET = ybcoin-qt
+TARGET = ultracoin-qt
 VERSION = 0.4.2
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE SCRYPT_CHACHA SCRYPT_KECCAK512 #CPU_X86_FORCE_INTRINSICS __MINGW64__ BOOST_USE_WINDOWS_H
@@ -13,16 +13,20 @@ CONFIG += thread
 # use: BOOST_THREAD_LIB_SUFFIX=_win32-...
 # or when linking against a specific BerkelyDB version: BDB_LIB_SUFFIX=-4.8
 
- BOOST_INCLUDE_PATH = C:/boost-1.50.0-mgw
- BOOST_LIB_PATH = C:/boost-1.50.0-mgw/stage/lib
- BDB_INCLUDE_PATH = C:/db-4.8.30.NC-mgw/build_unix
- BDB_LIB_PATH = C:/db-4.8.30.NC-mgw/build_unix
- OPENSSL_INCLUDE_PATH = C:/openssl-1.0.1e-mgw/include
- OPENSSL_LIB_PATH = C:/openssl-1.0.1e-mgw
- MINIUPNPC_INCLUDE_PATH = C:/miniupnpc-1.6-mgw
- MINIUPNPC_LIB_PATH = C:/miniupnpc-1.6-mgw
- #BDB_LIB_SUFFIX = -5.3
- BOOST_LIB_SUFFIX = -mgw46-mt-s-1_50
+#windows:LIBS += -lshlwapi
+#LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
+#LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
+#windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
+#LIBS += -lboost_system-mgw46-mt-sd-1_53 -lboost_filesystem-mgw46-mt-sd-1_53 -lboost_program_options-mgw46-mt-sd-1_53 -lboost_thread-mgw46-mt-sd-1_53
+#BOOST_LIB_SUFFIX=-mgw46-mt-sd-1_53
+#BOOST_INCLUDE_PATH=C:/deps/boost
+#BOOST_LIB_PATH=C:/deps/boost/stage/lib
+#BDB_INCLUDE_PATH=c:/deps/db/build_unix
+#BDB_LIB_PATH=c:/deps/db/build_unix
+#OPENSSL_INCLUDE_PATH=c:/deps/openssl-1.0.1g/include
+#OPENSSL_LIB_PATH=c:/deps/openssl-1.0.1g
+#MINIUPNPC_LIB_PATH=c:/deps/miniupnpc
+#MINIUPNPC_INCLUDE_PATH=c:/deps
 
 # Dependency library locations can be customized with:
 #    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
@@ -380,7 +384,7 @@ macx:OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm
 macx:LIBS += -framework Foundation -framework ApplicationServices -framework AppKit
 macx:DEFINES += MAC_OSX MSG_NOSIGNAL=0
 macx:ICON = src/qt/res/icons/bitcoin.icns
-macx:TARGET = "YbCoin-Qt"
+macx:TARGET = "UltraCoin-Qt"
 macx:QMAKE_CFLAGS_THREAD += -pthread
 macx:QMAKE_LFLAGS_THREAD += -pthread
 macx:QMAKE_CXXFLAGS_THREAD += -pthread

@@ -18,17 +18,17 @@
     </message>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About YbCoin</source>
+        <source>About UltraCoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;YbCoin&lt;/b&gt; version</source>
+        <source>&lt;b&gt;UltraCoin&lt;/b&gt; version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+41"/>
-        <source>Copyright ? 2013 The YbCoin developers</source>
+        <source>Copyright ? 2013 The UltraCoin developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -56,7 +56,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+6"/>
-        <source>These are your YbCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep 
+        <source>These are your UltraCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep 
 track of who is paying you.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -77,7 +77,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+25"/>
-        <source>Sign a message to prove you own a YbCoin address</source>
+        <source>Sign a message to prove you own a UltraCoin address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -110,7 +110,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+11"/>
-        <source>Verify a message to ensure it was signed with a specified YbCoin address</source>
+        <source>Verify a message to ensure it was signed with a specified UltraCoin address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -260,7 +260,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+11"/>
-        <source>YbCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <source>UltraCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -345,7 +345,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="-128"/>
-        <source>YbCoin</source>
+        <source>UltraCoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -365,7 +365,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+5"/>
-        <source>Send coins to a YbCoin address</source>
+        <source>Send coins to a UltraCoin address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -434,7 +434,7 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Modify configuration options for YbCoin</source>
+        <source>Modify configuration options for UltraCoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -455,12 +455,12 @@ track of who is paying you.</source>
     <message>
         <location line="+87"/>
         <location line="+63"/>
-        <source>YbCoin client</source>
+        <source>UltraCoin client</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location line="+69"/>
-        <source>%n active connection(s) to YbCoin network</source>
+        <source>%n active connection(s) to UltraCoin network</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -483,12 +483,12 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="+81"/>
-        <source>Mining YbCoins at %1 hashes per second</source>
+        <source>Mining UltraCoins at %1 hashes per second</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>Not mining YbCoins</source>
+        <source>Not mining UltraCoins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -516,12 +516,12 @@ track of who is paying you.</source>
     </message>
     <message>
         <location line="-11"/>
-        <source>&amp;About YbCoin</source>
+        <source>&amp;About UltraCoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Show information about YbCoin</source>
+        <source>Show information about UltraCoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -708,7 +708,7 @@ Address: %4
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid YbCoin address or malformed URI parameters.</source>
+        <source>URI can not be parsed! This can be caused by an invalid UltraCoin address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -751,7 +751,7 @@ Address: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+109"/>
-        <source>A fatal error occurred. YbCoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. UltraCoin can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -817,7 +817,7 @@ Address: %4
     </message>
     <message>
         <location line="+5"/>
-        <source>The entered address &quot;%1&quot; is not a valid YbCoin address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid UltraCoin address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -849,7 +849,7 @@ Address: %4
     <message>
         <location line="+0"/>
         <location line="+12"/>
-        <source>YbCoin-Qt</source>
+        <source>UltraCoin-Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1017,22 +1017,22 @@ Address: %4
     </message>
     <message>
         <location line="-43"/>
-        <source>Automatically start YbCoin after logging in to the system.</source>
+        <source>Automatically start UltraCoin after logging in to the system.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start YbCoin on system login</source>
+        <source>&amp;Start UltraCoin on system login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+37"/>
-        <source>Automatically open the YbCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the UltraCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>Connect to the YbCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <source>Connect to the UltraCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1107,12 +1107,12 @@ Address: %4
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting YbCoin.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting UltraCoin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+33"/>
-        <source>Whether to show YbCoin addresses in the transaction list or not.</source>
+        <source>Whether to show UltraCoin addresses in the transaction list or not.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1167,7 +1167,7 @@ Address: %4
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting YbCoin.</source>
+        <source>This setting will take effect after restarting UltraCoin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1219,7 +1219,7 @@ Address: %4
     <message>
         <location line="+7"/>
         <location line="+212"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the YbCoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the UltraCoin network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1355,12 +1355,12 @@ Address: %4
     </message>
     <message>
         <location line="-10"/>
-        <source>YbCoin - Debug window</source>
+        <source>UltraCoin - Debug window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>YbCoin Core</source>
+        <source>UltraCoin Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1410,7 +1410,7 @@ Address: %4
     </message>
     <message>
         <location line="+49"/>
-        <source>Open the YbCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <source>Open the UltraCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1425,7 +1425,7 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the YbCoin-Qt help message to get a list with possible YbCoin command-line options.</source>
+        <source>Show the UltraCoin-Qt help message to get a list with possible UltraCoin command-line options.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1475,7 +1475,7 @@ Address: %4
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-33"/>
-        <source>Welcome to the YbCoin RPC console.</source>
+        <source>Welcome to the UltraCoin RPC console.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1629,7 +1629,7 @@ Address: %4
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to send the payment to  (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <source>The address to send the payment to  (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1667,7 +1667,7 @@ Address: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a YbCoin address (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <source>Enter a UltraCoin address (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1695,7 +1695,7 @@ Address: %4
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to sign the message with (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <source>The address to sign the message with (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1732,17 +1732,17 @@ Address: %4
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this YbCoin address</source>
+        <source>Sign the message to prove you own this UltraCoin address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+106"/>
-        <source>The address the message was signed with (e.g. YMvigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
+        <source>The address the message was signed with (e.g. UakV64wuam9Hrd1ec9UVjs3D5dhAec9rYcigJMT42fPWQ4MG5q4fYCsRttKGCoFB1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified YbCoin address</source>
+        <source>Verify the message to ensure it was signed with the specified UltraCoin address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1800,12 +1800,12 @@ Address: %4
     <message>
         <location line="-1"/>
         <location line="+3"/>
-        <source>Enter a YbCoin address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</source>
+        <source>Enter a UltraCoin address (e.g. Y9H3tANhMroxU4rCre4bkoeDRhHKRSGwsi)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Enter YbCoin signature</source>
+        <source>Enter UltraCoin signature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2414,13 +2414,13 @@ Address: %4
     </message>
     <message>
         <location line="+23"/>
-        <source>Specify configuration file (default: ybcoin.conf)</source>
-        <translation>Указать конфигурационный файл (по умолчанию: ybcoin.conf)</translation>
+        <source>Specify configuration file (default: ultracoin.conf)</source>
+        <translation>Указать конфигурационный файл (по умолчанию: ultracoin.conf)</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Specify pid file (default: ybcoind.pid)</source>
-        <translation>Указать pid-файл (по умолчанию: ybcoin.pid)</translation>
+        <source>Specify pid file (default: ultracoind.pid)</source>
+        <translation>Указать pid-файл (по умолчанию: ultracoin.pid)</translation>
     </message>
     <message>
         <location line="-50"/>
@@ -2494,7 +2494,7 @@ Address: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>Cannot obtain a lock on data directory %s.  YbCoin is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s.  UltraCoin is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2514,17 +2514,17 @@ Address: %4
     </message>
     <message>
         <location line="+5"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8344 or testnet: 18344)</source>
-        <translation>Прослушивать подключения JSON-RPC на &lt;порту&gt; (по умолчанию: 8344 или для testnet: 18344)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 44101 or testnet: 44201)</source>
+        <translation>Прослушивать подключения JSON-RPC на &lt;порту&gt; (по умолчанию: 44101 или для testnet: 44201)</translation>
     </message>
     <message>
         <location line="+8"/>
-        <source>Unable to bind to %s on this computer. YbCoin is probably already running.</source>
+        <source>Unable to bind to %s on this computer. UltraCoin is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong YbCoin will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong UltraCoin will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2549,7 +2549,7 @@ Address: %4
     </message>
     <message>
         <location line="+17"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of YbCoin</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of UltraCoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2666,12 +2666,12 @@ Address: %4
     </message>
     <message>
         <location line="+1"/>
-        <source>YbCoin version</source>
+        <source>UltraCoin version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>YbCoin</source>
+        <source>UltraCoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2707,7 +2707,7 @@ Address: %4
     </message>
     <message>
         <location line="+1"/>
-        <source>Send command to -server or ybcoind</source>
+        <source>Send command to -server or ultracoind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2773,7 +2773,7 @@ Address: %4
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart YbCoin to complete</source>
+        <source>Wallet needed to be rewritten: restart UltraCoin to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

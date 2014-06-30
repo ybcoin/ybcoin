@@ -25,14 +25,7 @@
 using namespace std;
 using namespace boost;
 
-// WM - static const int MAX_OUTBOUND_CONNECTIONS = 8;
-#define DEFAULT_MAX_CONNECTIONS         125    // WM - Default value for -maxconnections= parameter.
-#define MIN_CONNECTIONS                 8      // WM - Lowest value we allow for -maxconnections= (never ever set less than 2!).
-#define MAX_CONNECTIONS                 1000   // WM - Max allowed value for -maxconnections= parameter.  Getting kinda excessive, eh?
-
-#define DEFAULT_OUTBOUND_CONNECTIONS    8      // WM - Reasonable default of 8 outbound connections for -maxoutbound= parameter.
-#define MIN_OUTBOUND_CONNECTIONS        4      // WM - Lowest we allow for -maxoutbound= parameter shall be 4 connections (never ever set below 2).
-#define MAX_OUTBOUND_CONNECTIONS        100    // WM - This no longer means what it used to.  Outbound conn count now runtime configurable.
+static const int MAX_OUTBOUND_CONNECTIONS = 8;
 
 void ThreadMessageHandler2(void* parg);
 void ThreadSocketHandler2(void* parg);
@@ -92,59 +85,6 @@ void AddOneShot(string strDest)
 unsigned short GetListenPort()
 {
     return (unsigned short)(GetArg("-port", GetDefaultPort()));
-}
-
-//
-// int GetMaxConnections( void )
-//
-//    WM - Function to determine maximum allowed in+out connections.
-//
-//    Parameters: None
-//    Returns: Maximum connections allowed (int)
-//
-
-int GetMaxConnections()
-{
-    int count;
-
-    // Config'eth away..
-    count = GetArg( "-maxconnections", DEFAULT_MAX_CONNECTIONS );
-    
-    // Ensure some level of sanity amount the max connection count.
-    count = max( count, MIN_CONNECTIONS );
-    count = min( count, MAX_CONNECTIONS );
-    
-    //printf( "GetMaxConnections() = %d\n", count );
-
-    return count;
-}
-
-
-
-//
-// int GetMaxOutboundConnections( void )
-//
-//    WM - Function to determine maximum allowed outbound connections.
-//
-//    Parameters: None
-//    Returns: Maximum outbound connections allowed (int)
-//
-
-int GetMaxOutboundConnections()
-{
-    int count;
-
-    // What sayeth the config parameters?
-    count = GetArg( "-maxoutbound", DEFAULT_OUTBOUND_CONNECTIONS );
-    
-    // Did someone set it too low or too high?  Shame, shame..
-    count = max( count, MIN_OUTBOUND_CONNECTIONS );
-    count = min( count, MAX_OUTBOUND_CONNECTIONS );
-    count = min( count, GetMaxConnections() );
-
-    //printf( "GetMaxOutboundConnections() = %d\n", count );
-    
-    return count;
 }
 
 void CNode::PushGetBlocks(CBlockIndex* pindexBegin, uint256 hashEnd)
@@ -823,7 +763,7 @@ void ThreadSocketHandler2(void* parg)
             BOOST_FOREACH(CNode* pnode, vNodes)
             {
                 if (pnode->hSocket == INVALID_SOCKET)
-                    continue;          
+                    continue;
                 FD_SET(pnode->hSocket, &fdsetRecv);
                 FD_SET(pnode->hSocket, &fdsetError);
                 hSocketMax = max(hSocketMax, pnode->hSocket);
@@ -844,12 +784,12 @@ void ThreadSocketHandler2(void* parg)
             return;
         if (nSelect == SOCKET_ERROR)
         {
-            if ((hSocketMax != INVALID_SOCKET) && (hSocketMax != (SOCKET)0))
+            if (have_fds)
             {
-                int nErr = WSAGetLastError();                
-                for (unsigned int i = 0; i <= hSocketMax; i++){
+                int nErr = WSAGetLastError();
+                printf("socket select error %d\n", nErr);
+                for (unsigned int i = 0; i <= hSocketMax; i++)
                     FD_SET(i, &fdsetRecv);
-                }
             }
             FD_ZERO(&fdsetSend);
             FD_ZERO(&fdsetError);
@@ -890,7 +830,7 @@ void ThreadSocketHandler2(void* parg)
                 if (nErr != WSAEWOULDBLOCK)
                     printf("socket error accept failed: %d\n", nErr);
             }
-            else if ( nInbound >= GetMaxConnections() - GetMaxOutboundConnections() )
+            else if (nInbound >= GetArg("-maxconnections", 125) - MAX_OUTBOUND_CONNECTIONS)
             {
                 {
                     LOCK(cs_setservAddNodeAddresses);
@@ -1048,11 +988,19 @@ void ThreadSocketHandler2(void* parg)
     }
 }
 
+
+
+
+
+
+
+
+
 #ifdef USE_UPNP
 void ThreadMapPort(void* parg)
 {
     // Make this thread recognisable as the UPnP thread
-    RenameThread("ybcoin-UPnP");
+    RenameThread("bitcoin-UPnP");
 
     try
     {
@@ -1113,11 +1061,11 @@ void ThreadMapPort2(void* parg)
             }
         }
 
-        string strDesc = "YbCoin " + FormatFullVersion();
+        string strDesc = "Ultracoin " + FormatFullVersion();
 #ifndef UPNPDISCOVER_SUCCESS
         /* miniupnpc 1.5 */
         r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
-                            port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0, "0");
+                            port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0);
 #else
         /* miniupnpc 1.6 */
         r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
@@ -1144,7 +1092,7 @@ void ThreadMapPort2(void* parg)
 #ifndef UPNPDISCOVER_SUCCESS
                 /* miniupnpc 1.5 */
                 r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
-                                    port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0, "0");
+                                    port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0);
 #else
                 /* miniupnpc 1.6 */
                 r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
@@ -1188,15 +1136,20 @@ void MapPort()
 }
 #endif
 
+
+
+
+
+
+
+
+
 // DNS seeds
 // Each pair gives a source name and a seed name.
 // The first name is used as information source for addrman.
 // The second name should resolve to a list of seed addresses.
 static const char *strDNSSeed[][2] = {
-    {"ybcoin.com", "seeds.ybcoin.com"},
-    {"ybcoin.org", "seed1.ybcoin.org"},
-    {"ybcoin.org", "seed2.ybcoin.org"},
-    {"ybcoin.com", "tnseeds.ybcoin.com"}
+    {"Ultracoin.net", "82.196.2.163"},
 };
 
 void ThreadDNSAddressSeed(void* parg)
@@ -1224,36 +1177,50 @@ void ThreadDNSAddressSeed2(void* parg)
 {
     printf("ThreadDNSAddressSeed started\n");
     int found = 0;
-    printf("Loading addresses from DNS seeds (could take a while)\n");
-    for (unsigned int seed_idx = 0; seed_idx < ARRAYLEN(strDNSSeed); seed_idx++) {
-        //testnet's dnsseeds start with "tn"
-        if (fTestNet && strDNSSeed[seed_idx][1][0] != 't' && strDNSSeed[seed_idx][1][1] != 'n') continue;
-        if ((!fTestNet) && strDNSSeed[seed_idx][1][0] == 't' && strDNSSeed[seed_idx][1][1] == 'n') continue;
-        if (HaveNameProxy()) {
-            AddOneShot(strDNSSeed[seed_idx][1]);
-        } else {
-            vector<CNetAddr> vaddr;
-            vector<CAddress> vAdd;
-            if (LookupHost(strDNSSeed[seed_idx][1], vaddr))
-            {
-                BOOST_FOREACH(CNetAddr& ip, vaddr)
+
+    if (!fTestNet)
+    {
+        printf("Loading addresses from DNS seeds (could take a while)\n");
+
+        for (unsigned int seed_idx = 0; seed_idx < ARRAYLEN(strDNSSeed); seed_idx++) {
+            if (HaveNameProxy()) {
+                AddOneShot(strDNSSeed[seed_idx][1]);
+            } else {
+                vector<CNetAddr> vaddr;
+                vector<CAddress> vAdd;
+                if (LookupHost(strDNSSeed[seed_idx][1], vaddr))
                 {
-                    int nOneDay = 24*3600;
-                    CAddress addr = CAddress(CService(ip, GetDefaultPort()));
-                    addr.nTime = GetTime() - 3*nOneDay - GetRand(4*nOneDay); // use a random age between 3 and 7 days old
-                    vAdd.push_back(addr);
-                    found++;
+                    BOOST_FOREACH(CNetAddr& ip, vaddr)
+                    {
+                        int nOneDay = 24*3600;
+                        CAddress addr = CAddress(CService(ip, GetDefaultPort()));
+                        addr.nTime = GetTime() - 3*nOneDay - GetRand(4*nOneDay); // use a random age between 3 and 7 days old
+                        vAdd.push_back(addr);
+                        found++;
+                    }
                 }
+                addrman.Add(vAdd, CNetAddr(strDNSSeed[seed_idx][0], true));
             }
-            addrman.Add(vAdd, CNetAddr(strDNSSeed[seed_idx][0], true));
         }
     }
+
     printf("%d addresses found from DNS seeds\n", found);
 }
 
+
+
+
+
+
+
+
+
+
+
+
 unsigned int pnSeed[] =
 {
-    0x36FA93B3, 0x707C0255, 0xC09B5215
+    0x90EF78BC, 0x33F1C851, 0x36F1C851, 0xC6F5C851,
 };
 
 void DumpAddresses()
@@ -1298,7 +1265,7 @@ void ThreadDumpAddress(void* parg)
 void ThreadOpenConnections(void* parg)
 {
     // Make this thread recognisable as the connection opening thread
-    RenameThread("ybcoin-opencon");
+    RenameThread("bitcoin-opencon");
 
     try
     {
@@ -1601,6 +1568,13 @@ bool OpenNetworkConnection(const CAddress& addrConnect, CSemaphoreGrant *grantOu
     return true;
 }
 
+
+
+
+
+
+
+
 void ThreadMessageHandler(void* parg)
 {
     // Make this thread recognisable as the message handling thread
@@ -1768,7 +1742,7 @@ bool BindListenPort(const CService &addrBind, string& strError)
     {
         int nErr = WSAGetLastError();
         if (nErr == WSAEADDRINUSE)
-            strError = strprintf(_("Unable to bind to %s on this computer. YbCoin is probably already running."), addrBind.ToString().c_str());
+            strError = strprintf(_("Unable to bind to %s on this computer. Ultracoin is probably already running."), addrBind.ToString().c_str());
         else
             strError = strprintf(_("Unable to bind to %s on this computer (bind returned error %d, %s)"), addrBind.ToString().c_str(), nErr, strerror(nErr));
         printf("%s\n", strError.c_str());
@@ -1868,11 +1842,18 @@ void StartNode(void* parg)
     // Start threads
     //
 
-   if (!GetBoolArg("-dnsseed", true))
+/*
+    if (!GetBoolArg("-dnsseed", true))
         printf("DNS seeding disabled\n");
     else
         if (!NewThread(ThreadDNSAddressSeed, NULL))
             printf("Error: NewThread(ThreadDNSAddressSeed) failed\n");
+*/
+
+    if (!GetBoolArg("-dnsseed", false))
+        printf("DNS seeding disabled\n");
+    if (GetBoolArg("-dnsseed", false))
+        printf("DNS seeding NYI\n");
 
     // Map ports with UPnP
     if (fUseUPnP)
@@ -1903,12 +1884,8 @@ void StartNode(void* parg)
         printf("Error; NewThread(ThreadDumpAddress) failed\n");
 
     // ppcoin: mint proof-of-stake blocks in the background
-    if(GetBoolArg("-genpos", true)){
-        if (!NewThread(ThreadStakeMinter, pwalletMain))
-            printf("Error: NewThread(ThreadStakeMinter) failed\n");
-    }else{
-        printf("Info: Proof-Of-Stake Generation Disabled\n");
-    }
+    if (!NewThread(ThreadStakeMinter, pwalletMain))
+        printf("Error: NewThread(ThreadStakeMinter) failed\n");
 
     // Generate coins in the background
     GenerateBitcoins(GetBoolArg("-gen", false), pwalletMain);

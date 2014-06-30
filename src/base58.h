@@ -276,9 +276,9 @@ class CBitcoinAddress : public CBase58Data
 public:
     enum
     {
-        PUBKEY_ADDRESS = 78,
-        SCRIPT_ADDRESS = 140,
-        PUBKEY_ADDRESS_TEST = 111,
+        PUBKEY_ADDRESS = 68,  // Ultracoin: address begin with 'U'
+        SCRIPT_ADDRESS = 6, // Ultracoin: address begin with 'T'
+        PUBKEY_ADDRESS_TEST = 28,
         SCRIPT_ADDRESS_TEST = 196,
     };
 
